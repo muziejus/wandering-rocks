@@ -51,6 +51,11 @@
           var currentItem = $(".nav li.active > a").text();
           $("#response").empty().html("<p>Say hello to: " + currentItem + "</p>");
         });
+        $("#text_box").scroll(function(){
+          if ($("#text_box").scrollTop() === 0) {
+            $("#response").empty();
+          }
+        });
       });
           
     </script>
