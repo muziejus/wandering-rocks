@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>“Wandering Rocks”</title>
+    <title>Fabula and Sužet in “Wandering Rocks”</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
 
@@ -11,16 +11,9 @@
         text-decoration: underline;
       }
 
-      #response {
-        position: absolute;
-        overflow-y: auto;
-        height: 200px;
-        width: 800px;
-        top: 20px;
-        left: 20px;
-        border: 1px solid #333;
-      }
       #text_box {
+				border: 1px solid #333;
+				padding: 10px;
         position: relative;
         overflow-y: scroll;
         height: 300px;
@@ -31,6 +24,51 @@
     </style>
   </head>
   <body>
+		<nav class="navbar navbar-default">
+			<div class="container-fluid">
+				<!-- Brand and toggle get grouped for better mobile display -->
+				<div class="navbar-header">
+					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+						<span class="sr-only">Toggle navigation</span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+						<span class="icon-bar"></span>
+					</button>
+					<a class="navbar-brand" href="#">Fabula and Sužet in “Wandering Rocks”</a>
+				</div>
+
+				<!-- Collect the nav links, forms, and other content for toggling -->
+				<div class="collapse navbar-collapse" id="list">
+					<ul class="nav navbar-nav">
+						<li class="dropdown">
+							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Section <span class="caret"></span></a>
+							<ul class="dropdown-menu">
+								<li><a href="#section_1">1.</a></li>
+								<li><a href="#section_2">2.</a></li>
+								<li><a href="#section_3">3.</a></li>
+								<li><a href="#section_4">4.</a></li>
+								<li><a href="#section_5">5.</a></li>
+								<li><a href="#section_6">6.</a></li>
+								<li><a href="#section_7">7.</a></li>
+								<li><a href="#section_8">8.</a></li>
+								<li><a href="#section_9">9.</a></li>
+								<li><a href="#section_10">10.</a></li>
+								<li><a href="#section_11">11.</a></li>
+								<li><a href="#section_12">12.</a></li>
+								<li><a href="#section_13">13.</a></li>
+								<li><a href="#section_14">14.</a></li>
+								<li><a href="#section_15">15.</a></li>
+								<li><a href="#section_16">16.</a></li>
+								<li><a href="#section_17">17.</a></li>
+								<li><a href="#section_18">18.</a></li>
+								<li><a href="#section_19">19.</a></li>
+							</ul>
+						</li>
+					</ul>
+				</div><!-- /.navbar-collapse -->
+			</div><!-- /.container-fluid -->
+		</nav>
+
     <div id="list" style="display: none;">
       <ul class="nav">
         <li><a href="#instance_5867" class="active">Presbytery Church of St. Francis Xavier, Dublin</a></li>
@@ -49,17 +87,5 @@
           $("#text_box").html(data.activeElement.innerHTML);
         });
       });
-      $(document).ready(function(){
-        $("#list").on("activate.bs.scrollspy", function(){
-          var currentItem = $(".nav li.active > a").text();
-          $("#response").empty().html("<p>Say hello to: " + currentItem + "</p>");
-        });
-        $("#text_box").scroll(function(){
-          if ($("#text_box").scrollTop() === 0) {
-            $("#response").empty();
-          }
-        });
-      });
-          
     </script>
   </body>
