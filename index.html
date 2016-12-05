@@ -87,6 +87,7 @@
         $.get("./text.html", function(data){
           thedata = data;
           console.log(thedata);
+          console.log(typeof(thedata));
           $("#text_box").html(data.activeElement.innerHTML);
         });
       });
