@@ -85,7 +85,7 @@
       var thedata;
       $(document).ready(function(){
         $.get("./text.html", function(data){
-          if(typeof(data) === string){
+          if(typeof(data) === 'string'){
             $("#text_box").html(data); // how github.io sees it.
           }else{
             $("#text_box").html(data.activeElement.innerHTML); // how my local machine sees it.
