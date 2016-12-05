@@ -5,92 +5,111 @@
     <title>Fabula and Sjužet in “Wandering Rocks”</title>
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 
     <style>
+      #main_map {
+        height: 800px;
+        width: 100%;
+        z-index: -100;
+      }
+
       .place {
         text-decoration: underline;
       }
 
       #text_box {
-				border: 1px solid #333;
-				padding: 10px;
+        border: 1px solid #333;
+        padding: 10px;
         position: relative;
         overflow-y: scroll;
         height: 300px;
         width: 800px;
-        top: 300px;
+        top: 400px;
         left: 20px;
+        z-index: 1000;
+        background-color: rgba(250, 250, 250, 0.7);
+      }
+
+      .navbar {
+        z-index: 1000;
       }
     </style>
   </head>
   <body>
-		<nav class="navbar navbar-default">
-			<div class="container-fluid">
-				<!-- Brand and toggle get grouped for better mobile display -->
-				<div class="navbar-header">
-					<button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
-						<span class="sr-only">Toggle navigation</span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-						<span class="icon-bar"></span>
-					</button>
-					<a class="navbar-brand" href="#">Fabula and Sjužet in “Wandering Rocks”</a>
-				</div>
+    <nav class="navbar navbar-inverse">
+      <div class="container-fluid">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Fabula and Sjužet in “Wandering Rocks”</a>
+        </div>
 
-				<!-- Collect the nav links, forms, and other content for toggling -->
-				<div class="collapse navbar-collapse" id="list">
-					<ul class="nav navbar-nav">
-						<li class="dropdown">
-							<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Section <span class="caret"></span></a>
-							<ul class="dropdown-menu">
-								<li><a href="#section_1">1.</a></li>
-								<li><a href="#section_2">2.</a></li>
-								<li><a href="#section_3">3.</a></li>
-								<li><a href="#section_4">4.</a></li>
-								<li><a href="#section_5">5.</a></li>
-								<li><a href="#section_6">6.</a></li>
-								<li><a href="#section_7">7.</a></li>
-								<li><a href="#section_8">8.</a></li>
-								<li><a href="#section_9">9.</a></li>
-								<li><a href="#section_10">10.</a></li>
-								<li><a href="#section_11">11.</a></li>
-								<li><a href="#section_12">12.</a></li>
-								<li><a href="#section_13">13.</a></li>
-								<li><a href="#section_14">14.</a></li>
-								<li><a href="#section_15">15.</a></li>
-								<li><a href="#section_16">16.</a></li>
-								<li><a href="#section_17">17.</a></li>
-								<li><a href="#section_18">18.</a></li>
-								<li><a href="#section_19">19.</a></li>
-							</ul>
-						</li>
-					</ul>
-				</div><!-- /.navbar-collapse -->
-			</div><!-- /.container-fluid -->
-		</nav>
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="list">
+          <ul class="nav navbar-nav">
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Section <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a href="#section_1">1.</a></li>
+                <li><a href="#section_2">2.</a></li>
+                <li><a href="#section_3">3.</a></li>
+                <li><a href="#section_4">4.</a></li>
+                <li><a href="#section_5">5.</a></li>
+                <li><a href="#section_6">6.</a></li>
+                <li><a href="#section_7">7.</a></li>
+                <li><a href="#section_8">8.</a></li>
+                <li><a href="#section_9">9.</a></li>
+                <li><a href="#section_10">10.</a></li>
+                <li><a href="#section_11">11.</a></li>
+                <li><a href="#section_12">12.</a></li>
+                <li><a href="#section_13">13.</a></li>
+                <li><a href="#section_14">14.</a></li>
+                <li><a href="#section_15">15.</a></li>
+                <li><a href="#section_16">16.</a></li>
+                <li><a href="#section_17">17.</a></li>
+                <li><a href="#section_18">18.</a></li>
+                <li><a href="#section_19">19.</a></li>
+              </ul>
+            </li>
+          </ul>
+        </div><!-- /.navbar-collapse -->
+      </div><!-- /.container-fluid -->
+    </nav>
 
-    <div id="list" style="display: none;">
-      <ul class="nav">
-        <li><a href="#instance_5867" class="active">Presbytery Church of St. Francis Xavier, Dublin</a></li>
-        <li><a href="#instance_5866">Artane, Ireland</a></li>
-        <li><A href="#instance_5868">Convent of the Sisters of Charity, Dublin</a></li>
-      </ul>
-    </div>
-    <div id="response"></div>
-    <article id="text_box" data-spy="scroll" data-target="#list"></article>
-    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
-    <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
-    <script>
-      var thedata;
-      $(document).ready(function(){
-        $.get("./text.html", function(data){
-          if(typeof(data) === 'string'){
-            $("#text_box").html(data); // how github.io sees it.
-          }else{
-            $("#text_box").html(data.activeElement.innerHTML); // how my local machine sees it.
-          }
+    <div class="container-fluid">
+      <div id="main_map">
+        <article id="text_box" data-spy="scroll" data-target="#list"></article>
+      </div>
+
+      <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+      <!-- Latest compiled and minified JavaScript -->
+      <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+      <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+      <script>
+        var thedata;
+        $(document).ready(function(){
+          $.get("./text.html", function(data){
+            if(typeof(data) === 'string'){
+              $("#text_box").html(data); // how github.io sees it.
+            }else{
+              $("#text_box").html(data.activeElement.innerHTML); // how my local machine sees it.
+            }
+          });
         });
-      });
-    </script>
+
+        var map = L.map('main_map', {zoom: 13, minZoom: 10, maxZoom: 18, center: [53.347778, -6.259722]});
+        L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+          attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+          subdomains: 'abcd',
+          maxZoom: 19
+        }).addTo(map);
+
+      </script>
+    </div> <!-- main container-fluid -->
   </body>
