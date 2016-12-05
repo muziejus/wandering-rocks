@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>“Wandering Rocks”</title>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <style>
+      #response {
+        position: absolute;
+        overflow-y: auto;
+        height: 200px;
+        width: 800px;
+        top: 20px;
+        left: 20px;
+        border: 1px solid #333;
+      }
+      #text_box {
+        position: relative;
+        overflow-y: scroll;
+        height: 300px;
+        width: 800px;
+        top: 300px;
+        left: 20px;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="list" style="display: none;">
+      <ul class="nav">
+        <li><a href="#instance_5867" class="active">Presbytery Church of St. Francis Xavier, Dublin</a></li>
+        <li><a href="#instance_5866">Artane, Ireland</a></li>
+        <li><A href="#instance_5868">Convent of the Sisters of Charity, Dublin</a></li>
+      </ul>
+    </div>
+    <div id="response">&nbsp;</div>
+    <div id="text_box" data-spy="scroll" data-target="#list">
+    </div>
+    <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.1.1.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script>
+      $(document).ready(function(){
+        $.get("./text.html", function(data){
+          $("#text_box").html(data.activeElement.innerHTML);
+        });
+      });
+      $(document).ready(function(){
+        $("#list").on("activate.bs.scrollspy", function(){
+          var currentItem = $(".nav li.active > a").text();
+          $("#response").empty().html("<p>Say hello to: " + currentItem + "</p>");
+        });
+      });
+          
+    </script>
+  </body>
