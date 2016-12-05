@@ -85,10 +85,11 @@
       var thedata;
       $(document).ready(function(){
         $.get("./text.html", function(data){
-          thedata = data;
-          console.log(thedata);
-          console.log(typeof(thedata));
-          $("#text_box").html(data.activeElement.innerHTML);
+          if(typeof(data) === string){
+            $("#text_box").html(data); // how github.io sees it.
+          }else{
+            $("#text_box").html(data.activeElement.innerHTML); // how my local machine sees it.
+          }
         });
       });
     </script>
