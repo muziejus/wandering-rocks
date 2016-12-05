@@ -89,7 +89,10 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
       <script>
-        var thedata;
+        var my = {};
+        my.map = L.map('main_map', {zoom: 13, minZoom: 10, maxZoom: 18, center: [53.347778, -6.259722]});
+        my.geoJSONFile = 'ulysses-1922_instances.geo.json';
+
         $(document).ready(function(){
           $.get("./text.html", function(data){
             if(typeof(data) === 'string'){
@@ -100,21 +103,23 @@
           });
         });
 
-        var map = L.map('main_map', {zoom: 13, minZoom: 10, maxZoom: 18, center: [53.347778, -6.259722]});
         L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
           subdomains: 'abcd',
           maxZoom: 19
-        }).addTo(map);
+        }).addTo(my.map);
 
-        var rawGeojson = new Object();
-        var error = new Object();
-        $.getJSON('ulysses-1922_instances.geo.json', function(data) {
-          //rawGeojson = data;
-          L.geoJSON(data).addTo(map);
-        }).fail(function () {
-          console.log("error loading geojson")
+        $.getJSON(my.geoJSONFile, function(data) {
+          console.log("Loading " + my.geoJSONFile);
+        }).done(function(data) {
+          workWithExtGeoJSON(data);
+        }).fail(function (d, textStatus, error) {
+          console.log("getJSON failed, status: " + textStatus + ", error: " + error)
         });
+
+        function workWithExtGeoJSON(data){
+          L.geoJSON(data).addTo(my.map);
+        };
 
 
       </script>
