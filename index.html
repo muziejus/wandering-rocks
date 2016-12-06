@@ -9,7 +9,7 @@
 
     <style>
       #main_map {
-        height: 300px;
+        height: 400px;
         width: 100%;
       }
 
@@ -22,10 +22,9 @@
         padding: 10px;
         position: relative;
         overflow-y: scroll;
-        height: 300px;
-        width: 800px;
+        height: 200px;
+        width: 600px;
         top: 10px;
-        left: 20px;
         background-color: rgba(250, 250, 250, 0.7);
       }
 
@@ -107,7 +106,8 @@
       <script>
         var my = {
           map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.347778, -6.259722]}),
-          geoJSONFile: 'ulysses-1922_instances.geo.json'
+          geoJSONFile: 'ulysses-1922_instances.geo.json',
+          markersLayer: new L.FeatureGroup()
         };
 
         $.get("./text.html", function(data){
@@ -124,6 +124,19 @@
           maxZoom: 19
         }).addTo(my.map);
 
+        $.getJSON('paths.geojson', function(data){
+          console.log("Loading paths");
+        }).done(function(data){
+          var paths = L.geoJSON(data, {
+            onEachFeature: function(feature, layer){
+              layer.bindTooltip(L.tooltip({opacity: 0.7}).setContent("Actor: " + feature.properties.actor));
+            }
+          });
+          my.map.addLayer(paths);
+        }).fail(function (d, textStatus, error) {
+          console.log("getJSON failed, status: " + textStatus + ", error: " + error)
+        });
+
         $.getJSON(my.geoJSONFile, function(data) {
           console.log("Loading " + my.geoJSONFile);
         }).done(function(data) {
@@ -136,19 +149,20 @@
 
         $('#play_btn').click(function(){
           var points = my.geoJSONData["features"];
+          my.map.removeLayer(my.markersLayer); // so it doesn't duplicate itself
+          my.markersLayer = new L.FeatureGroup();
+          my.map.addLayer(my.markersLayer);
           var marker;
           for (var i = 0; i < points.length; i++) {
-            window.setTimeout(animateMarker(points[i], marker), 500);
+            window.setTimeout(animateMarker(points[i], marker, my.markersLayer), 500);
           }
         });
 
-        function animateMarker(point, marker){
-          if (typeof(marker) === "object"){
-            marker.remove();
-          }
+        function animateMarker(point, marker, markers){
           if (point["geometry"]["coordinates"][0] !== null) {
             marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
             marker.bindTooltip(point["properties"]["text"]);
+            markers.addLayer(marker);
           }
         }
 
