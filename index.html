@@ -118,9 +118,23 @@
         });
 
         function workWithExtGeoJSON(data){
-          L.geoJSON(data).addTo(my.map);
-        };
+          //L.geoJSON(data).addTo(my.map);
+          var points = data["features"];
+          var marker;
+          for (var i = 0; i < points.length; i++) {
+            window.setTimeout(animateMarker(points[i], marker), 500);
+          }
+        }
 
+        function animateMarker(point, marker){
+          if (typeof(marker) === "object"){
+            marker.remove();
+          }
+          if (point["geometry"]["coordinates"][0] !== null) {
+            marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
+            //marker.bindTooltip(point["properties"]["text"]).openTooltip();
+          }
+        }
 
       </script>
     </div> <!-- main container-fluid -->
