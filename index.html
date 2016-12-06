@@ -75,6 +75,22 @@
               </ul>
             </li>
           </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="btn-group" id="toolbar" role="toolbar" aria-label="play buttons">
+              <button disabled="disabled" type="button" class="btn btn-default navbar-btn" id="step_back_btn">
+                <span class="glyphicon glyphicon-step-backward"></span>
+              </button>
+              <button disabled="disabled" type="button" class="btn btn-default navbar-btn" id="play_btn">
+                <span class="glyphicon glyphicon-play"></span>
+              </button>
+              <button disabled="disabled" type="button" class="btn btn-default navbar-btn" id="pause_btn">
+                <span class="glyphicon glyphicon-pause"></span>
+              </button>
+              <button disabled="disabled" type="button" class="btn btn-default navbar-btn" id="step_forward_btn">
+                <span class="glyphicon glyphicon-step-forward"></span>
+              </button>
+            </li>
+          </ul>
         </div><!-- /.navbar-collapse -->
       </div><!-- /.container-fluid -->
     </nav>
@@ -89,18 +105,17 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
       <script>
-        var my = {};
-        my.map = L.map('main_map', {zoom: 13, minZoom: 10, maxZoom: 18, center: [53.347778, -6.259722]});
-        my.geoJSONFile = 'ulysses-1922_instances.geo.json';
+        var my = {
+          map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.347778, -6.259722]}),
+          geoJSONFile: 'ulysses-1922_instances.geo.json'
+        };
 
-        $(document).ready(function(){
-          $.get("./text.html", function(data){
-            if(typeof(data) === 'string'){
-              $("#text_box").html(data); // how github.io sees it.
-            }else{
-              $("#text_box").html(data.activeElement.innerHTML); // how my local machine sees it.
-            }
-          });
+        $.get("./text.html", function(data){
+          if(typeof(data) === 'string'){
+            $("#text_box").html(data); // how github.io sees it.
+          }else{
+            $("#text_box").html(data.activeElement.innerHTML); // how my local machine sees it.
+          }
         });
 
         L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
@@ -112,19 +127,20 @@
         $.getJSON(my.geoJSONFile, function(data) {
           console.log("Loading " + my.geoJSONFile);
         }).done(function(data) {
-          workWithExtGeoJSON(data);
+          my.geoJSONData = data;
+          //$('button', '#toolbar').prop("disabled", false);
+          $('#play_btn').prop("disabled", false);
         }).fail(function (d, textStatus, error) {
           console.log("getJSON failed, status: " + textStatus + ", error: " + error)
         });
 
-        function workWithExtGeoJSON(data){
-          //L.geoJSON(data).addTo(my.map);
-          var points = data["features"];
+        $('#play_btn').click(function(){
+          var points = my.geoJSONData["features"];
           var marker;
           for (var i = 0; i < points.length; i++) {
             window.setTimeout(animateMarker(points[i], marker), 500);
           }
-        }
+        });
 
         function animateMarker(point, marker){
           if (typeof(marker) === "object"){
@@ -132,7 +148,7 @@
           }
           if (point["geometry"]["coordinates"][0] !== null) {
             marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
-            //marker.bindTooltip(point["properties"]["text"]).openTooltip();
+            marker.bindTooltip(point["properties"]["text"]);
           }
         }
 
