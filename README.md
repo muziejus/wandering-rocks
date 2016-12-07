@@ -1,10 +1,16 @@
 # Fabula and Sjužet in “Wandering Rocks”
 
-This is a web project that aims to present Episode 10 of *Ulysses* (“Wandering
-Rocks”) as a data visualization treating both two parallel concepts of space
-and two contradictory concepts of time.
+>Joyce wrote the *Wandering Rocks* with a map of Dublin before him on which
+>were traced in red ink the paths of the Earl of Dudley and Father Conmee. He
+>calculated to a minute the time necessary for his characters to cover a given
+>distance of the city. (Budgen)
 
-As the project matures, you can see it in action [on github pages](http://muziejus.github.io/wandering-rocks/).
+This is a web project that presents Episode 10 of *Ulysses* (“Wandering Rocks”)
+as a data visualization treating two parallel concepts of space and two
+contradictory concepts of time.
+
+As the project matures, you can see it in action [on github
+pages](http://muziejus.github.io/wandering-rocks/).
 
 ## Background
 
@@ -67,16 +73,20 @@ and, using a bit of narrative license, each other.
 
 Space in the episode has been mapped using my application
 [NYWalker](http://github.com/nyscapes/nywalker), where I have geocoded the 300+
-references to places in the episode. Between Gifford’s extensive annotation and
-my own research involving, among other things, a 19th century street guide to
-Dublin, I have been able to provide coordinates for every place in the novel,
-save one (Lynam’s in Temple Bar). This underlying data is available [from
+references to places in the episode. I’m of course late to this game. Between
+Gifford and Gunn and Hart, every place in the episode is locatable on a map
+except for one (Lynam’s, the bookie’s in Temple Bar). Some are inferred, like
+the Dedalus address in Cabra, but most of the points here are in line with
+decades of scholarship. The extensive, detailed maps in Gunn and Hart have
+served as a kind of tertiary foundation in giving support to Gifford and what I
+have found online separately. The underlying data is available [from
 NYWalker](http://nywalker.newyorkscapes.org/books/ulysses-1922).
 
-This list of instances (that is, places mentioned in the episode) received a
-second level of scrutiny so that I could separate out the two different
-spatialities. In the dataset, then, Newcomen Bridge is treated as part of a
-different spatiality from the others that are mentioned.
+The list of places mentioned in the episode is what I call a list of
+“instances.” Once the raw points are in place, I need to split the collection
+into the two different spatialities above. In the dataset, then,
+Newcomen Bridge is treated as part of a different spatiality from the others
+that are mentioned.
 
 Additionally, the episode gives enough information to draw a series of paths
 (around 28) involving the various actors in the episode. This is a separate
@@ -105,8 +115,11 @@ between 14:55 (when Conmee starts off the episode checking his watch) and
 timetable is incomplete (there are characters missing), and has small errors
 (corrected when reprinted in Gunn and Hart). The timing strikes me as a bit
 ambitious in places—Conmee walks through Mountjoy Square and has two
-conversations in four minutes—but It serves a kind of backbone under which to
-pitch the collisions.
+conversations in four minutes—but it serves a kind of backbone under which to
+pitch the collisions. Furthermore, Hart did what I have not: went to Dublin and
+timed it in person, even affecting the gaits of a onelegged sailor and of
+elderly women. Hart then lined up the timings with the collisions in the plot
+and found that they all, more or less, match up. 
 
 ## Collisions
 
@@ -124,14 +137,17 @@ collisions, thereby getting us a third dataset.
 
 ## Fabula and Sjužet
 
-The first step in the visualization is to create an animation that plots out
-the sjužet of the episode. The sjužet is the narrative organization of a text.
-It stands in contrast to the fabula, which is the elements of the text in their
-“real” historical time. A walk through the sjužet of the novel moves the map
-and the paths line-by-line. As such, the map begins by tracing Conmee’s journey
-before jumping to Dignam’s Court for Maginni’s intrusion, and so on. Then the
-clock rolls back for the second section. It rolls back yet again for the third,
-and so on. The narrative moves forward unceasingly, but the clock does not.
+At the top, I mention two parallel spatialities (where characters are and what
+they and the narrator think of), but two contradictory temporalities. The first
+is the sjužet.
+
+The sjužet is the narrative organization of a text.  It stands in contrast to
+the fabula, which is the elements of the text in their “real” historical time.
+A walk through the sjužet of the novel moves the map and the paths
+line-by-line. As such, the map begins by tracing Conmee’s journey before
+jumping to Dignam’s Court for Maginni’s intrusion, and so on. Then the clock
+rolls back for the second section. It rolls back yet again for the third, and
+so on. The narrative moves forward unceasingly, but the clock does not.
 
 In a fabula visualization, the clock marches forward, irrespective of the order
 of events on the page. Their order in time is all that matters. In fact, it
