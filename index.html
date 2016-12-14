@@ -161,7 +161,7 @@
         function animateMarker(point, marker, markers){
           if (point["geometry"]["coordinates"][0] !== null) {
             marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
-            marker.bindTooltip(point["properties"]["text"]);
+            marker.bindTooltip(point["properties"]["place_name_in_text"]);
             markers.addLayer(marker);
           }
         }
