@@ -8,6 +8,14 @@
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
 
     <style>
+      p {
+        text-indent: 2em;
+      }
+
+      p.dialogue {
+        text-indent: 0;
+      }
+
       #main_map {
         height: 400px;
         width: 100%;
@@ -160,9 +168,11 @@
 
         function animateMarker(point, marker, markers){
           if (point["geometry"]["coordinates"][0] !== null) {
-            marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
-            marker.bindTooltip(point["properties"]["place_name_in_text"]);
-            markers.addLayer(marker);
+            if (point["properties"]["space"] === "1") {
+              marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
+              marker.bindTooltip(point["properties"]["place_name_in_text"]);
+              markers.addLayer(marker);
+            }
           }
         }
 
