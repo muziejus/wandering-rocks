@@ -177,6 +177,55 @@
           }
         }
 
+        var parseTime = d3.timeParse("%Y/%m/%d %H'%M'%S");
+
+        d3.csv("instances.csv", function(data) {
+          my.instancesRaw = data;
+          var instances = [];
+          data.forEach(function(obj, i) {
+            var instance = {
+              latitude: +obj.latitude,
+              longitude: +obj.longitude,
+              space: +obj.space,
+              placeNameInText: obj.place_name_in_text,
+              place: obj.place,
+              time: parseTime("1904/06/16 " + obj.time),
+              placeId: +obj.place_id
+            };
+            instances.push(instance);
+          });
+          my.instances = instances;
+        });
+
+        d3.csv("collisions.csv", function(data) {
+          my.collisionsRaw = data;
+          var collisions = [];
+          data.forEach(function(obj, i) {
+            if(obj.latitude === ""){ 
+              // I was lazy about copying over lats and lons. It wouldn't be a
+              // terrible idea to use the place id to pull in *all* lats and 
+              // lons. That way, instances is always correct, and collisions
+              // is only supplemental.
+              var place = my.instances.filter(function (instance) {
+                return instance.placeId === +obj.place_id;
+              })[0];
+              obj.latitude = place.latitude;
+              obj.longitude = place.longitude;
+            }
+            var collision = {
+              latitude : +obj.latitude,
+              longitude : +obj.longitude,
+              primaryActor : obj.primary_actor,
+              secondaryActor : obj.secondary_actor,
+              time: parseTime("1904/06/16 " + obj.time)
+            };
+            collisions.push(collision);
+          });
+          my.collisions = collisions;
+        });
+
+
+        
       </script>
     </div> <!-- main container-fluid -->
   </body>
