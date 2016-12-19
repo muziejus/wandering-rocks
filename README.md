@@ -159,7 +159,39 @@ we miss when focussing on the collisions in the sjužet visualization.
 
 ## Data
 
-How this all works…
+So far, the data is made up of three integral parts and one just for show. As
+noted above, the “instances” (each mention of a place, in narrative order) were
+encoded using NYWalker, and that [data is available for you to
+use](http://nywalker.newyorkscapes.org/books/ulysses-1922). To each instance, I
+added a flag for which spatiality that instance inhabits, the material one
+local to the actors (Conmey on Newcomen Bridge) or one a bit more ethereal
+(Conmee wishing to avoid Mud Island). Furthermore, each instance comes with a
+timestamp, based on an approximation taken from Hart’s measurements.
+
+The “show” version of these instances is the file
+`ulysses-1922_instances.geo.json`, converted into GeoJSON so I can throw it on
+the map quickly and easily.
+
+`instances.csv`, however, carries the more robust version of the data, but one
+that takes processing with d3 in order to get it visualized.
+
+In addition to the instances, I’ve also made note of collisions between two (or
+more) actors. This could be Father Conmee (1) running into Mrs M‘Guinness (1),
+or it could be Stephen Dedalus (1) hearing the noise of the power plant (2).
+Using the spatiotemporality of the instances, I’ve been able to give a place
+and time to every collision (there are, for now, 143 of them). They are
+collected in `collisions.csv`. Some have locations that aren’t instances. For
+example, Father Conmee looks at the other travelers on the tram as it is riding
+from Newcomen Bridge to Annelsey Bridge, so I’ve noted points along that path
+for where that activity happens. Most collisions, however, do relate to an
+instance.
+
+The third, and final dataset is `paths.geojson`, a GeoJSON version of a
+shapefile I created by hand marking 28 different paths taken by actors (mostly
+people) in the episode. These paths are the background against which the timed
+instances and collisions take place, but they also account for the actors while
+they’re not instancing or colliding in the text. Many of the paths are, for
+lack of a better word, *speculative*.
 
 ## Bibliography
 
