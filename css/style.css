@@ -1,9 +1,5 @@
-p {
+p.indent {
   text-indent: 2em;
-}
-
-p.dialogue {
-  text-indent: 0;
 }
 
 #main_map {
