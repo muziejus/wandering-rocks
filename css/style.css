@@ -1,10 +1,24 @@
+html, body {
+  height: 100%;
+  width: 100%;
+}
+
+body { 
+  margin: 0;
+}
+
 p.indent {
   text-indent: 2em;
 }
 
 #main_map {
-  height: 400px;
-  width: 100%;
+  top: 50px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: absolute;
+  width: auto;
+  height: auto;
 }
 
 .place {
@@ -14,14 +28,14 @@ p.indent {
 #text_box {
   border: 1px solid #333;
   padding: 10px;
-  position: relative;
+  position: absolute;
   overflow-y: scroll;
-  height: 200px;
-  width: 600px;
-  top: 10px;
+  height: 150px;
+  width: auto;
+  bottom: 20px;
+  right: 150px;
+  left: 150px;
   background-color: rgba(250, 250, 250, 0.7);
-}
-
-.navbar {
+  z-index: 1000;
 }
 
