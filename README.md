@@ -101,25 +101,19 @@ paper, but there are no other references to precise times in the episode. M’Co
 very unhelpfully tells Lenehan that it is “after three” in Temple Bar, but even
 so, that information has its own temporal shift because it relates to whether
 Lenehan has time to bet on a race that has already happened in England but
-whose results have not yet made it to Ireland. As Gifford notes:
-
->The Gold Cup Race was run at 3:08 P.M. Greenwich time on 16 June 1904. If it
->is after 3:00 in Dublin (Dunsink time), it is after 3:25 Greenwich time.
->Thus, the race has already been run; but the news, which was to come by
->telegraph, was not due to reach Dublin until 4:00, so Dublin bookmakers
->would still take bets at 3:00. ([270](https://books.google.com/books?id=fE9mkomQHEQC&pg=PA270&dq=wandering+rocks+gold+cup+race&hl=en&sa=X&ved=0ahUKEwjLqLOKweDQAhVCyVQKHaXgAJcQ6AEIJjAC#v=onepage&q&f=false))
+whose results have not yet made it to Ireland. 
 
 Nevertheless, Hart provides a timetable accounting for where 29 characters are
 between 14:55 (when Conmee starts off the episode checking his watch) and
 16:00, when the viceregal cavalcade arrives at Mirus Bazaar in Ballsbridge. The
-timetable is incomplete (there are characters missing), and has small errors
+timetable is incomplete (there are characters missing) and has small errors
 (corrected when reprinted in Gunn and Hart). The timing strikes me as a bit
 ambitious in places—Conmee walks through Mountjoy Square and has two
 conversations in four minutes—but it serves a kind of backbone under which to
 pitch the collisions. Furthermore, Hart did what I have not: went to Dublin and
 timed it in person, even affecting the gaits of a onelegged sailor and of
-elderly women. Hart then lined up the timings with the collisions in the plot
-and found that they all, more or less, match up. 
+elderly women. Hart then lined up the timings with the more obvious collisions
+in the plot and found that they all, more or less, match up. 
 
 ## Collisions
 
@@ -130,10 +124,6 @@ turning the network into a synchronous graph. Timing is important in the
 episode, as in reality. Master Patrick Dignam sees an advertisement for a
 boxing match, gets excited about it, plans on sneaking out to see it, and only
 then notices that the match happened a month earlier.
-
-Given the paths of characters and given a set of points where stationary
-characters are, it becomes possible to expand further still this list of
-collisions, thereby getting us a third dataset.
 
 ## Fabula and Sjužet
 
@@ -176,13 +166,13 @@ the map quickly and easily.
 that takes processing with d3 in order to get it visualized.
 
 In addition to the instances, I’ve also made note of collisions between two (or
-more) actors. This could be Father Conmee (1) running into Mrs M‘Guinness (1),
+more) actors. This could be Conmee (1) running into M‘Guinness (2),
 or it could be Stephen Dedalus (1) hearing the noise of the power plant (2).
 Using the spatiotemporality of the instances, I’ve been able to give a place
 and time to every collision (there are, for now, 143 of them). They are
 collected in `collisions.csv`. Some have locations that aren’t instances. For
-example, Father Conmee looks at the other travelers on the tram as it is riding
-from Newcomen Bridge to Annelsey Bridge, so I’ve noted points along that path
+example, Conmee looks at the other travelers on the tram as it is riding
+from Newcomen Bridge to Annesley Bridge, so I’ve noted points along that path
 for where that activity happens. Most collisions, however, do relate to an
 instance.
 
