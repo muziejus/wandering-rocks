@@ -181,8 +181,7 @@
 
         d3.csv("instances.csv", function(data) {
           my.instancesRaw = data;
-          var instances = [];
-          data.forEach(function(obj, i) {
+          var instances = data.map(function(obj){
             var instance = {
               latitude: +obj.latitude,
               longitude: +obj.longitude,
@@ -192,15 +191,14 @@
               time: parseTime("1904/06/16 " + obj.time),
               placeId: +obj.place_id
             };
-            instances.push(instance);
+            return instance;
           });
           my.instances = instances;
         });
 
         d3.csv("collisions.csv", function(data) {
           my.collisionsRaw = data;
-          var collisions = [];
-          data.forEach(function(obj, i) {
+          var collisions = data.map(function(obj){
             if(obj.latitude === ""){ 
               // I was lazy about copying over lats and lons. It wouldn't be a
               // terrible idea to use the place id to pull in *all* lats and 
@@ -219,7 +217,7 @@
               secondaryActor : obj.secondary_actor,
               time: parseTime("1904/06/16 " + obj.time)
             };
-            collisions.push(collision);
+            return collision;
           });
           my.collisions = collisions;
         });
