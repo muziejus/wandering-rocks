@@ -66,7 +66,7 @@ var parseTime = d3.timeParse("%Y/%m/%d %H'%M'%S");
 
 d3.csv("instances.csv", function(data) {
   my.instancesRaw = data;
-  var instances = data.map(function(obj){
+  var instances = data.map(function(obj, i){
     var instance = {
       latitude: +obj.latitude,
       longitude: +obj.longitude,
@@ -74,7 +74,9 @@ d3.csv("instances.csv", function(data) {
       placeNameInText: obj.place_name_in_text,
       place: obj.place,
       time: parseTime("1904/06/16 " + obj.time),
-      placeId: +obj.place_id
+      instanceId: "instance_" + obj.instance_id,
+      placeId: +obj.place_id,
+      order: i // so sorting by time doesn't break the narrative order.
     };
     return instance;
   });
@@ -83,7 +85,7 @@ d3.csv("instances.csv", function(data) {
 
 d3.csv("collisions.csv", function(data) {
   my.collisionsRaw = data;
-  var collisions = data.map(function(obj){
+  var collisions = data.map(function(obj, i){
     if(obj.latitude === ""){ 
       // I was lazy about copying over lats and lons. It wouldn't be a
       // terrible idea to use the place id to pull in *all* lats and 
@@ -100,7 +102,8 @@ d3.csv("collisions.csv", function(data) {
       longitude : +obj.longitude,
       primaryActor : obj.primary_actor,
       secondaryActor : obj.secondary_actor,
-      time: parseTime("1904/06/16 " + obj.time)
+      time: parseTime("1904/06/16 " + obj.time),
+      order: i // so sorting by time doesn't break the narrative order.
     };
     return collision;
   });
@@ -114,3 +117,12 @@ d3.csv("collisions.csv", function(data) {
 var svg = d3.select(my.map.getPanes().overlayPane).append("svg"),
   g = svg.append("g").attr("class", "leaflet-zoom-hide");
 
+// Geo time
+
+var transform = d3.geoTransform({point: projectPoint}),
+  d3path = d3.geoPath().projection(transform);
+
+function projectPoint(x, y) {
+  var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+  this.stream.point(point.x, point.y);
+}
