@@ -114,17 +114,10 @@ d3.csv("collisions.csv", function(data) {
   });
   my.collisionsGeoJSON = collisionsGeoJSON;
 
-  var transform = d3.geoTransform({point: projectPoint}),
-    path = d3.geoPath().projection(transform);
-
   var feature = g.selectAll("path")
     .data(collisionsGeoJSON.features)
     .enter().append("path")
-    .classed("collision", true)
-    .style("stroke", "black")
-    .style("opacity", .6)
-    .style("fill", "red")
-    .attr("r", 10);
+    .classed("collision", true);
 
   my.map.on("viewreset", reset(g, feature, path));
   my.map.on("zoomend", reset(g, feature, path));
@@ -134,6 +127,9 @@ d3.csv("collisions.csv", function(data) {
 
 var svg = d3.select(my.map.getPanes().overlayPane).append("svg"),
   g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+var transform = d3.geoTransform({point: projectPoint}),
+  path = d3.geoPath().projection(transform);
 
 var topLeftLatLng = [-6.32558, 53.3709];
 var bottomRightLatLng = [-6.20398, 53.3284];
