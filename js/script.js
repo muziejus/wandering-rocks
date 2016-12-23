@@ -98,15 +98,6 @@ d3.csv("collisions.csv", function(data) {
       obj.latitude = place.latitude;
       obj.longitude = place.longitude;
     }
-    // var collision = {
-    //   latitude : +obj.latitude,
-    //   longitude : +obj.longitude,
-    //   LatLng: new L.LatLng(+obj.latitude, +obj.longitude),
-    //   primaryActor : obj.primary_actor,
-    //   secondaryActor : obj.secondary_actor,
-    //   time: parseTime("1904/06/16 " + obj.time),
-    //   order: i // so sorting by time doesn't break the narrative order.
-    // };
     collisionsGeoJSON.features.push(
       {
         "type": "Feature",
@@ -120,9 +111,7 @@ d3.csv("collisions.csv", function(data) {
         }
       }
     );
-    // return collision;
   });
-  // my.collisions = collisions; // possibly not necessary.
   my.collisionsGeoJSON = collisionsGeoJSON;
 
   var transform = d3.geoTransform({point: projectPoint}),
@@ -137,31 +126,40 @@ d3.csv("collisions.csv", function(data) {
     .style("fill", "red")
     .attr("r", 10);
 
-  my.map.on("viewreset", reset);
-  my.map.on("zoomend", reset);
-  reset();
-
-  // Reposition the SVG to cover the features.
-  function reset() {
-    var bounds = path.bounds(collisionsGeoJSON),
-      topLeft = [bounds[0][0] - 100, bounds[0][1] - 100],
-      bottomRight = bounds[1];
-
-    svg.attr("width", bottomRight[0] - topLeft[0] + 200)
-      .attr("height", bottomRight[1] - topLeft[1] + 100)
-      .style("left", topLeft[0] + "px")
-      .style("top", topLeft[1] + "px");
-
-    g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-    feature.attr("d", path);
-  }
-
-  function projectPoint(x, y) {
-    var point = my.map.latLngToLayerPoint(new L.LatLng(y, x));
-    this.stream.point(point.x, point.y);
-  }
+  my.map.on("viewreset", reset(g, feature, path));
+  my.map.on("zoomend", reset(g, feature, path));
+  reset(g, feature, path);
 
 });
 
 var svg = d3.select(my.map.getPanes().overlayPane).append("svg"),
   g = svg.append("g").attr("class", "leaflet-zoom-hide");
+
+var topLeftLatLng = [-6.32558, 53.3709];
+var bottomRightLatLng = [-6.20398, 53.3284];
+
+function projectPoint(x, y) {
+  var point = my.map.latLngToLayerPoint(new L.LatLng(y, x));
+  this.stream.point(point.x, point.y);
+}
+
+function LatLngToXY(arr){
+  var latLng = my.map.latLngToLayerPoint(new L.LatLng(arr[1], arr[0]));
+  // creates {x, y}
+  return [latLng.x, latLng.y];
+}
+
+// Reposition the SVG to cover the features.
+function reset(g, feature, path) {
+  var bottomRight = LatLngToXY(bottomRightLatLng),
+    topLeft = LatLngToXY(topLeftLatLng);
+    
+  svg.attr("width", bottomRight[0] - topLeft[0])
+    .attr("height", bottomRight[1] - topLeft[1])
+    .style("left", topLeft[0] + "px")
+    .style("top", topLeft[1] + "px");
+
+  g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+  feature.attr("d", path);
+}
+
