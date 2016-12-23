@@ -85,6 +85,7 @@ d3.csv("instances.csv", function(data) {
 
 d3.csv("collisions.csv", function(data) {
   my.collisionsRaw = data;
+  var collisionsGeoJSON = {"type": "FeatureCollection", "features": []};
   var collisions = data.map(function(obj, i){
     if(obj.latitude === ""){ 
       // I was lazy about copying over lats and lons. It wouldn't be a
@@ -97,32 +98,70 @@ d3.csv("collisions.csv", function(data) {
       obj.latitude = place.latitude;
       obj.longitude = place.longitude;
     }
-    var collision = {
-      latitude : +obj.latitude,
-      longitude : +obj.longitude,
-      primaryActor : obj.primary_actor,
-      secondaryActor : obj.secondary_actor,
-      time: parseTime("1904/06/16 " + obj.time),
-      order: i // so sorting by time doesn't break the narrative order.
-    };
-    return collision;
+    // var collision = {
+    //   latitude : +obj.latitude,
+    //   longitude : +obj.longitude,
+    //   LatLng: new L.LatLng(+obj.latitude, +obj.longitude),
+    //   primaryActor : obj.primary_actor,
+    //   secondaryActor : obj.secondary_actor,
+    //   time: parseTime("1904/06/16 " + obj.time),
+    //   order: i // so sorting by time doesn't break the narrative order.
+    // };
+    collisionsGeoJSON.features.push(
+      {
+        "type": "Feature",
+        "geometry": {"type": "Point",
+          "coordinates": [+obj.longitude, +obj.latitude]},
+        "properties": {
+          "primaryActor": obj.primary_actor,
+          "secondaryActor": obj.secondary_actor,
+          "time": parseTime("1904/06/16 " + obj.time),
+          "order": i // so sorting by time doesn't break the narrative order.
+        }
+      }
+    );
+    // return collision;
   });
-  my.collisions = collisions;
-  /*my.collisions.forEach(function(collision){
-    var marker = L.marker([collision.latitude, collision.longitude]).addTo(my.map);
-  });
-  */
+  // my.collisions = collisions; // possibly not necessary.
+  my.collisionsGeoJSON = collisionsGeoJSON;
+
+  var transform = d3.geoTransform({point: projectPoint}),
+    path = d3.geoPath().projection(transform);
+
+  var feature = g.selectAll("path")
+    .data(collisionsGeoJSON.features)
+    .enter().append("path")
+    .classed("collision", true)
+    .style("stroke", "black")
+    .style("opacity", .6)
+    .style("fill", "red")
+    .attr("r", 10);
+
+  my.map.on("viewreset", reset);
+  my.map.on("zoomend", reset);
+  reset();
+
+  // Reposition the SVG to cover the features.
+  function reset() {
+    var bounds = path.bounds(collisionsGeoJSON),
+      topLeft = [bounds[0][0] - 100, bounds[0][1] - 100],
+      bottomRight = bounds[1];
+
+    svg.attr("width", bottomRight[0] - topLeft[0] + 200)
+      .attr("height", bottomRight[1] - topLeft[1] + 100)
+      .style("left", topLeft[0] + "px")
+      .style("top", topLeft[1] + "px");
+
+    g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+    feature.attr("d", path);
+  }
+
+  function projectPoint(x, y) {
+    var point = my.map.latLngToLayerPoint(new L.LatLng(y, x));
+    this.stream.point(point.x, point.y);
+  }
+
 });
 
 var svg = d3.select(my.map.getPanes().overlayPane).append("svg"),
   g = svg.append("g").attr("class", "leaflet-zoom-hide");
-
-// Geo time
-
-var transform = d3.geoTransform({point: projectPoint}),
-  d3path = d3.geoPath().projection(transform);
-
-function projectPoint(x, y) {
-  var point = map.latLngToLayerPoint(new L.LatLng(y, x));
-  this.stream.point(point.x, point.y);
-}
