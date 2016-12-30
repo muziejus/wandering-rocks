@@ -70,6 +70,12 @@ path {
   r: 10;
 }
 
+.inset {
+  stroke: black;
+  fill: #adaada;
+  r: 10;
+}
+
 .trail {
   stroke: blue;
   stroke-width: 3px;
