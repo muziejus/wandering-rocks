@@ -56,3 +56,11 @@ path {
   fill: #0d0;
   r: 10;
 }
+
+.trail {
+  stroke: blue;
+  stroke-width: 3px;
+  stroke-linecap: round;
+  stroke-opacity: 0.6;
+  fill: none;
+}
