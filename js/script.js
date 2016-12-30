@@ -18,19 +18,6 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   maxZoom: 19
 }).addTo(my.map);
 
-$.getJSON('paths.geojson', function(data){
-  console.log("Loading paths");
-}).done(function(data){
-  var paths = L.geoJSON(data, {
-    onEachFeature: function(feature, layer){
-      layer.bindTooltip(L.tooltip({opacity: 0.7}).setContent("Actor: " + feature.properties.actor));
-    }
-  });
-  my.map.addLayer(paths);
-}).fail(function (d, textStatus, error) {
-  console.log("getJSON failed, status: " + textStatus + ", error: " + error)
-});
-
 $.getJSON(my.geoJSONFile, function(data) {
   console.log("Loading " + my.geoJSONFile);
 }).done(function(data) {
@@ -67,7 +54,8 @@ d3.queue(1) // one task at a time.
   .defer(prepareInstances)
   //.defer(prepareInset)
   .defer(prepareCollisions)
-  .await(function(error, instances, collisions) {
+  .defer(preparePaths)
+  .await(function(error, instances, collisions, paths) {
     if (error) throw error;
 
     var svg = d3.select(my.map.getPanes().overlayPane).append("svg").attr("id", "d3Pane"),
@@ -77,7 +65,7 @@ d3.queue(1) // one task at a time.
       topLeftLatLng = [-6.34, 53.39];
       bottomRightLatLng = [-6.19, 53.30];
 
-    var features = [makeDotPaths(instances, "instance", g), makeDotPaths(collisions, "collision", g)];
+    var features = [makeDotPaths(instances, "instance", g), makeDotPaths(paths, "trail", g), makeDotPaths(collisions, "collision", g)];
 
     my.map.on("viewreset", reset);
     my.map.on("zoomend", reset);
@@ -186,3 +174,11 @@ function prepareCollisions(callback) {
     callback(null, collisionsGeoJSON);
   });
 }
+
+function preparePaths(callback) {
+  d3.json("paths.geojson", function(error, paths) {
+    if (error) throw error;
+    callback(null, paths);
+  });
+}
+
