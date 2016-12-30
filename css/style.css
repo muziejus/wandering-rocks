@@ -21,6 +21,19 @@ p.indent {
   height: auto;
 }
 
+#inset_map {
+  top: 60px;
+  right: 10px;
+  width: 30%;
+  height: 20%;
+  position: absolute;
+  box-sizing: border-box;
+  border: 1px solid #333;
+  border-radius: 6px;
+  z-index: 500;
+  background-color: rgba(250, 250, 250, 0.7);
+}
+
 .place {
   text-decoration: underline;
 }

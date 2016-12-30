@@ -1,5 +1,6 @@
 var my = {
   map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.347778, -6.259722]}),
+  inset: L.map('inset_map', {zoom: 1, minZoom: 1, maxZoom: 3, center: [53.347778, -6.259722], zoomControl: false}), 
   geoJSONFile: 'ulysses-1922_instances.geo.json',
   markersLayer: new L.FeatureGroup()
 };
@@ -17,6 +18,12 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   subdomains: 'abcd',
   maxZoom: 19
 }).addTo(my.map);
+
+L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
+  // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
+  subdomains: 'abcd',
+  maxZoom: 6
+}).addTo(my.inset);
 
 $.getJSON(my.geoJSONFile, function(data) {
   console.log("Loading " + my.geoJSONFile);
