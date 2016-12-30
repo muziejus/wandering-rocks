@@ -74,8 +74,8 @@ d3.queue(1) // one task at a time.
       g = svg.append("g").attr("class", "leaflet-zoom-hide");
       transform = d3.geoTransform({point: projectPoint}),
       path = d3.geoPath().projection(transform);
-      topLeftLatLng = [-6.32558, 53.3709];
-      bottomRightLatLng = [-6.20398, 53.3284];
+      topLeftLatLng = [-6.34, 53.39];
+      bottomRightLatLng = [-6.19, 53.30];
 
     var features = [makeDotPaths(instances, "instance", g), makeDotPaths(collisions, "collision", g)];
 
