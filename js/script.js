@@ -77,8 +77,7 @@ d3.queue(1) // one task at a time.
       topLeftLatLng = [-6.32558, 53.3709];
       bottomRightLatLng = [-6.20398, 53.3284];
 
-    var instancesDots = makeDotPaths(instances, "instance", g);
-    var collisionsDots = makeDotPaths(collisions, "collision", g);
+    var features = [makeDotPaths(instances, "instance", g), makeDotPaths(collisions, "collision", g)];
 
     my.map.on("viewreset", reset);
     my.map.on("zoomend", reset);
@@ -94,8 +93,9 @@ d3.queue(1) // one task at a time.
         .style("top", topLeft[1] + "px");
       g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
 
-      instancesDots.attr("d", path);
-      collisionsDots.attr("d", path);
+      features.forEach(function(feature){
+        feature.attr("d", path);
+      });
     } 
 
   });
