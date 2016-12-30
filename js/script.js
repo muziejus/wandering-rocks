@@ -62,44 +62,115 @@ function animateMarker(point, marker, markers){
   }
 }
 
+
+d3.queue(1) // one task at a time.
+  .defer(prepareInstances)
+  //.defer(prepareInset)
+  .defer(prepareCollisions)
+  .await(function(error, instances, collisions) {
+    if (error) throw error;
+
+    var svg = d3.select(my.map.getPanes().overlayPane).append("svg").attr("id", "d3Pane"),
+      g = svg.append("g").attr("class", "leaflet-zoom-hide");
+      transform = d3.geoTransform({point: projectPoint}),
+      path = d3.geoPath().projection(transform);
+      topLeftLatLng = [-6.32558, 53.3709];
+      bottomRightLatLng = [-6.20398, 53.3284];
+
+    var instancesDots = makeDotPaths(instances, "instance", g);
+    var collisionsDots = makeDotPaths(collisions, "collision", g);
+
+    my.map.on("viewreset", reset);
+    my.map.on("zoomend", reset);
+    reset();
+
+    function reset() {
+      var topLeft = LatLngToXY(topLeftLatLng);
+        bottomRight = LatLngToXY(bottomRightLatLng),
+
+      svg.attr("width", bottomRight[0] - topLeft[0])
+        .attr("height", bottomRight[1] - topLeft[1])
+        .style("left", topLeft[0] + "px")
+        .style("top", topLeft[1] + "px");
+      g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+
+      instancesDots.attr("d", path);
+      collisionsDots.attr("d", path);
+    } 
+
+  });
+
+function makeDotPaths(geojson, cssClass, g) {
+  var feature = g.selectAll("path." + cssClass)
+    .data(geojson.features)
+    .enter().append("path")
+    .classed(cssClass, true);
+  return feature;
+}
+  
 var parseTime = d3.timeParse("%Y/%m/%d %H'%M'%S");
 
-d3.csv("instances.csv", function(data) {
-  my.instancesRaw = data;
-  var instances = data.map(function(obj, i){
-    var instance = {
-      latitude: +obj.latitude,
-      longitude: +obj.longitude,
-      space: +obj.space,
-      placeNameInText: obj.place_name_in_text,
-      place: obj.place,
-      time: parseTime("1904/06/16 " + obj.time),
-      instanceId: "instance_" + obj.instance_id,
-      placeId: +obj.place_id,
-      order: i // so sorting by time doesn't break the narrative order.
-    };
-    return instance;
-  });
-  my.instances = instances;
-});
+function projectPoint(x, y) {
+  var point = my.map.latLngToLayerPoint(new L.LatLng(y, x));
+  this.stream.point(point.x, point.y);
+}
 
-d3.csv("collisions.csv", function(data) {
-  my.collisionsRaw = data;
-  var collisionsGeoJSON = {"type": "FeatureCollection", "features": []};
-  var collisions = data.map(function(obj, i){
-    if(obj.latitude === ""){ 
-      // I was lazy about copying over lats and lons. It wouldn't be a
-      // terrible idea to use the place id to pull in *all* lats and 
-      // lons. That way, instances is always correct, and collisions
-      // is only supplemental.
-      var place = my.instances.filter(function (instance) {
-        return instance.placeId === +obj.place_id;
-      })[0];
-      obj.latitude = place.latitude;
-      obj.longitude = place.longitude;
-    }
-    collisionsGeoJSON.features.push(
-      {
+function LatLngToXY(arr) {
+  var latLng = my.map.latLngToLayerPoint(new L.LatLng(arr[1], arr[0]));
+  // creates {x, y}
+  return [latLng.x, latLng.y];
+}
+
+function prepareInstances(callback) {
+  d3.csv("instances.csv", function(data) {
+    var instancesGeoJSON = {"type": "FeatureCollection", "features": []};
+    var instances = data.map(function(obj, i){
+      if (+obj.space === 1) {
+        instancesGeoJSON.features.push(
+          {
+            "type": "Feature",
+            "geometry": {"type": "Point",
+              "coordinates": [+obj.longitude, +obj.latitude]},
+            "properties": {
+              "space": 1,
+              "placeNameInText": +obj.place_name_in_text,
+              "place": obj.place,
+              "instaceId": "instance_" + obj.instace_id,
+              "placeId": +obj.place_id,
+              "time": parseTime("1904/06/16 " + obj.time),
+              "order": i // so sorting by time doesn't break the narrative order.
+            }
+          }
+        );
+        return {
+          latitude: +obj.latitude,
+          longitude: +obj.longitude,
+          placeId: +obj.place_id,
+        };
+      }
+    });
+    my.instances = instances.filter(Boolean); // this is the list against which the collision checks.
+    my.instancesGeoJSON = instancesGeoJSON;
+    callback(null, instancesGeoJSON);
+  });
+}
+
+function prepareCollisions(callback) {
+  d3.csv("collisions.csv", function(data) {
+    var collisionsGeoJSON = {"type": "FeatureCollection", "features": []};
+    collisionsGeoJSON.features = data.map(function(obj, i){
+      if (obj.latitude === "") { 
+        // I was lazy about copying over lats and lons. It wouldn't be a
+        // terrible idea to use the place id to pull in *all* lats and 
+        // lons. That way, instances is always correct, and collisions
+        // is only supplemental.
+        var place = my.instances.filter(function (instance) {
+          return instance.placeId === +obj.place_id;
+        })[0];
+        obj.latitude = place.latitude;
+        obj.longitude = place.longitude;
+      }
+      return {
         "type": "Feature",
         "geometry": {"type": "Point",
           "coordinates": [+obj.longitude, +obj.latitude]},
@@ -109,53 +180,9 @@ d3.csv("collisions.csv", function(data) {
           "time": parseTime("1904/06/16 " + obj.time),
           "order": i // so sorting by time doesn't break the narrative order.
         }
-      }
-    );
+      };
+    });
+    my.collisionsGeoJSON = collisionsGeoJSON;
+    callback(null, collisionsGeoJSON);
   });
-  my.collisionsGeoJSON = collisionsGeoJSON;
-
-  var feature = g.selectAll("path")
-    .data(collisionsGeoJSON.features)
-    .enter().append("path")
-    .classed("collision", true);
-
-  my.map.on("viewreset", reset(g, feature, path));
-  my.map.on("zoomend", reset(g, feature, path));
-  reset(g, feature, path);
-
-});
-
-var svg = d3.select(my.map.getPanes().overlayPane).append("svg"),
-  g = svg.append("g").attr("class", "leaflet-zoom-hide");
-
-var transform = d3.geoTransform({point: projectPoint}),
-  path = d3.geoPath().projection(transform);
-
-var topLeftLatLng = [-6.32558, 53.3709];
-var bottomRightLatLng = [-6.20398, 53.3284];
-
-function projectPoint(x, y) {
-  var point = my.map.latLngToLayerPoint(new L.LatLng(y, x));
-  this.stream.point(point.x, point.y);
 }
-
-function LatLngToXY(arr){
-  var latLng = my.map.latLngToLayerPoint(new L.LatLng(arr[1], arr[0]));
-  // creates {x, y}
-  return [latLng.x, latLng.y];
-}
-
-// Reposition the SVG to cover the features.
-function reset(g, feature, path) {
-  var bottomRight = LatLngToXY(bottomRightLatLng),
-    topLeft = LatLngToXY(topLeftLatLng);
-    
-  svg.attr("width", bottomRight[0] - topLeft[0])
-    .attr("height", bottomRight[1] - topLeft[1])
-    .style("left", topLeft[0] + "px")
-    .style("top", topLeft[1] + "px");
-
-  g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-  feature.attr("d", path);
-}
-
