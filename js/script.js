@@ -1,7 +1,8 @@
 var my = {
   map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.347778, -6.259722]}),
-  inset: L.map('inset_map', {zoom: 1, minZoom: 1, maxZoom: 3, center: [53.347778, -6.259722], zoomControl: false}), 
+  inset: L.map('inset_map', {zoom: 1, minZoom: 1, maxZoom: 18, center: [40, -40], zoomControl: false, dragging: false}), 
   geoJSONFile: 'ulysses-1922_instances.geo.json',
+  parseTime: d3.timeParse("%Y/%m/%d %H'%M'%S"),
   markersLayer: new L.FeatureGroup()
 };
 
@@ -22,7 +23,7 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
 L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
   subdomains: 'abcd',
-  maxZoom: 6
+  maxZoom: 19
 }).addTo(my.inset);
 
 $.getJSON(my.geoJSONFile, function(data) {
@@ -58,42 +59,70 @@ function animateMarker(point, marker, markers){
 
 
 d3.queue(1) // one task at a time.
-  .defer(prepareInstances)
-  //.defer(prepareInset)
+  .defer(prepareInstances, "main")
+  .defer(prepareInstances, "inset")
   .defer(prepareCollisions)
   .defer(preparePaths)
-  .await(function(error, instances, collisions, paths) {
+  .await(function(error, instances, inset, collisions, paths) {
     if (error) throw error;
 
-    var svg = d3.select(my.map.getPanes().overlayPane).append("svg").attr("id", "d3Pane"),
-      g = svg.append("g").attr("class", "leaflet-zoom-hide");
-      transform = d3.geoTransform({point: projectPoint}),
-      path = d3.geoPath().projection(transform);
-      topLeftLatLng = [-6.34, 53.39];
-      bottomRightLatLng = [-6.19, 53.30];
-
-    var features = [makeDotPaths(instances, "instance", g), makeDotPaths(paths, "trail", g), makeDotPaths(collisions, "collision", g)];
-
-    my.map.on("viewreset", reset);
-    my.map.on("zoomend", reset);
-    reset();
-
-    function reset() {
-      var topLeft = LatLngToXY(topLeftLatLng);
-        bottomRight = LatLngToXY(bottomRightLatLng),
-
-      svg.attr("width", bottomRight[0] - topLeft[0])
-        .attr("height", bottomRight[1] - topLeft[1])
-        .style("left", topLeft[0] + "px")
-        .style("top", topLeft[1] + "px");
-      g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-
-      features.forEach(function(feature){
-        feature.attr("d", path);
-      });
-    } 
+    createFeatures(my.map, 
+      [[instances, "instance"], [paths, "trail"], [collisions, "collision"]], 
+      [[-6.34, 53.39], [-6.19, 53.30]]
+    );
+      
+    createFeatures(my.inset,
+      [[inset, "inset"]],
+      [[-170, 80], [170, -80]]
+    );
 
   });
+
+function createFeatures(map, dataArray, cornersArray) {
+  // map is the leaflet map
+  // dataArray is [[data, cssClass], [data, cssClass]]
+  // cornersArray is [topLeft[lon, lat], bottomRight[lon, lat]]
+  var svg = d3.select(map.getPanes().overlayPane).append("svg"),
+    g = svg.append("g").attr("class", "leaflet-zoom-hide"),
+    transform = d3.geoTransform({point: projectPoint}),
+    path = d3.geoPath().projection(transform),
+    topLeft = LatLngToXY(cornersArray[0]),
+    bottomRight = LatLngToXY(cornersArray[1]);
+
+  var features = dataArray.map(function(obj){
+    return makeDotPaths(obj[0], obj[1], g);
+  });
+
+    map.on("viewreset", reset);
+    map.on("zoomend", reset);
+    reset();
+
+  function reset() {
+    svg.attr("width", bottomRight[0] - topLeft[0])
+      .attr("height", bottomRight[1] - topLeft[1])
+      .style("left", topLeft[0] + "px")
+      .style("top", topLeft[1] + "px");
+    g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+
+    features.forEach(function(feature){
+      feature.attr("d", path);
+    });
+  } 
+
+  function projectPoint(x, y) {
+    var point = map.latLngToLayerPoint(new L.LatLng(y, x));
+    this.stream.point(point.x, point.y);
+  }
+
+  function LatLngToXY(arr) {
+    var latLng = map.latLngToLayerPoint(new L.LatLng(arr[1], arr[0]));
+    // creates {x, y}
+    return [latLng.x, latLng.y];
+}
+
+}
+
+  
 
 function makeDotPaths(geojson, cssClass, g) {
   var feature = g.selectAll("path." + cssClass)
@@ -103,51 +132,50 @@ function makeDotPaths(geojson, cssClass, g) {
   return feature;
 }
   
-var parseTime = d3.timeParse("%Y/%m/%d %H'%M'%S");
 
-function projectPoint(x, y) {
-  var point = my.map.latLngToLayerPoint(new L.LatLng(y, x));
-  this.stream.point(point.x, point.y);
-}
-
-function LatLngToXY(arr) {
-  var latLng = my.map.latLngToLayerPoint(new L.LatLng(arr[1], arr[0]));
-  // creates {x, y}
-  return [latLng.x, latLng.y];
-}
-
-function prepareInstances(callback) {
+function prepareInstances(map, callback) {
   d3.csv("instances.csv", function(data) {
     var instancesGeoJSON = {"type": "FeatureCollection", "features": []};
-    var instances = data.map(function(obj, i){
-      if (+obj.space === 1) {
-        instancesGeoJSON.features.push(
-          {
-            "type": "Feature",
-            "geometry": {"type": "Point",
-              "coordinates": [+obj.longitude, +obj.latitude]},
-            "properties": {
-              "space": 1,
-              "placeNameInText": +obj.place_name_in_text,
-              "place": obj.place,
-              "instaceId": "instance_" + obj.instace_id,
-              "placeId": +obj.place_id,
-              "time": parseTime("1904/06/16 " + obj.time),
-              "order": i // so sorting by time doesn't break the narrative order.
-            }
-          }
-        );
-        return {
+    if (map === "main") {
+      var instancesArray = prepareInstancesBySpace(data, instancesGeoJSON, 1);
+      my.instances = instancesArray.filter(Boolean); // this is the list against which the collision checks.
+      my.instancesGeoJSON = instancesGeoJSON;
+    } else {
+      prepareInstancesBySpace(data, instancesGeoJSON, 0);
+    }
+    callback(null, instancesGeoJSON);
+  });
+}
+
+function prepareInstancesBySpace(data, geojson, spaceNum) { 
+  var instancesArray = data.map(function(obj, i){
+    if (spaceNum === +obj.space){
+      var instance = {
+        "type": "Feature",
+        "geometry": {"type": "Point",
+          "coordinates": [+obj.longitude, +obj.latitude]},
+        "properties": {
+          "space": +obj.space,
+          "placeNameInText": +obj.place_name_in_text,
+          "place": obj.place,
+          "instanceId": "instance_" + obj.instace_id,
+          "placeId": +obj.place_id,
+          "time": my.parseTime("1904/06/16 " + obj.time),
+          "order": i // so sorting by time doesn't break the narrative order.
+        }
+      }
+      geojson.features.push(instance);
+      if (spaceNum === 1) {
+        var returnObj = {
           latitude: +obj.latitude,
           longitude: +obj.longitude,
           placeId: +obj.place_id,
         };
+        return returnObj;
       }
-    });
-    my.instances = instances.filter(Boolean); // this is the list against which the collision checks.
-    my.instancesGeoJSON = instancesGeoJSON;
-    callback(null, instancesGeoJSON);
+    }
   });
+  return instancesArray;
 }
 
 function prepareCollisions(callback) {
@@ -172,7 +200,7 @@ function prepareCollisions(callback) {
         "properties": {
           "primaryActor": obj.primary_actor,
           "secondaryActor": obj.secondary_actor,
-          "time": parseTime("1904/06/16 " + obj.time),
+          "time": my.parseTime("1904/06/16 " + obj.time),
           "order": i // so sorting by time doesn't break the narrative order.
         }
       };
