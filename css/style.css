@@ -12,7 +12,8 @@ p.indent {
 }
 
 #main_map {
-  top: 50px;
+  top: 0;
+  /* top: 50px; */
   left: 0;
   right: 0;
   bottom: 0;
@@ -22,7 +23,7 @@ p.indent {
 }
 
 #inset_map {
-  top: 60px;
+  top: 10px;
   right: 10px;
   width: 30%;
   height: 20%;
@@ -30,7 +31,7 @@ p.indent {
   box-sizing: border-box;
   border: 1px solid #333;
   border-radius: 6px;
-  z-index: 500;
+  z-index: 600;
   background-color: rgba(250, 250, 250, 0.7);
 }
 
@@ -38,20 +39,34 @@ p.indent {
   text-decoration: underline;
 }
 
-#text_box {
+#bottom_box {
   border: 1px solid #333;
-  padding: 10px;
+  padding: 0px;
   box-sizing: border-box;
   border-radius: 6px;
   position: absolute;
-  overflow-y: scroll;
-  height: 150px;
+  height: 250px;
   width: auto;
+  right: 10px;
+  left: 10px;
   bottom: 20px;
-  right: 50px;
-  left: 50px;
   background-color: rgba(250, 250, 250, 0.7);
-  z-index: 1000;
+  z-index: 500;
+}
+
+
+#text_box, #tool_bar {
+  padding: 10px;
+  height: 198px;
+  overflow: hidden;
+  overflow-y: auto;
+}
+
+#bottom_box_content {
+  position: absolute;
+  top: 50px;
+  height: 200px;
+  width: 100%;
 }
 
 path {
