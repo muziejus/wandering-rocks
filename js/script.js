@@ -15,12 +15,10 @@ d3.queue(1) // one task at a time.
       .concat(inset.features)
       .concat(collisions.features)
       .map(function(feature){
-        var path = feature.properties.instanceType === "inset" ? my.inset.path : my.main.path;
         return {
           instanceType: feature.properties.instanceType,
           id: feature.properties.id,
           time: feature.properties.time,
-          path: path
         };
       }).sort(function(a, b){
         return a.time - b.time;
@@ -64,6 +62,11 @@ function updateClock() {
     .transition()
     .duration(30000)
     .style("fill-opacity", 0);
+  d3.selectAll(".fired-text")
+    .classed("fired-text", false)
+    .transition()
+    .duration(1000)
+    .style("background-color", "transparent");
     // The new
   var firingEvents = my.events.map(function(event){
     if (event.time === my.times[my.currentTimeIndex]) {
@@ -71,6 +74,14 @@ function updateClock() {
     }
   }).filter(Boolean);
   firingEvents.forEach(function(event){
+    var bg = event.id.match(/set/) ? "#adaada" : "#00dd00", // "inset"
+      path = event.id.match(/set/) ? my.inset.path : my.main.path;
+    d3.select("#text_" + event.id.replace(/inset/, "instance"))
+      .classed("fired-text", true)
+      .transition()
+      .duration(500)
+      .style("background-color", bg);
+
     d3.select("#" + event.id)
       .classed("fired", true)
       .style("fill-opacity", 0.9)
@@ -78,12 +89,12 @@ function updateClock() {
       .duration(500)
       .style("fill-opacity", 0.25)
       // .style("stroke-opacity", 0)
-      .attr("d", event.path.pointRadius(100))
+      .attr("d", path.pointRadius(100))
       .transition()
       .duration(500)
       .style("fill-opacity", 0.9)
       // .style("stroke-opacity", 0.8)
-      .attr("d", event.path.pointRadius(4.5))
+      .attr("d", path.pointRadius(4.5))
   });
 }
 
