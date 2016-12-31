@@ -149,16 +149,23 @@ function prepareInstances(map, callback) {
 
 function prepareInstancesBySpace(data, geojson, spaceNum) { 
   var instancesArray = data.map(function(obj, i){
+    var instanceType = "";
+    if (spaceNum === 1){
+      instanceType = "instance";
+    } else {
+      instanceType = "inset";
+    }
     if (spaceNum === +obj.space){
       var instance = {
         "type": "Feature",
         "geometry": {"type": "Point",
           "coordinates": [+obj.longitude, +obj.latitude]},
         "properties": {
+          "instanceType": instanceType,
           "space": +obj.space,
           "placeNameInText": +obj.place_name_in_text,
           "place": obj.place,
-          "instanceId": "instance_" + obj.instace_id,
+          "instanceId": instanceType + "_" + obj.instance_id,
           "placeId": +obj.place_id,
           "time": my.parseTime("1904/06/16 " + obj.time),
           "order": i // so sorting by time doesn't break the narrative order.
@@ -198,6 +205,8 @@ function prepareCollisions(callback) {
         "geometry": {"type": "Point",
           "coordinates": [+obj.longitude, +obj.latitude]},
         "properties": {
+          "instanceType": "collision",
+          "instanceId": "collision_" + obj.instance_id,
           "primaryActor": obj.primary_actor,
           "secondaryActor": obj.secondary_actor,
           "time": my.parseTime("1904/06/16 " + obj.time),
@@ -208,6 +217,13 @@ function prepareCollisions(callback) {
     my.collisionsGeoJSON = collisionsGeoJSON;
     callback(null, collisionsGeoJSON);
   });
+}
+
+function prepareTimedArray(dataArray) {
+
+// tsArray = [instances, inset, collisions].forEach(function(array){
+
+//    n   k
 }
 
 function preparePaths(callback) {
