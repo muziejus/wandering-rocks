@@ -6,14 +6,11 @@ d3.queue(1) // one task at a time.
   .await(function(error, instances, inset, collisions, paths) {
     if (error) throw error;
 
-    createFeatures(my.main, 
-      [instances, paths, collisions]
-    );
-      
-    createFeatures(my.inset,
-      [inset]
-    );
+    // The graphical elements
+    createFeatures(my.main, [instances, paths, collisions]);
+    createFeatures(my.inset, [inset]);
 
+    // The time data
     my.events = instances.features
       .concat(inset.features)
       .concat(collisions.features)
@@ -26,14 +23,15 @@ d3.queue(1) // one task at a time.
       }).sort(function(a, b){
         return a.time - b.time;
       });
-
     my.times = my.events.map(function(event){return event.time})
       .filter(function(value, index, self) {
         return self.indexOf(value) === index;
       });
 
+    // The clock
     updateClock(my.currentTimeIndex);
 
+    // The event listeners.
     // some kind of de-disabling?
     d3.select("#step_forward_btn").on("click", function(){
       my.currentTimeIndex++;
@@ -47,6 +45,7 @@ d3.queue(1) // one task at a time.
   }); // close await()
 
 function updateClock(path) {
+  // The clock
   var glyph = '<span class="glyphicon glyphicon-time"></span>&nbsp;';
   if (my.currentTimeIndex < 0){
     my.currentTimeIndex = my.times.length - 1;
@@ -56,22 +55,17 @@ function updateClock(path) {
   d3.select("#clock")
     .html(glyph + my.formatTime(new Date(my.times[my.currentTimeIndex])));
 
-  // d3.selectAll(".fired")
-  //   .transition()
-  //   .duration(1000)
-  //   .attr("r", "10")
-  //   .classed("fired", false);
-
+  // The graphical elements
+    // The old
+  d3.selectAll(".fired")
+    .classed("fired", false);
+    // The new
   var firingEvents = my.events.map(function(event){
     if (event.time === my.times[my.currentTimeIndex]) {
       return event.id;
     }
   }).filter(Boolean);
-  
-  console.log(firingEvents);
-
   firingEvents.forEach(function(id){
-    console.log(id)
     d3.select("#" + id)
       .classed("fired", true)
       .transition()
@@ -80,31 +74,26 @@ function updateClock(path) {
       .style("z-index", 5000)
       .style("fill-opacity", 1)
   });
-
 }
 
 function createFeatures(mapObj, dataArray) {
   // mapObj is the my.main or my.inset object.
   // dataArray is [data, data]
-
   var features = dataArray.map(function(dataObj){
     return makeDotPaths(dataObj, mapObj);
   });
-
-    mapObj.map.on("viewreset", reset);
-    mapObj.map.on("zoomend", reset);
-    reset();
+  mapObj.map.on("viewreset", reset);
+  mapObj.map.on("zoomend", reset);
+  reset();
 
   function reset() {
     var topLeft = LatLngToXY(mapObj.topLeft, mapObj.map),
       bottomRight = LatLngToXY(mapObj.bottomRight, mapObj.map);
-
     mapObj.svg.attr("width", bottomRight[0] - topLeft[0])
       .attr("height", bottomRight[1] - topLeft[1])
       .style("left", topLeft[0] + "px")
       .style("top", topLeft[1] + "px");
     mapObj.g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
-
     features.forEach(function(feature){
       feature.attr("d", mapObj.path);
     });
