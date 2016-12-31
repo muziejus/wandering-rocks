@@ -61,6 +61,8 @@ function updateClock() {
     // The old
   d3.selectAll(".fired")
     .classed("fired", false)
+    .transition()
+    .duration(30000)
     .style("fill-opacity", 0);
     // The new
   var firingEvents = my.events.map(function(event){
