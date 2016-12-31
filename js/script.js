@@ -60,7 +60,8 @@ function updateClock() {
   // The graphical elements
     // The old
   d3.selectAll(".fired")
-    .classed("fired", false);
+    .classed("fired", false)
+    .style("fill-opacity", 0);
     // The new
   var firingEvents = my.events.map(function(event){
     if (event.time === my.times[my.currentTimeIndex]) {
@@ -70,12 +71,16 @@ function updateClock() {
   firingEvents.forEach(function(event){
     d3.select("#" + event.id)
       .classed("fired", true)
+      .style("fill-opacity", 0.9)
       .transition()
       .duration(500)
-      // .style("fill-opacity", 1)
+      .style("fill-opacity", 0.25)
+      // .style("stroke-opacity", 0)
       .attr("d", event.path.pointRadius(100))
       .transition()
       .duration(500)
+      .style("fill-opacity", 0.9)
+      // .style("stroke-opacity", 0.8)
       .attr("d", event.path.pointRadius(4.5))
   });
 }

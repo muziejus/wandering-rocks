@@ -72,16 +72,17 @@ p.indent {
 .collision, .main, .inset {
   stroke-width: 1px;
   stroke: #222;
-  stroke-opacity: 0.8;
-  fill-opacity: 0.6;
+  /* stroke-opacity: 0.8; */
+  stroke-opacity: 0;
+  fill-opacity: 0;
 }
 
 .collision {
-  fill: #d00;
+  fill: #dd0000;
 }  
 
 .main {
-  fill: #0d0;
+  fill: #00dd00;
 }
 
 .inset {
@@ -92,7 +93,8 @@ p.indent {
   stroke: blue;
   stroke-width: 3px;
   stroke-linecap: round;
-  stroke-opacity: 0.6;
+  stroke-opacity: 0.0;
+  /* stroke-opacity: 0.6; */
   fill: none;
 }
 
