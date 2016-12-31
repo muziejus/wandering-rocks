@@ -76,7 +76,22 @@ d3.queue(1) // one task at a time.
       [[-170, 80], [170, -80]]
     );
 
-  });
+    var events = instances.features
+      .concat(inset.features)
+      .concat(collisions.features)
+      .map(function(feature){
+        return {
+          instanceType: feature.properties.instanceType,
+          instanceId: feature.properties.instanceId,
+          time: feature.properties.time
+        };
+      }).sort(function(a, b){
+        return new Date(a.time) - new Date(b.time);
+      });
+
+    d3.select("#clock").append().text(events[0].time);
+
+  }); // close await()
 
 function createFeatures(map, dataArray, cornersArray) {
   // map is the leaflet map
@@ -118,11 +133,8 @@ function createFeatures(map, dataArray, cornersArray) {
     var latLng = map.latLngToLayerPoint(new L.LatLng(arr[1], arr[0]));
     // creates {x, y}
     return [latLng.x, latLng.y];
+  }
 }
-
-}
-
-  
 
 function makeDotPaths(geojson, cssClass, g) {
   var feature = g.selectAll("path." + cssClass)
@@ -132,7 +144,6 @@ function makeDotPaths(geojson, cssClass, g) {
   return feature;
 }
   
-
 function prepareInstances(map, callback) {
   d3.csv("instances.csv", function(data) {
     var instancesGeoJSON = {"type": "FeatureCollection", "features": []};
@@ -217,13 +228,6 @@ function prepareCollisions(callback) {
     my.collisionsGeoJSON = collisionsGeoJSON;
     callback(null, collisionsGeoJSON);
   });
-}
-
-function prepareTimedArray(dataArray) {
-
-// tsArray = [instances, inset, collisions].forEach(function(array){
-
-//    n   k
 }
 
 function preparePaths(callback) {
