@@ -2,7 +2,6 @@ var my = {
   map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.347778, -6.259722]}),
   inset: L.map('inset_map', {zoom: 1, minZoom: 1, maxZoom: 18, center: [40, -40], zoomControl: false, dragging: false}), 
   geoJSONFile: 'ulysses-1922_instances.geo.json',
-  parseTime: d3.timeParse("%Y/%m/%d %H'%M'%S"),
   markersLayer: new L.FeatureGroup()
 };
 
@@ -86,10 +85,16 @@ d3.queue(1) // one task at a time.
           time: feature.properties.time
         };
       }).sort(function(a, b){
-        return new Date(a.time) - new Date(b.time);
+        return a.time - b.time;
       });
 
-    d3.select("#clock").append().text(events[0].time);
+    times = events.map(function(event){return event.time})
+      .filter(function(value, index, self) {
+        return self.indexOf(value) === index;
+      });
+
+    console.log(times);
+    d3.select("#clock").append().text(new Date(times[0]));
 
   }); // close await()
 
@@ -178,7 +183,7 @@ function prepareInstancesBySpace(data, geojson, spaceNum) {
           "place": obj.place,
           "instanceId": instanceType + "_" + obj.instance_id,
           "placeId": +obj.place_id,
-          "time": my.parseTime("1904/06/16 " + obj.time),
+          "time": d3.isoParse("1904-06-16T" + obj.time.replace(/'/g, ":") + ".000Z").getTime(),
           "order": i // so sorting by time doesn't break the narrative order.
         }
       }
@@ -220,7 +225,7 @@ function prepareCollisions(callback) {
           "instanceId": "collision_" + obj.instance_id,
           "primaryActor": obj.primary_actor,
           "secondaryActor": obj.secondary_actor,
-          "time": my.parseTime("1904/06/16 " + obj.time),
+          "time": d3.isoParse("1904-06-16T" + obj.time.replace(/'/g, ":") + ".000Z").getTime(),
           "order": i // so sorting by time doesn't break the narrative order.
         }
       };
