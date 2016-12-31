@@ -2,6 +2,8 @@ var my = {
   map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.347778, -6.259722]}),
   inset: L.map('inset_map', {zoom: 1, minZoom: 1, maxZoom: 18, center: [40, -40], zoomControl: false, dragging: false}), 
   geoJSONFile: 'ulysses-1922_instances.geo.json',
+  formatTime: d3.utcFormat("%d %B %Y %H:%M:%S"),
+  currentTimeIndex: 0,
   markersLayer: new L.FeatureGroup()
 };
 
@@ -25,36 +27,36 @@ L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
   maxZoom: 19
 }).addTo(my.inset);
 
-$.getJSON(my.geoJSONFile, function(data) {
-  console.log("Loading " + my.geoJSONFile);
-}).done(function(data) {
-  my.geoJSONData = data;
-  //$('button', '#toolbar').prop("disabled", false);
-  $('#play_btn').prop("disabled", false);
-}).fail(function (d, textStatus, error) {
-  console.log("getJSON failed, status: " + textStatus + ", error: " + error)
-});
+// $.getJSON(my.geoJSONFile, function(data) {
+//   console.log("Loading " + my.geoJSONFile);
+// }).done(function(data) {
+//   my.geoJSONData = data;
+//   //$('button', '#toolbar').prop("disabled", false);
+//   $('#play_btn').prop("disabled", false);
+// }).fail(function (d, textStatus, error) {
+//   console.log("getJSON failed, status: " + textStatus + ", error: " + error)
+// });
 
-$('#play_btn').click(function(){
-  var points = my.geoJSONData["features"];
-  my.map.removeLayer(my.markersLayer); // so it doesn't duplicate itself
-  my.markersLayer = new L.FeatureGroup();
-  my.map.addLayer(my.markersLayer);
-  var marker;
-  for (var i = 0; i < points.length; i++) {
-    window.setTimeout(animateMarker(points[i], marker, my.markersLayer), 500);
-  }
-});
+// $('#play_btn').click(function(){
+//   var points = my.geoJSONData["features"];
+//   my.map.removeLayer(my.markersLayer); // so it doesn't duplicate itself
+//   my.markersLayer = new L.FeatureGroup();
+//   my.map.addLayer(my.markersLayer);
+//   var marker;
+//   for (var i = 0; i < points.length; i++) {
+//     window.setTimeout(animateMarker(points[i], marker, my.markersLayer), 500);
+//   }
+// });
 
-function animateMarker(point, marker, markers){
-  if (point["geometry"]["coordinates"][0] !== null) {
-    if (point["properties"]["space"] === "1") {
-      marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
-      marker.bindTooltip(point["properties"]["place_name_in_text"]);
-      markers.addLayer(marker);
-    }
-  }
-}
+// function animateMarker(point, marker, markers){
+//   if (point["geometry"]["coordinates"][0] !== null) {
+//     if (point["properties"]["space"] === "1") {
+//       marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
+//       marker.bindTooltip(point["properties"]["place_name_in_text"]);
+//       markers.addLayer(marker);
+//     }
+//   }
+// }
 
 
 d3.queue(1) // one task at a time.
@@ -88,15 +90,35 @@ d3.queue(1) // one task at a time.
         return a.time - b.time;
       });
 
-    times = events.map(function(event){return event.time})
+    my.times = events.map(function(event){return event.time})
       .filter(function(value, index, self) {
         return self.indexOf(value) === index;
       });
 
-    console.log(times);
-    d3.select("#clock").append().text(new Date(times[0]));
+    updateClock(my.currentTimeIndex);
+
+    // some kind of de-disabling?
+    d3.select("#step_forward_btn").on("click", function(){
+      my.currentTimeIndex++;
+      updateClock(my.currentTimeIndex);
+    });
+    d3.select("#step_back_btn").on("click", function(){
+      my.currentTimeIndex--;
+      updateClock(my.currentTimeIndex);
+    });
 
   }); // close await()
+
+function updateClock() {
+  var glyph = '<span class="glyphicon glyphicon-time"></span>&nbsp;';
+  if (my.currentTimeIndex < 0){
+    my.currentTimeIndex = my.times.length - 1;
+  } else if (my.currentTimeIndex >= my.times.length){
+    my.currentTimeIndex = 0;
+  }
+  d3.select("#clock")
+    .html(glyph + my.formatTime(new Date(my.times[my.currentTimeIndex])));
+}
 
 function createFeatures(map, dataArray, cornersArray) {
   // map is the leaflet map
