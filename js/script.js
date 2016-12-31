@@ -121,7 +121,7 @@ function makeDotPaths(geojson, mapObj) {
     var feature = mapObj.g.selectAll("path" + "." + geojson.properties.css)
       .data(geojson.features)
       .enter().append("path")
-      .attr("id", function(d){ return d.properties.id; })
+      .attr("id", function(d){ return d.properties.id.toString().replace(/^(\d)/, "path_$1"); }) // so paths don't have IDs that are only numbers
       .classed(geojson.properties.css, true);
   return feature;
 }
