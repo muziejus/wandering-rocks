@@ -20,7 +20,7 @@ d3.queue(1) // one task at a time.
       .map(function(feature){
         return {
           instanceType: feature.properties.instanceType,
-          instanceId: feature.properties.instanceId,
+          id: feature.properties.id,
           time: feature.properties.time
         };
       }).sort(function(a, b){
@@ -64,19 +64,21 @@ function updateClock(path) {
 
   var firingEvents = my.events.map(function(event){
     if (event.time === my.times[my.currentTimeIndex]) {
-      return event.instanceId;
+      return event.id;
     }
   }).filter(Boolean);
   
-  console.log(path);
+  console.log(firingEvents);
 
   firingEvents.forEach(function(id){
+    console.log(id)
     d3.select("#" + id)
       .classed("fired", true)
       .transition()
       .duration(1000)
-      .attr("fill", "#00d")
-      .attr("r", "10")
+      .style("fill", "#fff")
+      .style("z-index", 5000)
+      .style("fill-opacity", 1)
   });
 
 }
@@ -106,20 +108,7 @@ function createFeatures(mapObj, dataArray) {
     features.forEach(function(feature){
       feature.attr("d", mapObj.path);
     });
-    // d3.selectAll("path")
-    //   .attr("d", mapObj.path)
-
-    // d3.selectAll("circle")//.each(function(d) {
-    //   .classed("reset", true);
-
-      // var latLng = LatLngToXY([d.geometry.coordinates[0], d.geometry.coordinates[1]]);
-      // d3.select("#" + d.properties.instanceId)
-      //   .attr("cx", latLng[0])
-      //   .attr("cy", latLng[1]);
-    // });
-
   } 
-
 }
 
 function LatLngToXY(arr, map) {
@@ -129,36 +118,11 @@ function LatLngToXY(arr, map) {
 }
 
 function makeDotPaths(geojson, mapObj) {
-  // if (geojson.features[0].geometry.type === "Point"){
-  //   function convert(d){
-  //     var longitude = d.geometry.coordinates[0],
-  //       latitude = d.geometry.coordinates[1],
-  //       latLng = new L.LatLng(latitude, longitude);
-  //     // console.log(d.properties.instanceId);
-  //     // console.log("lon lat: " + longitude + ", " + latitude);
-  //     // console.log(latLng);
-  //     var newpoint = map.latLngToLayerPoint(latLng);
-  //     // console.log(newpoint);
-  //     return newpoint;
-  //   }
-    
-  //   var feature = g.selectAll("circle." + cssClass)
-  //     .data(geojson.features)
-  //     .enter().append("circle")
-  //     .attr("id", function(d){ return d.properties.instanceId; })
-  //     .attr("data-latitude", function(d){ return d.geometry.coordinates[1]; })
-  //     .attr("data-longitude", function(d){ return d.geometry.coordinates[0]; })
-  //     .attr("cx", function(d){ var newpoint = convert(d); console.log(d, newpoint); return newpoint.x; })
-  //     .attr("cy", function(d){ var newpoint = convert(d); console.log(d, newpoint); return newpoint.y; })
-  //     .attr("r", 5)
-  //     .classed(cssClass, true);
-  // } else {
     var feature = mapObj.g.selectAll("path" + "." + geojson.properties.css)
       .data(geojson.features)
       .enter().append("path")
-      .attr("id", function(d){ return "path_" + d.properties.id; })
+      .attr("id", function(d){ return d.properties.id; })
       .classed(geojson.properties.css, true);
-  // }
   return feature;
 }
   
@@ -194,7 +158,7 @@ function prepareInstancesBySpace(data, geojson, spaceNum) {
           "space": +obj.space,
           "placeNameInText": +obj.place_name_in_text,
           "place": obj.place,
-          "instanceId": instanceType + "_" + obj.instance_id,
+          "id": instanceType + "_" + obj.instance_id,
           "placeId": +obj.place_id,
           "time": d3.isoParse("1904-06-16T" + obj.time.replace(/'/g, ":") + ".000Z").getTime(),
           "order": i // so sorting by time doesn't break the narrative order.
@@ -235,7 +199,7 @@ function prepareCollisions(callback) {
           "coordinates": [+obj.longitude, +obj.latitude]},
         "properties": {
           "instanceType": "collision",
-          "instanceId": "collision_" + obj.instance_id,
+          "id": "collision_" + obj.instance_id,
           "primaryActor": obj.primary_actor,
           "secondaryActor": obj.secondary_actor,
           "time": d3.isoParse("1904-06-16T" + obj.time.replace(/'/g, ":") + ".000Z").getTime(),
