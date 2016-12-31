@@ -29,7 +29,7 @@ d3.queue(1) // one task at a time.
       });
 
     // The clock
-    updateClock(my.currentTimeIndex);
+    updateClock();
 
     // The event listeners.
     // some kind of de-disabling?
@@ -44,7 +44,7 @@ d3.queue(1) // one task at a time.
 
   }); // close await()
 
-function updateClock(path) {
+function updateClock() {
   // The clock
   var glyph = '<span class="glyphicon glyphicon-time"></span>&nbsp;';
   if (my.currentTimeIndex < 0){
