@@ -1,64 +1,3 @@
-var my = {
-  map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.347778, -6.259722]}),
-  inset: L.map('inset_map', {zoom: 1, minZoom: 1, maxZoom: 18, center: [40, -40], zoomControl: false, dragging: false}), 
-  geoJSONFile: 'ulysses-1922_instances.geo.json',
-  formatTime: d3.utcFormat("%d %B %Y %H:%M:%S"),
-  currentTimeIndex: 0,
-  markersLayer: new L.FeatureGroup()
-};
-
-$.get("./text.html", function(data){
-  if(typeof(data) === 'string'){
-    $("#text_box").html(data); // how github.io sees it.
-  }else{
-    $("#text_box").html(data.activeElement.innerHTML); // how my local machine sees it.
-  }
-});
-
-L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-  attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-  subdomains: 'abcd',
-  maxZoom: 19
-}).addTo(my.map);
-
-L.tileLayer('http://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png', {
-  // attribution: '&copy; <a href="http://www.openstreetmap.org/copyright">OpenStreetMap</a> &copy; <a href="http://cartodb.com/attributions">CartoDB</a>',
-  subdomains: 'abcd',
-  maxZoom: 19
-}).addTo(my.inset);
-
-// $.getJSON(my.geoJSONFile, function(data) {
-//   console.log("Loading " + my.geoJSONFile);
-// }).done(function(data) {
-//   my.geoJSONData = data;
-//   //$('button', '#toolbar').prop("disabled", false);
-//   $('#play_btn').prop("disabled", false);
-// }).fail(function (d, textStatus, error) {
-//   console.log("getJSON failed, status: " + textStatus + ", error: " + error)
-// });
-
-// $('#play_btn').click(function(){
-//   var points = my.geoJSONData["features"];
-//   my.map.removeLayer(my.markersLayer); // so it doesn't duplicate itself
-//   my.markersLayer = new L.FeatureGroup();
-//   my.map.addLayer(my.markersLayer);
-//   var marker;
-//   for (var i = 0; i < points.length; i++) {
-//     window.setTimeout(animateMarker(points[i], marker, my.markersLayer), 500);
-//   }
-// });
-
-// function animateMarker(point, marker, markers){
-//   if (point["geometry"]["coordinates"][0] !== null) {
-//     if (point["properties"]["space"] === "1") {
-//       marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
-//       marker.bindTooltip(point["properties"]["place_name_in_text"]);
-//       markers.addLayer(marker);
-//     }
-//   }
-// }
-
-
 d3.queue(1) // one task at a time.
   .defer(prepareInstances, "main")
   .defer(prepareInstances, "inset")
@@ -67,17 +6,15 @@ d3.queue(1) // one task at a time.
   .await(function(error, instances, inset, collisions, paths) {
     if (error) throw error;
 
-    createFeatures(my.map, 
-      [[instances, "instance"], [paths, "trail"], [collisions, "collision"]], 
-      [[-6.34, 53.39], [-6.19, 53.30]]
+    createFeatures(my.main, 
+      [[instances, "instance"], [paths, "trail"], [collisions, "collision"]]
     );
       
     createFeatures(my.inset,
-      [[inset, "inset"]],
-      [[-170, 80], [170, -80]]
+      [[inset, "inset"]]
     );
 
-    var events = instances.features
+    my.events = instances.features
       .concat(inset.features)
       .concat(collisions.features)
       .map(function(feature){
@@ -90,7 +27,7 @@ d3.queue(1) // one task at a time.
         return a.time - b.time;
       });
 
-    my.times = events.map(function(event){return event.time})
+    my.times = my.events.map(function(event){return event.time})
       .filter(function(value, index, self) {
         return self.indexOf(value) === index;
       });
@@ -100,16 +37,16 @@ d3.queue(1) // one task at a time.
     // some kind of de-disabling?
     d3.select("#step_forward_btn").on("click", function(){
       my.currentTimeIndex++;
-      updateClock(my.currentTimeIndex);
+      updateClock();
     });
     d3.select("#step_back_btn").on("click", function(){
       my.currentTimeIndex--;
-      updateClock(my.currentTimeIndex);
+      updateClock();
     });
 
   }); // close await()
 
-function updateClock() {
+function updateClock(path) {
   var glyph = '<span class="glyphicon glyphicon-time"></span>&nbsp;';
   if (my.currentTimeIndex < 0){
     my.currentTimeIndex = my.times.length - 1;
@@ -118,56 +55,110 @@ function updateClock() {
   }
   d3.select("#clock")
     .html(glyph + my.formatTime(new Date(my.times[my.currentTimeIndex])));
-}
 
-function createFeatures(map, dataArray, cornersArray) {
-  // map is the leaflet map
-  // dataArray is [[data, cssClass], [data, cssClass]]
-  // cornersArray is [topLeft[lon, lat], bottomRight[lon, lat]]
-  var svg = d3.select(map.getPanes().overlayPane).append("svg"),
-    g = svg.append("g").attr("class", "leaflet-zoom-hide"),
-    transform = d3.geoTransform({point: projectPoint}),
-    path = d3.geoPath().projection(transform),
-    topLeft = LatLngToXY(cornersArray[0]),
-    bottomRight = LatLngToXY(cornersArray[1]);
+  // d3.selectAll(".fired")
+  //   .transition()
+  //   .duration(1000)
+  //   .attr("r", "10")
+  //   .classed("fired", false);
 
-  var features = dataArray.map(function(obj){
-    return makeDotPaths(obj[0], obj[1], g);
+  var firingEvents = my.events.map(function(event){
+    if (event.time === my.times[my.currentTimeIndex]) {
+      return event.instanceId;
+    }
+  }).filter(Boolean);
+  
+  console.log(path);
+
+  firingEvents.forEach(function(id){
+    d3.select("#" + id)
+      .classed("fired", true)
+      .transition()
+      .duration(1000)
+      .attr("fill", "#00d")
+      .attr("r", "10")
   });
 
-    map.on("viewreset", reset);
-    map.on("zoomend", reset);
+}
+
+function createFeatures(mapObj, dataArray) {
+  // mapObj is the my.main or my.inset object.
+  // dataArray is [[data, cssClass], [data, cssClass]]
+
+  var features = dataArray.map(function(obj){
+    return makeDotPaths(obj[0], obj[1], mapObj);
+  });
+
+    mapObj.map.on("viewreset", reset);
+    mapObj.map.on("zoomend", reset);
     reset();
 
   function reset() {
-    svg.attr("width", bottomRight[0] - topLeft[0])
+    var topLeft = LatLngToXY(mapObj.topLeft, mapObj.map),
+      bottomRight = LatLngToXY(mapObj.bottomRight, mapObj.map);
+
+    mapObj.svg.attr("width", bottomRight[0] - topLeft[0])
       .attr("height", bottomRight[1] - topLeft[1])
       .style("left", topLeft[0] + "px")
       .style("top", topLeft[1] + "px");
-    g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
+    mapObj.g.attr("transform", "translate(" + -topLeft[0] + "," + -topLeft[1] + ")");
 
     features.forEach(function(feature){
-      feature.attr("d", path);
+      feature.attr("d", mapObj.path);
     });
+    // d3.selectAll("path")
+    //   .attr("d", mapObj.path)
+
+    // d3.selectAll("circle")//.each(function(d) {
+    //   .classed("reset", true);
+
+      // var latLng = LatLngToXY([d.geometry.coordinates[0], d.geometry.coordinates[1]]);
+      // d3.select("#" + d.properties.instanceId)
+      //   .attr("cx", latLng[0])
+      //   .attr("cy", latLng[1]);
+    // });
+
   } 
 
-  function projectPoint(x, y) {
-    var point = map.latLngToLayerPoint(new L.LatLng(y, x));
-    this.stream.point(point.x, point.y);
-  }
-
-  function LatLngToXY(arr) {
-    var latLng = map.latLngToLayerPoint(new L.LatLng(arr[1], arr[0]));
-    // creates {x, y}
-    return [latLng.x, latLng.y];
-  }
 }
 
-function makeDotPaths(geojson, cssClass, g) {
-  var feature = g.selectAll("path." + cssClass)
-    .data(geojson.features)
-    .enter().append("path")
-    .classed(cssClass, true);
+function LatLngToXY(arr, map) {
+  var latLng = map.latLngToLayerPoint(new L.LatLng(arr[1], arr[0]));
+  // creates {x, y}
+  return [latLng.x, latLng.y];
+}
+
+function makeDotPaths(geojson, cssClass, mapObj) {
+  // if (geojson.features[0].geometry.type === "Point"){
+  //   function convert(d){
+  //     var longitude = d.geometry.coordinates[0],
+  //       latitude = d.geometry.coordinates[1],
+  //       latLng = new L.LatLng(latitude, longitude);
+  //     // console.log(d.properties.instanceId);
+  //     // console.log("lon lat: " + longitude + ", " + latitude);
+  //     // console.log(latLng);
+  //     var newpoint = map.latLngToLayerPoint(latLng);
+  //     // console.log(newpoint);
+  //     return newpoint;
+  //   }
+    
+  //   var feature = g.selectAll("circle." + cssClass)
+  //     .data(geojson.features)
+  //     .enter().append("circle")
+  //     .attr("id", function(d){ return d.properties.instanceId; })
+  //     .attr("data-latitude", function(d){ return d.geometry.coordinates[1]; })
+  //     .attr("data-longitude", function(d){ return d.geometry.coordinates[0]; })
+  //     .attr("cx", function(d){ var newpoint = convert(d); console.log(d, newpoint); return newpoint.x; })
+  //     .attr("cy", function(d){ var newpoint = convert(d); console.log(d, newpoint); return newpoint.y; })
+  //     .attr("r", 5)
+  //     .classed(cssClass, true);
+  // } else {
+    var feature = mapObj.g.selectAll("path" + "." + cssClass)
+      .data(geojson.features)
+      .enter().append("path")
+      .attr("id", function(d){ return "path_" + d.properties.id; })
+      .classed(cssClass, true);
+  // }
   return feature;
 }
   
