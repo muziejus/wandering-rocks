@@ -69,7 +69,7 @@ p.indent {
   width: 100%;
 }
 
-.collision, .instance, .inset {
+.collision, .main, .inset {
   stroke-width: 1px;
   stroke: #222;
   stroke-opacity: 0.8;
@@ -80,7 +80,7 @@ p.indent {
   fill: #d00;
 }  
 
-.instance {
+.main {
   fill: #0d0;
 }
 

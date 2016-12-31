@@ -7,11 +7,11 @@ d3.queue(1) // one task at a time.
     if (error) throw error;
 
     createFeatures(my.main, 
-      [[instances, "instance"], [paths, "trail"], [collisions, "collision"]]
+      [instances, paths, collisions]
     );
       
     createFeatures(my.inset,
-      [[inset, "inset"]]
+      [inset]
     );
 
     my.events = instances.features
@@ -83,10 +83,10 @@ function updateClock(path) {
 
 function createFeatures(mapObj, dataArray) {
   // mapObj is the my.main or my.inset object.
-  // dataArray is [[data, cssClass], [data, cssClass]]
+  // dataArray is [data, data]
 
-  var features = dataArray.map(function(obj){
-    return makeDotPaths(obj[0], obj[1], mapObj);
+  var features = dataArray.map(function(dataObj){
+    return makeDotPaths(dataObj, mapObj);
   });
 
     mapObj.map.on("viewreset", reset);
@@ -128,7 +128,7 @@ function LatLngToXY(arr, map) {
   return [latLng.x, latLng.y];
 }
 
-function makeDotPaths(geojson, cssClass, mapObj) {
+function makeDotPaths(geojson, mapObj) {
   // if (geojson.features[0].geometry.type === "Point"){
   //   function convert(d){
   //     var longitude = d.geometry.coordinates[0],
@@ -153,18 +153,18 @@ function makeDotPaths(geojson, cssClass, mapObj) {
   //     .attr("r", 5)
   //     .classed(cssClass, true);
   // } else {
-    var feature = mapObj.g.selectAll("path" + "." + cssClass)
+    var feature = mapObj.g.selectAll("path" + "." + geojson.properties.css)
       .data(geojson.features)
       .enter().append("path")
       .attr("id", function(d){ return "path_" + d.properties.id; })
-      .classed(cssClass, true);
+      .classed(geojson.properties.css, true);
   // }
   return feature;
 }
   
 function prepareInstances(map, callback) {
   d3.csv("instances.csv", function(data) {
-    var instancesGeoJSON = {"type": "FeatureCollection", "features": []};
+    var instancesGeoJSON = {"type": "FeatureCollection", "properties": {"css": map}, "features": []};
     if (map === "main") {
       var instancesArray = prepareInstancesBySpace(data, instancesGeoJSON, 1);
       my.instances = instancesArray.filter(Boolean); // this is the list against which the collision checks.
@@ -216,7 +216,7 @@ function prepareInstancesBySpace(data, geojson, spaceNum) {
 
 function prepareCollisions(callback) {
   d3.csv("collisions.csv", function(data) {
-    var collisionsGeoJSON = {"type": "FeatureCollection", "features": []};
+    var collisionsGeoJSON = {"type": "FeatureCollection", "properties": {"css": "collision"}, "features": []};
     collisionsGeoJSON.features = data.map(function(obj, i){
       if (obj.latitude === "") { 
         // I was lazy about copying over lats and lons. It wouldn't be a
