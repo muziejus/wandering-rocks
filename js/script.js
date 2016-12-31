@@ -16,7 +16,6 @@ d3.queue(1) // one task at a time.
       .concat(collisions.features)
       .map(function(feature){
         return {
-          instanceType: feature.properties.instanceType,
           id: feature.properties.id,
           time: feature.properties.time,
         };
@@ -41,11 +40,25 @@ d3.queue(1) // one task at a time.
       my.currentTimeIndex--;
       updateClock();
     });
+    $(".place").on("click", function(){
+      var idNum = $(this).attr("id").replace(/^.*_/, ""),
+        event = my.events.filter(function(ev) {
+          return ev.id.match(new RegExp("_" + idNum + "$"));
+        })[0];
+      // fireDot(event);
+      updateClock(event.time);
+    });
 
   }); // close await()
 
-function updateClock() {
+function updateClock(epochTime) {
   // The clock
+  if (epochTime) {
+    var time = epochTime;
+    my.currentTimeIndex = my.times.indexOf(time);
+  } else {
+    var time = my.times[my.currentTimeIndex];
+  }
   var glyph = '<span class="glyphicon glyphicon-time"></span>&nbsp;';
   if (my.currentTimeIndex < 0){
     my.currentTimeIndex = my.times.length - 1;
@@ -53,10 +66,44 @@ function updateClock() {
     my.currentTimeIndex = 0;
   }
   d3.select("#clock")
-    .html(glyph + my.formatTime(new Date(my.times[my.currentTimeIndex])));
+    .html(glyph + my.formatTime(new Date(time)));
 
   // The graphical elements
-    // The old
+  deFireDot();
+  var firingEvents = my.events.map(function(event){
+    if (event.time === time) {
+      return event;
+    }
+  }).filter(Boolean);
+  firingEvents.forEach(function(event){
+    fireDot(event);
+  });
+}
+
+function fireDot(event){
+  var bg = event.id.match(/set/) ? "#adaada" : "#00dd00", // "inset"
+    path = event.id.match(/set/) ? my.inset.path : my.main.path;
+  d3.select("#text_" + event.id.replace(/inset/, "instance"))
+    .classed("fired-text", true)
+    .transition()
+    .duration(500)
+    .style("background-color", bg);
+  d3.select("#" + event.id)
+    .classed("fired", true)
+    .style("fill-opacity", 0.9)
+    .transition()
+    .duration(500)
+    .style("fill-opacity", 0.25)
+    // .style("stroke-opacity", 0)
+    .attr("d", path.pointRadius(100))
+    .transition()
+    .duration(500)
+    .style("fill-opacity", 0.9)
+    // .style("stroke-opacity", 0.8)
+    .attr("d", path.pointRadius(4.5))
+}
+
+function deFireDot(){
   d3.selectAll(".fired")
     .classed("fired", false)
     .transition()
@@ -67,35 +114,6 @@ function updateClock() {
     .transition()
     .duration(1000)
     .style("background-color", "transparent");
-    // The new
-  var firingEvents = my.events.map(function(event){
-    if (event.time === my.times[my.currentTimeIndex]) {
-      return event;
-    }
-  }).filter(Boolean);
-  firingEvents.forEach(function(event){
-    var bg = event.id.match(/set/) ? "#adaada" : "#00dd00", // "inset"
-      path = event.id.match(/set/) ? my.inset.path : my.main.path;
-    d3.select("#text_" + event.id.replace(/inset/, "instance"))
-      .classed("fired-text", true)
-      .transition()
-      .duration(500)
-      .style("background-color", bg);
-
-    d3.select("#" + event.id)
-      .classed("fired", true)
-      .style("fill-opacity", 0.9)
-      .transition()
-      .duration(500)
-      .style("fill-opacity", 0.25)
-      // .style("stroke-opacity", 0)
-      .attr("d", path.pointRadius(100))
-      .transition()
-      .duration(500)
-      .style("fill-opacity", 0.9)
-      // .style("stroke-opacity", 0.8)
-      .attr("d", path.pointRadius(4.5))
-  });
 }
 
 function createFeatures(mapObj, dataArray) {
