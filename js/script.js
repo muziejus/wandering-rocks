@@ -18,6 +18,8 @@ d3.queue(1) // one task at a time.
         return {
           id: feature.properties.id,
           time: feature.properties.time,
+          latLng: L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]),
+          zoom: feature.properties.zoom
         };
       }).sort(function(a, b){
         return a.time - b.time;
@@ -58,7 +60,6 @@ d3.queue(1) // one task at a time.
         event = my.events.filter(function(ev) {
           return ev.id.match(new RegExp("_" + idNum + "$"));
         })[0];
-      // fireDot(event);
       updateClock(event.time);
     });
 
@@ -101,6 +102,9 @@ function fireDot(event){
     .transition()
     .duration(500)
     .style("background-color", bg);
+  if (event.id.match(/set/)) {
+    my.inset.map.setView(event.latLng, +event.zoom, {animate: false, duration: 0});
+  }
   d3.select("#" + event.id)
     .classed("fired", true)
     .style("cursor", "pointer")
@@ -109,12 +113,10 @@ function fireDot(event){
     .transition()
     .duration(500)
     .style("fill-opacity", 0.25)
-    // .style("stroke-opacity", 0)
     .attr("d", path.pointRadius(100))
     .transition()
     .duration(500)
     .style("fill-opacity", 0.9)
-    // .style("stroke-opacity", 0.8)
     .attr("d", path.pointRadius(4.5))
 }
 
@@ -124,7 +126,7 @@ function deFireDot(){
     .style("pointer-events", "none")
     .style("cursor", "auto")
     .transition()
-    .duration(30000)
+    .duration(function(d){if(d.properties.instanceType === "instance"){ return 10000; } else { return 1000;}})
     .style("fill-opacity", 0);
   d3.selectAll(".fired-text")
     .classed("fired-text", false)
@@ -207,6 +209,7 @@ function prepareInstancesBySpace(data, geojson, spaceNum) {
           "id": instanceType + "_" + obj.instance_id,
           "placeId": +obj.place_id,
           "time": d3.isoParse("1904-06-16T" + obj.time.replace(/'/g, ":") + ".000Z").getTime(),
+          "zoom": obj.zoom,
           "order": i // so sorting by time doesn't break the narrative order.
         }
       }
@@ -221,6 +224,7 @@ function prepareInstancesBySpace(data, geojson, spaceNum) {
       }
     }
   });
+  my.ia = instancesArray;
   return instancesArray;
 }
 
