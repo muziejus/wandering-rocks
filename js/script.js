@@ -48,11 +48,13 @@ d3.queue(1) // one task at a time.
       // The buttons
         // some kind of de-disabling?
     d3.select("#step_forward_btn").on("click", function(){
+      pauseChapter();
       my.currentTimeIndex++;
       updateClock();
       fireEvents(my.firingEvents[my.currentTimeIndex], true);
     });
     d3.select("#step_back_btn").on("click", function(){
+      pauseChapter();
       my.currentTimeIndex--;
       updateClock();
       fireEvents(my.firingEvents[my.currentTimeIndex], true);
