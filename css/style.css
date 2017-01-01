@@ -40,6 +40,10 @@ p.indent {
   cursor: pointer;
 }
 
+.text-collision {
+  text-decoration: underline wavy rgba(117, 112, 179, 1);
+}
+
 #bottom_box {
   border: 1px solid #333;
   padding: 0px;
