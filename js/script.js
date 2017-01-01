@@ -126,7 +126,7 @@ function fireEvents(firingEvents){
     fireDot(event);
     setTimeout(function(){
       scrollTo(event.id);
-    }, 250);
+    }, 2500 / my.timeFactor);
   });
   // scrollTo(firingEvents[0].id);
 }
@@ -135,10 +135,10 @@ function scrollTo(eventId){
   if (typeof(eventId) === "string") {
     var id = eventId.replace(/inset/, "instance");
     if (id.match(/ins/)){
-      var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 25;
+      var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 50;
       $("#text_box").animate({
         scrollTop: scrollFactor
-      }, 500);
+      }, 2500 / my.timeFactor);
     }
   }
 }
@@ -164,7 +164,7 @@ function fireDot(event){
   d3.select("#text_" + event.id.replace(/inset/, "instance"))
     .classed("fired-text", true)
     .transition()
-    .duration(500)
+    .duration(4000 / my.timeFactor)
     .style("background-color", bg);
   if (event.id.match(/set/)) {
     my.inset.map.setView(event.latLng, +event.zoom, {animate: false, duration: 0});
@@ -175,11 +175,11 @@ function fireDot(event){
     .style("pointer-events", "visibleFill")
     .style("fill-opacity", 0.9)
     .transition()
-    .duration(500)
+    .duration(4000 / my.timeFactor)
     .style("fill-opacity", 0.25)
     .attr("d", path.pointRadius(100))
     .transition()
-    .duration(500)
+    .duration(4000 / my.timeFactor)
     .style("fill-opacity", 0.9)
     .attr("d", path.pointRadius(4.5))
 }
@@ -190,12 +190,12 @@ function deFireDot(){
     .style("pointer-events", "none")
     .style("cursor", "auto")
     .transition()
-    .duration(function(d){if(d.properties.instanceType === "instance"){ return 10000; } else { return 1000;}})
+    .duration(function(d){if(d.properties.instanceType === "instance"){ return 100000 / my.timeFactor; } else { return 10000 / my.timeFactor;}})
     .style("fill-opacity", 0);
   d3.selectAll(".fired-text")
     .classed("fired-text", false)
     .transition()
-    .duration(1000)
+    .duration(50000 / my.timeFactor)
     .style("background-color", "transparent");
 }
 
