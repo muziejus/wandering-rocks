@@ -128,14 +128,13 @@ function fireEvents(firingEvents){
       scrollTo(event.id);
     }, 2500 / my.timeFactor);
   });
-  // scrollTo(firingEvents[0].id);
 }
 
 function scrollTo(eventId){
   if (typeof(eventId) === "string") {
     var id = eventId.replace(/inset/, "instance");
     if (id.match(/ins/)){
-      var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 50;
+      var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 80;
       $("#text_box").animate({
         scrollTop: scrollFactor
       }, 2500 / my.timeFactor);
@@ -159,8 +158,17 @@ function updateClock(epochTime) {
 }
 
 function fireDot(event){
-  var bg = event.id.match(/set/) ? "#adaada" : "#00dd00", // "inset"
-    path = event.id.match(/set/) ? my.inset.path : my.main.path;
+  if (event.id.match(/set/)){
+    var bg = my.colors.inset,
+      path = my.inset.path;
+  } else {
+    var path = my.main.path;
+    if (event.id.match(/coll/)){
+      var bg = my.colors.collision;
+    } else {
+      var bg = my.colors.instance;
+    }
+  }
   d3.select("#text_" + event.id.replace(/inset/, "instance"))
     .classed("fired-text", true)
     .transition()
@@ -173,14 +181,18 @@ function fireDot(event){
     .classed("fired", true)
     .style("cursor", "pointer")
     .style("pointer-events", "visibleFill")
+    .style("fill", bg)
     .style("fill-opacity", 0.9)
+    .style("stroke-opacity", 0.9)
     .transition()
     .duration(4000 / my.timeFactor)
     .style("fill-opacity", 0.25)
+    .style("stroke-opacity", 0.1)
     .attr("d", path.pointRadius(100))
     .transition()
     .duration(4000 / my.timeFactor)
     .style("fill-opacity", 0.9)
+    .style("stroke-opacity", 0.9)
     .attr("d", path.pointRadius(4.5))
 }
 
@@ -191,7 +203,8 @@ function deFireDot(){
     .style("cursor", "auto")
     .transition()
     .duration(function(d){if(d.properties.instanceType === "instance"){ return 100000 / my.timeFactor; } else { return 10000 / my.timeFactor;}})
-    .style("fill-opacity", 0);
+    .style("fill-opacity", 0)
+    .style("stroke-opacity", 0);
   d3.selectAll(".fired-text")
     .classed("fired-text", false)
     .transition()

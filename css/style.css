@@ -77,18 +77,6 @@ p.indent {
   fill-opacity: 0;
 }
 
-.collision {
-  fill: #dd0000;
-}  
-
-.main {
-  fill: #00dd00;
-}
-
-.inset {
-  fill: #adaada;
-}
-
 .trail {
   stroke: blue;
   stroke-width: 3px;

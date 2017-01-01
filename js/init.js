@@ -7,6 +7,11 @@ var my = {
   formatTime: d3.utcFormat("%d %B %Y %H:%M:%S"),
   currentTimeIndex: 0,
   markersLayer: new L.FeatureGroup(),
+  colors: {
+    inset: "rgba(27, 158, 119, 0.5)",
+    instance: "rgba(217, 95, 2, 0.5)",
+    collision: "rgba(117, 112, 179, 0.5)"
+  },
   main: {
     map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.335, -6.258]}),
     topLeft: [-6.34, 53.39],
