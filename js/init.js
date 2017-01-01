@@ -1,5 +1,8 @@
 // First, initialize the constants.
 var my = {
+  clockGlyph: '<span class="glyphicon glyphicon-time"></span>&nbsp;',
+  timeFactor: 10,
+  firingEvents: [],
   geoJSONFile: 'ulysses-1922_instances.geo.json',
   formatTime: d3.utcFormat("%d %B %Y %H:%M:%S"),
   currentTimeIndex: 0,

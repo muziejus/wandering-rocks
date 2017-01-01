@@ -28,9 +28,21 @@ d3.queue(1) // one task at a time.
       .filter(function(value, index, self) {
         return self.indexOf(value) === index;
       });
+    my.times.forEach(function(time){ // using map and filter doesn't work here…
+      var events = [];
+      my.events.forEach(function(event){
+        if(event.time === time){
+          events.push(event);
+        }
+      });
+      if (events.length > 0){
+        my.firingEvents.push(events);
+      };
+    });
 
     // The clock
-    updateClock();
+    d3.select("#clock")
+      .html(my.clockGlyph + my.formatTime(new Date(my.times[0])));
 
     // The event listeners.
       // The buttons
@@ -38,20 +50,23 @@ d3.queue(1) // one task at a time.
     d3.select("#step_forward_btn").on("click", function(){
       my.currentTimeIndex++;
       updateClock();
+      fireEvents(my.firingEvents[my.currentTimeIndex]);
     });
     d3.select("#step_back_btn").on("click", function(){
       my.currentTimeIndex--;
       updateClock();
+      fireEvents(my.firingEvents[my.currentTimeIndex]);
     });
+    d3.select("#play_btn").on("click", function(){
+      playChapter();
+    });
+    d3.select("#pause_btn").on("click", function(){
+      pauseChapter();
+    });
+    
       // The map
     $("path").on("click", function(){
-      var id = $(this).attr("id").replace(/inset/, "instance");
-      if (id.match(/ins/)){
-        var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 25;
-        $("#text_box").animate({
-          scrollTop: scrollFactor
-        }, 500);
-      }
+      scrollTo($(this).attr("id"));
     });
     
       // The textbox
@@ -60,40 +75,87 @@ d3.queue(1) // one task at a time.
         event = my.events.filter(function(ev) {
           return ev.id.match(new RegExp("_" + idNum + "$"));
         })[0];
-      updateClock(event.time);
+      my.currentTimeIndex = my.times.indexOf(event.time);
+      updateClock();
+      fireEvents(my.firingEvents[my.currentTimeIndex]);
     });
 
   }); // close await()
 
+function playChapter() {
+  d3.select("#play_btn")
+    .classed("active", true);
+  d3.select("#pause_btn")
+    .attr("disabled", null)
+    .classed("active", false);
+  var timeOut = 1000 / my.timeFactor;
+  var time = my.time ? my.time : my.times[0];
+  if (time === my.times[my.times.length - 1]){
+    time = my.times[0];
+  };
+  my.interval = setInterval(function(){
+    if (time === my.times[my.times.length - 1]){
+      clearInterval(my.interval);
+      d3.select("#play_btn")
+        .classed("active", false);
+    };
+    if (time === my.times[my.currentTimeIndex]){
+      fireEvents(my.firingEvents[my.currentTimeIndex]);
+      if (my.currentTimeIndex === my.times.length - 1){
+        my.currentTimeIndex = 0;
+      } else {
+        my.currentTimeIndex++;
+      };
+    };
+    updateClock(time);
+    time = time + 1000;
+  }, timeOut);
+}
+
+function pauseChapter() {
+  d3.select("#play_btn")
+    .classed("active", false);
+  d3.select("#pause_btn")
+    .classed("active", true);
+  clearInterval(my.interval);
+}
+
+function fireEvents(firingEvents){
+  deFireDot();
+  firingEvents.forEach(function(event){
+    fireDot(event);
+    setTimeout(function(){
+      scrollTo(event.id);
+    }, 250);
+  });
+  // scrollTo(firingEvents[0].id);
+}
+
+function scrollTo(eventId){
+  if (typeof(eventId) === "string") {
+    var id = eventId.replace(/inset/, "instance");
+    if (id.match(/ins/)){
+      var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 25;
+      $("#text_box").animate({
+        scrollTop: scrollFactor
+      }, 500);
+    }
+  }
+}
+
 function updateClock(epochTime) {
-  // The clock
   if (my.currentTimeIndex < 0){
-    console.log("negative");
     my.currentTimeIndex = my.times.length - 1;
   } else if (my.currentTimeIndex >= my.times.length){
-    console.log("postiive");
     my.currentTimeIndex = 0;
   }
   if (epochTime) {
-    var time = epochTime;
-    my.currentTimeIndex = my.times.indexOf(time);
+    my.time = epochTime;
   } else {
-    var time = my.times[my.currentTimeIndex];
+    my.time = my.times[my.currentTimeIndex];
   }
-  var glyph = '<span class="glyphicon glyphicon-time"></span>&nbsp;';
   d3.select("#clock")
-    .html(glyph + my.formatTime(new Date(time)));
-
-  // The graphical elements
-  deFireDot();
-  var firingEvents = my.events.map(function(event){
-    if (event.time === time) {
-      return event;
-    }
-  }).filter(Boolean);
-  firingEvents.forEach(function(event){
-    fireDot(event);
-  });
+    .html(my.clockGlyph + my.formatTime(new Date(my.time)));
 }
 
 function fireDot(event){
