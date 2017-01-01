@@ -37,6 +37,7 @@ p.indent {
 
 .place {
   text-decoration: underline;
+  cursor: pointer;
 }
 
 #bottom_box {
