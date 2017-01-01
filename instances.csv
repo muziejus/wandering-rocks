@@ -301,7 +301,7 @@ instance_id,page,sequence,place_name_in_text,place,place_id,latitude,longitude,s
 6155,209,3,Yorkshire,Yorkshire,986,53.7,-1.58333,soldiers,,,2016-12-04,Moacir,0,15'46'40,300,6
 6156,209,4,Finn's hotel,"1 Leinster St S, Dublin 2, Ireland",1840,53.3419761,-6.2528319,cboftfarrell,,,2016-12-04,Moacir,1,15'48'00,301,
 6157,209,5,Austro-Hungarian viceconsulate,"19 Nassau St, Dublin, Ireland",1841,53.3425132518,-6.2567085028,cboftfarrell,,,2016-12-04,Moacir,1,15'48'20,302,
-6158,209,6,Leinster street,Leinster Street South,61,53.342,-6.2558256,hornblower,,,2016-12-04,Moacir,0,15'49'00,303,16
+6158,209,6,Leinster street,Leinster Street South,61,53.3419623806,-6.2535327673,hornblower,,,2016-12-04,Moacir,1,15'49'00,303,
 6159,209,7,Trinity's postern,"South gate of Trinity College, Dublin",1842,53.3422586349,-6.2515600026,hornblower,,,2016-12-04,Moacir,1,15'49'00,304,
 6160,209,8,Merrion square,Merrion Square,319,53.33979,-6.24916,viceregal cavalcade,,,2016-12-04,Moacir,1,15'50'00,305,
 6161,209,9,Mirus bazaar,Royal Dublin Society,1854,53.327957,-6.228715,viceregal cavalcade,,,2016-12-04,Moacir,0,15'50'30,306,16
@@ -313,4 +313,4 @@ instance_id,page,sequence,place_name_in_text,place,place_id,latitude,longitude,s
 6167,209,15,Pembroke township,"Pembroke, Dublin",1848,53.329035,-6.23183,eugene stratton,,,2016-12-04,Moacir,1,15'54'10,312,
 6168,209,16,Haddington road corner,"Haddington Rd, Dublin, Co. Dublin, Ireland",1849,53.33615,-6.238047,two old women,,,2016-12-04,Moacir,1,15'55'00,313,
 6169,209,17,Northumberland and Landsdowne roads,"corner of Northumberland and Landsdowne, Dublin",1850,53.332296,-6.235351,viceregal cavalcade,"The cavalcade doesn't turn onto Landsdowne, since it passes Artifoni, who catches a Dalkey tram presumably on Pembroke Road.",,2016-12-04,Moacir,1,15'57'00,314,
-6170,209,18,the house said to have been admired,"Pembroke Rd, Dublin, Ireland",1851,53.3321433,-6.2362752,viceregal cavalcade,,,2016-12-04,Moacir,1,15'58'00,315,
+6170,209,18,the house said to have been admired,"Pembroke Rd, Dublin, Ireland",1851,53.3321433,-6.2362752,viceregal cavalcade,,,2016-12-04,Moacir,1,15'57'30,315,
