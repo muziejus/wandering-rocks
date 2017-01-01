@@ -5,12 +5,12 @@ var my = {
   currentTimeIndex: 0,
   markersLayer: new L.FeatureGroup(),
   main: {
-    map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.347778, -6.259722]}),
+    map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.335, -6.258]}),
     topLeft: [-6.34, 53.39],
     bottomRight: [-6.19, 53.30]
   },
   inset: {
-    map: L.map('inset_map', {zoom: 1, minZoom: 1, maxZoom: 18, center: [40, -40], zoomControl: false, dragging: false}), 
+    map: L.map('inset_map', {zoom: 9, minZoom: 2, maxZoom: 18, center: [53.3406, -6.2445]}),// zoomControl: false}),// dragging: false}), 
     topLeft: [-170, 80],
     bottomRight: [170, -80]
   }
