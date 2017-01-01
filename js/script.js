@@ -139,12 +139,10 @@ function fireEvents(firingEvents, scroll){
 function scrollTo(eventId){
   if (typeof(eventId) === "string") {
     var id = eventId.replace(/inset/, "instance");
-    if (id.match(/ins/)){
-      var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 80;
-      $("#text_box").animate({
-        scrollTop: scrollFactor
-      }, 2500 / my.timeFactor);
-    }
+    var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 80;
+    $("#text_box").animate({
+      scrollTop: scrollFactor
+    }, 2500 / my.timeFactor);
   }
 }
 
