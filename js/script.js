@@ -10,7 +10,7 @@ d3.queue(1) // one task at a time.
     createFeatures(my.main, [paths, collisions, instances]);
     createFeatures(my.inset, [inset]);
 
-    // The time data
+    // The fabula data
     my.events = instances.features
       .concat(inset.features)
       .concat(collisions.features)
@@ -40,6 +40,19 @@ d3.queue(1) // one task at a time.
       };
     });
 
+    // The sjužet data
+    my.lines = []; // map won't work presumably because of the two returns...?
+    $(".place").each(function() {
+      var id = this.id;
+      var event = my.events.filter(function(event){
+        return event.id.substr(event.id.length - 5, event.id.length - 1) === id.substr(id.length - 5, id.length - 1);
+      });
+      event[0].scrollPosition = $("#" + id).position().top;
+      // console.log(scrollPosition);
+      // event["scrollPosition"] = scrollPosition;
+      my.lines.push(event[0]);
+    });
+
     // The clock
     d3.select("#clock")
       .html(my.clockGlyph + my.formatTime(new Date(my.times[0])));
@@ -48,33 +61,33 @@ d3.queue(1) // one task at a time.
       // The buttons
         // some kind of de-disabling?
     d3.select("#step_forward_btn").on("click", function(){
-      pauseChapter();
+      pause();
       my.currentTimeIndex++;
       updateClock();
       fireEvents(my.firingEvents[my.currentTimeIndex], true);
     });
     d3.select("#step_back_btn").on("click", function(){
-      pauseChapter();
+      pause();
       my.currentTimeIndex--;
       updateClock();
       fireEvents(my.firingEvents[my.currentTimeIndex], true);
     });
     d3.select("#play_btn").on("click", function(){
-      playChapter();
+      play();
     });
     d3.select("#pause_btn").on("click", function(){
-      pauseChapter();
+      pause();
     });
     
       // The map
     $("path").on("click", function(){
-      pauseChapter();
+      pause();
       scrollTo($(this).attr("id"));
     });
     
       // The textbox
     $(".place").on("click", function(){
-      pauseChapter();
+      pause();
       var idNum = $(this).attr("id").replace(/^.*_/, ""),
         event = my.events.filter(function(ev) {
           return ev.id.match(new RegExp("_" + idNum + "$"));
@@ -86,12 +99,7 @@ d3.queue(1) // one task at a time.
 
   }); // close await()
 
-function playChapter() {
-  d3.select("#play_btn")
-    .classed("active", true);
-  d3.select("#pause_btn")
-    .attr("disabled", null)
-    .classed("active", false);
+function playFabula() {
   var timeOut = 1000 / my.timeFactor;
   var time = my.time ? my.time : my.times[0];
   if (time === my.times[my.times.length - 1]){
@@ -116,12 +124,14 @@ function playChapter() {
   }, timeOut);
 }
 
-function pauseChapter() {
-  d3.select("#play_btn")
-    .classed("active", false);
-  d3.select("#pause_btn")
-    .classed("active", true);
-  clearInterval(my.interval);
+function playSjuzet() {
+  // var line = my.line ? my.line : my.lines[0];
+  var boxMax = my.lines[my.lines.length - 1].scrollPosition,
+    totalTime = 650000 / my.timeFactor,
+    boxRemaining = boxMax - $('#text_box').scrollTop(),
+    boxRemainingPct = boxRemaining / boxMax;
+    timeRemainingPct = boxRemainingPct * totalTime;
+  $("#text_box").animate({scrollTop: boxMax}, timeRemainingPct, "linear");
 }
 
 function fireEvents(firingEvents, scroll){
@@ -348,5 +358,30 @@ function preparePaths(callback) {
     if (error) throw error;
     callback(null, paths);
   });
+}
+
+function play() {
+  if ($("#fsToggle").prop("checked")){
+    playFabula();
+  } else {
+    playSjuzet();
+  }
+  d3.select("#play_btn")
+    .classed("active", true);
+  d3.select("#pause_btn")
+    .attr("disabled", null)
+    .classed("active", false);
+}
+
+function pause() {
+  if ($("#fsToggle").prop("checked")){
+    clearInterval(my.interval);
+  } else {
+    $('#text_box').stop();
+  }
+  d3.select("#play_btn")
+    .classed("active", false);
+  d3.select("#pause_btn")
+    .classed("active", true);
 }
 
