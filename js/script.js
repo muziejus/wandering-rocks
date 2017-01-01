@@ -73,6 +73,7 @@ d3.queue(1) // one task at a time.
     
       // The textbox
     $(".place").on("click", function(){
+      pauseChapter();
       var idNum = $(this).attr("id").replace(/^.*_/, ""),
         event = my.events.filter(function(ev) {
           return ev.id.match(new RegExp("_" + idNum + "$"));
