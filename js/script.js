@@ -68,6 +68,7 @@ d3.queue(1) // one task at a time.
     
       // The map
     $("path").on("click", function(){
+      pauseChapter();
       scrollTo($(this).attr("id"));
     });
     
