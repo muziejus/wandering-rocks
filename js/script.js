@@ -67,6 +67,13 @@ d3.queue(1) // one task at a time.
 
 function updateClock(epochTime) {
   // The clock
+  if (my.currentTimeIndex < 0){
+    console.log("negative");
+    my.currentTimeIndex = my.times.length - 1;
+  } else if (my.currentTimeIndex >= my.times.length){
+    console.log("postiive");
+    my.currentTimeIndex = 0;
+  }
   if (epochTime) {
     var time = epochTime;
     my.currentTimeIndex = my.times.indexOf(time);
@@ -74,11 +81,6 @@ function updateClock(epochTime) {
     var time = my.times[my.currentTimeIndex];
   }
   var glyph = '<span class="glyphicon glyphicon-time"></span>&nbsp;';
-  if (my.currentTimeIndex < 0){
-    my.currentTimeIndex = my.times.length - 1;
-  } else if (my.currentTimeIndex >= my.times.length){
-    my.currentTimeIndex = 0;
-  }
   d3.select("#clock")
     .html(glyph + my.formatTime(new Date(time)));
 
