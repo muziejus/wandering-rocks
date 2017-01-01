@@ -50,12 +50,12 @@ d3.queue(1) // one task at a time.
     d3.select("#step_forward_btn").on("click", function(){
       my.currentTimeIndex++;
       updateClock();
-      fireEvents(my.firingEvents[my.currentTimeIndex]);
+      fireEvents(my.firingEvents[my.currentTimeIndex], true);
     });
     d3.select("#step_back_btn").on("click", function(){
       my.currentTimeIndex--;
       updateClock();
-      fireEvents(my.firingEvents[my.currentTimeIndex]);
+      fireEvents(my.firingEvents[my.currentTimeIndex], true);
     });
     d3.select("#play_btn").on("click", function(){
       playChapter();
@@ -100,7 +100,7 @@ function playChapter() {
         .classed("active", false);
     };
     if (time === my.times[my.currentTimeIndex]){
-      fireEvents(my.firingEvents[my.currentTimeIndex]);
+      fireEvents(my.firingEvents[my.currentTimeIndex], true);
       if (my.currentTimeIndex === my.times.length - 1){
         my.currentTimeIndex = 0;
       } else {
@@ -120,13 +120,15 @@ function pauseChapter() {
   clearInterval(my.interval);
 }
 
-function fireEvents(firingEvents){
+function fireEvents(firingEvents, scroll){
   deFireDot();
   firingEvents.forEach(function(event){
     fireDot(event);
-    setTimeout(function(){
-      scrollTo(event.id);
-    }, 2500 / my.timeFactor);
+      if (scroll){
+      setTimeout(function(){
+        scrollTo(event.id);
+      }, 2500 / my.timeFactor);
+    }
   });
 }
 
@@ -208,7 +210,7 @@ function deFireDot(){
   d3.selectAll(".fired-text")
     .classed("fired-text", false)
     .transition()
-    .duration(50000 / my.timeFactor)
+    .duration(25000 / my.timeFactor)
     .style("background-color", "transparent");
 }
 
