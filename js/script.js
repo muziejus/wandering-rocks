@@ -7,7 +7,7 @@ d3.queue(1) // one task at a time.
     if (error) throw error;
 
     // The graphical elements
-    createFeatures(my.main, [paths, instances, collisions]);
+    createFeatures(my.main, [paths, collisions, instances]);
     createFeatures(my.inset, [inset]);
 
     // The time data
@@ -31,7 +31,8 @@ d3.queue(1) // one task at a time.
     updateClock();
 
     // The event listeners.
-    // some kind of de-disabling?
+      // The buttons
+        // some kind of de-disabling?
     d3.select("#step_forward_btn").on("click", function(){
       my.currentTimeIndex++;
       updateClock();
@@ -40,6 +41,18 @@ d3.queue(1) // one task at a time.
       my.currentTimeIndex--;
       updateClock();
     });
+      // The map
+    $("path").on("click", function(){
+      var id = $(this).attr("id").replace(/inset/, "instance");
+      if (id.match(/ins/)){
+        var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 25;
+        $("#text_box").animate({
+          scrollTop: scrollFactor
+        }, 500);
+      }
+    });
+    
+      // The textbox
     $(".place").on("click", function(){
       var idNum = $(this).attr("id").replace(/^.*_/, ""),
         event = my.events.filter(function(ev) {
@@ -90,6 +103,8 @@ function fireDot(event){
     .style("background-color", bg);
   d3.select("#" + event.id)
     .classed("fired", true)
+    .style("cursor", "pointer")
+    .style("pointer-events", "visibleFill")
     .style("fill-opacity", 0.9)
     .transition()
     .duration(500)
@@ -106,6 +121,8 @@ function fireDot(event){
 function deFireDot(){
   d3.selectAll(".fired")
     .classed("fired", false)
+    .style("pointer-events", "none")
+    .style("cursor", "auto")
     .transition()
     .duration(30000)
     .style("fill-opacity", 0);
