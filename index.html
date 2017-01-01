@@ -6,6 +6,7 @@
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.0.2/dist/leaflet.css" />
+    <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
     <link rel="stylesheet" href="css/style.css" />
 
   </head>
@@ -58,19 +59,20 @@
             <div id="tool_bar" class="col-sm-6">
               <h1 id="clock"></h1>
               <div class="btn-group" id="toolbar" role="toolbar" aria-label="play buttons">
-                <button type="button" class="btn btn-default navbar-btn" id="step_back_btn">
+                <button type="button" class="btn btn-info navbar-btn" id="step_back_btn">
                   <span class="glyphicon glyphicon-step-backward"></span>
                 </button>
-                <button type="button" class="btn btn-default navbar-btn" id="play_btn">
+                <button type="button" class="btn btn-info navbar-btn" id="play_btn">
                   <span class="glyphicon glyphicon-play"></span>
                 </button>
-                <button disabled="disabled" type="button" class="btn btn-default navbar-btn" id="pause_btn">
+                <button disabled="disabled" type="button" class="btn btn-info navbar-btn" id="pause_btn">
                   <span class="glyphicon glyphicon-pause"></span>
                 </button>
-                <button type="button" class="btn btn-default navbar-btn" id="step_forward_btn">
+                <button type="button" class="btn btn-info navbar-btn" id="step_forward_btn">
                   <span class="glyphicon glyphicon-step-forward"></span>
                 </button>
               </div>
+              <input type="checkbox" checked data-toggle="toggle" data-on="Fabula" data-onstyle="info" data-off="Sjužet" data-offstyle="info">
             </div>
           </div>
         </div>
@@ -81,6 +83,7 @@
       <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
       <script src="https://d3js.org/d3.v4.min.js"></script>
       <script src="https://unpkg.com/leaflet@1.0.2/dist/leaflet.js"></script>
+      <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
       <script src="js/init.js"></script>
       <script src="js/script.js"></script>
     </div> <!-- main container-fluid -->
