@@ -11,6 +11,10 @@ p.indent {
   text-indent: 2em;
 }
 
+#text_box p {
+  margin: 0px;
+}
+
 #main_map {
   top: 0;
   /* top: 50px; */
@@ -58,7 +62,6 @@ p.indent {
   background-color: rgba(250, 250, 250, 0.7);
   z-index: 500;
 }
-
 
 #text_box, #tool_bar {
   padding: 10px;
