@@ -135,7 +135,7 @@ instance_id,page,sequence,place_name_in_text,place,place_id,latitude,longitude,s
 5993,195,1,Dillon's auctionrooms,"25 Bachelors Walk, North City, Dublin, Ireland",1723,53.347281,-6.260778,lacquey,,,2016-12-02,Moacir,1,15'22'00,134,
 5994,195,2,curbstone,"Bachelors Walk, North City, Dublin, Ireland",1724,53.3471249,-6.2609754,dilly,,,2016-12-02,Moacir,1,15'22'10,135,
 5995,195,3,the curve,"College Park, Dublin, Ireland",1725,53.3430192784,-6.2543213367,cyclists,,,2016-12-02,Moacir,1,15'22'20,136,
-5996,195,4,College Library,"Trinity College Libraries, Dublin",1726,53.343211,-6.256847,cyclists,,,2016-12-02,Moacir,0,15'22'30,137,15
+5996,195,4,College Library,"Trinity College Libraries, Dublin",1726,53.343211,-6.256847,cyclists,,,2016-12-02,Moacir,1,15'22'30,137,15
 5997,195,5,Williams's row,"Bachelors Way, North City, Dublin, Ireland",1727,53.3476995,-6.260132,dedalus,,,2016-12-02,Moacir,1,15'23'00,138,
 5998,195,6,Dublin,Dublin,27,53.33306,-6.24889,dedalus,,,2016-12-02,Moacir,0,15'23'20,139,10
 5999,195,7,James's street,"James's St, Ushers, Dublin, Co. Dublin, Ireland",1728,53.343478,-6.28836,kernan,,,2016-12-02,Moacir,1,15'25'00,140,
