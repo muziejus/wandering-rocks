@@ -4,6 +4,7 @@ var my = {
   timeFactor: 10,
   events: [],
   firingTimeEvents: [],
+  firingLineEvents: [],
   geoJSONFile: 'ulysses-1922_instances.geo.json',
   formatTime: d3.utcFormat("%d %B %Y %H:%M:%S"),
   currentTimeIndex: 0,
