@@ -2,10 +2,12 @@
 var my = {
   clockGlyph: '<span class="glyphicon glyphicon-time"></span>&nbsp;',
   timeFactor: 10,
-  firingEvents: [],
+  firingTimeEvents: [],
+  firingLineEvents: [],
   geoJSONFile: 'ulysses-1922_instances.geo.json',
   formatTime: d3.utcFormat("%d %B %Y %H:%M:%S"),
   currentTimeIndex: 0,
+  currentLineIndex: 0,
   markersLayer: new L.FeatureGroup(),
   colors: {
     inset: "rgba(27, 158, 119, 0.5)",

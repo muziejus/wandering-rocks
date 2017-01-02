@@ -11,7 +11,7 @@ d3.queue(1) // one task at a time.
     createFeatures(my.inset, [inset]);
 
     // The fabula data
-    my.events = instances.features
+    my.timesEvents = instances.features
       .concat(inset.features)
       .concat(collisions.features)
       .map(function(feature){
@@ -24,53 +24,61 @@ d3.queue(1) // one task at a time.
       }).sort(function(a, b){
         return a.time - b.time;
       });
-    my.times = my.events.map(function(event){return event.time})
+    my.times = my.timesEvents.map(function(event){return event.time})
       .filter(function(value, index, self) {
         return self.indexOf(value) === index;
       });
     my.times.forEach(function(time){ // using map and filter doesn't work here…
       var events = [];
-      my.events.forEach(function(event){
+      my.timesEvents.forEach(function(event){
         if(event.time === time){
           events.push(event);
         }
       });
       if (events.length > 0){
-        my.firingEvents.push(events);
+        my.firingTimeEvents.push(events);
       };
     });
 
     // The sjužet data
-    my.lines = []; // map won't work presumably because of the two returns...?
+    my.linesEvents = []; // map won't work presumably because of the two returns...?
     $(".place").each(function() {
       var id = this.id;
-      var event = my.events.filter(function(event){
+      var event = my.timesEvents.filter(function(event){
         return event.id.substr(event.id.length - 5, event.id.length - 1) === id.substr(id.length - 5, id.length - 1);
       });
-      event[0].scrollPosition = $("#" + id).position().top;
-      // console.log(scrollPosition);
-      // event["scrollPosition"] = scrollPosition;
-      my.lines.push(event[0]);
+      event[0].line = $("#" + id).position().top;
+      my.linesEvents.push(event[0]);
     });
-
+    my.lines = my.linesEvents.map(function(event){return event.line;})
+      .filter(function(value, index, self) {
+        return self.indexOf(value) === index;
+      });
+    my.lines.forEach(function(line){
+      var events = [];
+      my.linesEvents.forEach(function(event){
+        if(event.line === line){
+          events.push(event);
+        }
+      });
+      if (events.length > 0){
+        my.firingLineEvents.push(events);
+      };
+    });
+    
     // The clock
     d3.select("#clock")
       .html(my.clockGlyph + my.formatTime(new Date(my.times[0])));
 
     // The event listeners.
       // The buttons
-        // some kind of de-disabling?
     d3.select("#step_forward_btn").on("click", function(){
       pause();
-      my.currentTimeIndex++;
-      updateClock();
-      fireEvents(my.firingEvents[my.currentTimeIndex], true);
+      stepForward();
     });
     d3.select("#step_back_btn").on("click", function(){
       pause();
-      my.currentTimeIndex--;
-      updateClock();
-      fireEvents(my.firingEvents[my.currentTimeIndex], true);
+      stepBackward();
     });
     d3.select("#play_btn").on("click", function(){
       play();
@@ -89,12 +97,12 @@ d3.queue(1) // one task at a time.
     $(".place").on("click", function(){
       pause();
       var idNum = $(this).attr("id").replace(/^.*_/, ""),
-        event = my.events.filter(function(ev) {
+        event = my.timesEvents.filter(function(ev) {
           return ev.id.match(new RegExp("_" + idNum + "$"));
         })[0];
       my.currentTimeIndex = my.times.indexOf(event.time);
       updateClock();
-      fireEvents(my.firingEvents[my.currentTimeIndex]);
+      fireEvents(my.firingTimeEvents[my.currentTimeIndex]);
     });
 
   }); // close await()
@@ -112,7 +120,7 @@ function playFabula() {
         .classed("active", false);
     };
     if (time === my.times[my.currentTimeIndex]){
-      fireEvents(my.firingEvents[my.currentTimeIndex], true);
+      fireEvents(my.firingTimeEvents[my.currentTimeIndex], true);
       if (my.currentTimeIndex === my.times.length - 1){
         my.currentTimeIndex = 0;
       } else {
@@ -126,11 +134,13 @@ function playFabula() {
 
 function playSjuzet() {
   // var line = my.line ? my.line : my.lines[0];
-  var boxMax = my.lines[my.lines.length - 1].scrollPosition,
+  console.log("playing sjuzet");
+  var boxMax = my.lines[my.lines.length - 1],
     totalTime = 650000 / my.timeFactor,
     boxRemaining = boxMax - $('#text_box').scrollTop(),
     boxRemainingPct = boxRemaining / boxMax;
     timeRemainingPct = boxRemainingPct * totalTime;
+  console.log(boxMax);
   $("#text_box").animate({scrollTop: boxMax}, timeRemainingPct, "linear");
 }
 
@@ -214,7 +224,7 @@ function fireDot(event){
 }
 
 function deFireDot(){
-  var finalOpacity = $('#dotToggle').prop("checked") ? .5 : 0;
+  var finalOpacity = $('#dotToggle').is(":checked") ? .5 : 0;
   d3.selectAll(".fired")
     .classed("fired", false)
     // .attr("d", function(d){
@@ -370,7 +380,7 @@ function preparePaths(callback) {
 }
 
 function play() {
-  if ($("#fsToggle").prop("checked")){
+  if ($("#fsToggle").is(":checked")){
     playFabula();
   } else {
     playSjuzet();
@@ -383,10 +393,40 @@ function play() {
 }
 
 function pause() {
-  $("#fsToggle").prop("checked") ? clearInterval(my.interval) : $('#text_box').stop();
+  $("#fsToggle").is(":checked") ? clearInterval(my.interval) : $('#text_box').stop();
   d3.select("#play_btn")
     .classed("active", false);
   d3.select("#pause_btn")
     .classed("active", true);
 }
+
+function stepForward() {
+  if ($("#fsToggle").is(":checked")){
+    my.currentTimeIndex++;
+    updateClock();
+    fireEvents(my.firingTimeEvents[my.currentTimeIndex], true);
+  } else {
+
+  }
+}
+
+function stepBackward() {
+  if ($("#fsToggle").is(":checked")){
+    my.currentTimeIndex--;
+    updateClock();
+    fireEvents(my.firingTimeEvents[my.currentTimeIndex], true);
+  } else {
+
+  }
+}
+
+$("#fsToggle").change(function() {
+  if (!$(this).is(":checked")) {
+    $('#text_box').on("scroll", function() {
+      console.log($('#text_box').scrollTop());
+    });
+  } else {
+    $('#text_box').off("scroll");
+  }
+});
 
