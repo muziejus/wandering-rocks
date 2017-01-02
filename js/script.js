@@ -49,13 +49,16 @@ d3.queue(1) // one task at a time.
     });
 
     // The sjužet data
+    my.linesEvents = my.events.sort(function(a, b){
+      return a.line - b.line;
+    });
     my.lines = my.events.map(function(event){return event.line;})
       .filter(function(value, index, self) {
         return self.indexOf(value) === index;
       });
     my.lines.forEach(function(line){
       var events = [];
-      my.events.forEach(function(event){
+      my.linesEvents.forEach(function(event){
         if(event.line === line){
           events.push(event);
         }
@@ -102,19 +105,34 @@ d3.queue(1) // one task at a time.
       fireEvents(my.firingTimeEvents[my.currentTimeIndex]);
     });
 
+    $("#fsToggle").change(function() {
+      if (!$(this).is(":checked")) {
+        // $('#text_box').on("scroll", function() {
+        //   // console.log($('#text_box').scrollTop());
+        //   // update some scroll container variable.
+        // });
+      } else {
+        getSjuzetPosition(90);
+        var time = my.firingLineEvents[my.currentLineIndex][0].time
+        nextEvents = my.times.filter(function(t){
+          return t >= time;
+        });
+        my.currentTimeIndex = my.times.indexOf(nextEvents[0]);
+        // $('#text_box').off("scroll");
+      }
+    });
+
   }); // close await()
 
 function playFabula() {
-  var timeOut = 1000 / my.timeFactor;
+  var interval = 1000 / my.timeFactor;
   var time = my.time ? my.time : my.times[0];
   if (time === my.times[my.times.length - 1]){
     time = my.times[0];
   };
   my.interval = setInterval(function(){
     if (time === my.times[my.times.length - 1]){
-      clearInterval(my.interval);
-      d3.select("#play_btn")
-        .classed("active", false);
+      stop();
     };
     if (time === my.times[my.currentTimeIndex]){
       fireEvents(my.firingTimeEvents[my.currentTimeIndex], true);
@@ -126,19 +144,39 @@ function playFabula() {
     };
     updateClock(time);
     time = time + 1000;
-  }, timeOut);
+  }, interval);
 }
 
 function playSjuzet() {
-  // var line = my.line ? my.line : my.lines[0];
-  console.log("playing sjuzet");
   var boxMax = my.lines[my.lines.length - 1],
-    totalTime = 650000 / my.timeFactor,
+    totalTime = 3900000 / my.timeFactor, // 65 mins = 3900000 milliseconds
     boxRemaining = boxMax - $('#text_box').scrollTop(),
-    boxRemainingPct = boxRemaining / boxMax;
-    timeRemainingPct = boxRemainingPct * totalTime;
-  console.log(boxMax);
-  $("#text_box").animate({scrollTop: boxMax}, timeRemainingPct, "linear");
+    boxRemainingPct = boxRemaining / boxMax,
+    timeRemainingPct = boxRemainingPct * totalTime,
+    interval = (20 * totalTime)/boxMax,
+    buffer = 90,
+    line = getSjuzetPosition(buffer);
+  line = line + 20;
+  $("#text_box").scrollTop(line); // no continuous scroll.
+  // $("#text_box").animate({scrollTop: line}, interval, "linear");
+  my.interval = setInterval(function(){
+    if (line >= my.lines[my.lines.length - 1]){
+      stop();
+    };
+    if (my.lines[my.currentLineIndex] <= (line + buffer) && (line + buffer) < (my.lines[my.currentLineIndex] + 20)){
+      fireEvents(my.firingLineEvents[my.currentLineIndex]);
+      updateClock(my.firingLineEvents[my.currentLineIndex][0].time);
+      if (my.currentLineIndex === my.lines.length - 1){
+        my.currentLineIndex = 0;
+      } else {
+        my.currentLineIndex++;
+      };
+    };
+    line = line + 20;
+    my.line = line;
+    $("#text_box").scrollTop(line); // no continuous scroll.
+    // $("#text_box").animate({scrollTop: line}, interval, "linear");
+  }, interval);
 }
 
 function fireEvents(firingEvents, scroll){
@@ -161,6 +199,16 @@ function scrollTo(id){
     }, 2500 / my.timeFactor);
   }
 }
+
+function getSjuzetPosition(buffer) {
+  var line = $("#text_box").scrollTop(),
+    nextEvents = my.lines.filter(function(l){
+      return l >= line + buffer;
+    });
+  my.currentLineIndex = my.lines.indexOf(nextEvents[0]);
+  return line;
+}
+
 
 function updateClock(epochTime) {
   if (my.currentTimeIndex < 0){
@@ -389,32 +437,49 @@ function play() {
 }
 
 function pause() {
-  $("#fsToggle").is(":checked") ? clearInterval(my.interval) : $('#text_box').stop();
+  clearInterval(my.interval);
+  $("#text_box").stop();
   d3.select("#play_btn")
     .classed("active", false);
   d3.select("#pause_btn")
     .classed("active", true);
 }
 
+function stop() {
+  clearInterval(my.interval);
+  $("#text_box").stop();
+  d3.select("#play_btn")
+    .classed("active", false);
+}
+
+
 function stepForward() {
   pause();
+  // console.log(my.currentTimeIndex);
   if ($("#fsToggle").is(":checked")){
     my.currentTimeIndex++;
     updateClock();
     fireEvents(my.firingTimeEvents[my.currentTimeIndex], true);
   } else {
-
+    getSjuzetPosition(90);
+    updateClock(my.firingLineEvents[my.currentLineIndex][0].time);
+    fireEvents(my.firingLineEvents[my.currentLineIndex], true);
   }
 }
 
 function stepBackward() {
   pause();
+  // console.log(my.currentTimeIndex);
   if ($("#fsToggle").is(":checked")){
     my.currentTimeIndex--;
     updateClock();
     fireEvents(my.firingTimeEvents[my.currentTimeIndex], true);
   } else {
-
+    getSjuzetPosition(90);
+    my.currentLineIndex--;
+    my.currentLineIndex--;
+    updateClock(my.firingLineEvents[my.currentLineIndex][0].time);
+    fireEvents(my.firingLineEvents[my.currentLineIndex], true);
   }
 }
 
@@ -422,14 +487,4 @@ function updateIndices(event) {
   my.currentTimeIndex = my.times.indexOf(event.time);
   // my.currentLineIndex = my.lines.indexOf(event.line);
 }
-
-$("#fsToggle").change(function() {
-  if (!$(this).is(":checked")) {
-    $('#text_box').on("scroll", function() {
-      console.log($('#text_box').scrollTop());
-    });
-  } else {
-    $('#text_box').off("scroll");
-  }
-});
 
