@@ -41,6 +41,7 @@ d3.queue(1) // one task at a time.
     });
 
     // The sjužet data
+    // Note, sjužet data comes in from pulling the text. my.events is based on what comes from the csvs.
     my.linesEvents = []; // map won't work presumably because of the two returns...?
     $(".place").each(function() {
       var id = this.id;
