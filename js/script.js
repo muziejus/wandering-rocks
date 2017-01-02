@@ -10,18 +10,26 @@ d3.queue(1) // one task at a time.
     createFeatures(my.main, [paths, collisions, instances]);
     createFeatures(my.inset, [inset]);
 
-    // The fabula data
-    my.timesEvents = instances.features
+    // The events
+    my.features = instances.features
       .concat(inset.features)
-      .concat(collisions.features)
-      .map(function(feature){
-        return {
-          id: feature.properties.id,
-          time: feature.properties.time,
-          latLng: L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]),
-          zoom: feature.properties.zoom
-        };
-      }).sort(function(a, b){
+      .concat(collisions.features);
+    $(".place").each(function() {
+      var id = this.id.replace(/^text_/, "");
+      var feature = my.features.filter(function(f){
+        return f.properties.id === id;
+      })[0];
+      my.events.push({
+        id: feature.properties.id,
+        time: feature.properties.time,
+        line: $("#text_" + id).position().top,
+        latLng: L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]),
+        zoom: feature.properties.zoom
+      });
+    });
+ 
+    // The fabula data
+    my.timesEvents = my.events.sort(function(a, b){
         return a.time - b.time;
       });
     my.times = my.timesEvents.map(function(event){return event.time})
@@ -41,23 +49,13 @@ d3.queue(1) // one task at a time.
     });
 
     // The sjužet data
-    // Note, sjužet data comes in from pulling the text. my.events is based on what comes from the csvs.
-    my.linesEvents = []; // map won't work presumably because of the two returns...?
-    $(".place").each(function() {
-      var id = this.id;
-      var event = my.timesEvents.filter(function(event){
-        return event.id.substr(event.id.length - 5, event.id.length - 1) === id.substr(id.length - 5, id.length - 1);
-      });
-      event[0].line = $("#" + id).position().top;
-      my.linesEvents.push(event[0]);
-    });
-    my.lines = my.linesEvents.map(function(event){return event.line;})
+    my.lines = my.events.map(function(event){return event.line;})
       .filter(function(value, index, self) {
         return self.indexOf(value) === index;
       });
     my.lines.forEach(function(line){
       var events = [];
-      my.linesEvents.forEach(function(event){
+      my.events.forEach(function(event){
         if(event.line === line){
           events.push(event);
         }
@@ -74,11 +72,9 @@ d3.queue(1) // one task at a time.
     // The event listeners.
       // The buttons
     d3.select("#step_forward_btn").on("click", function(){
-      pause();
       stepForward();
     });
     d3.select("#step_back_btn").on("click", function(){
-      pause();
       stepBackward();
     });
     d3.select("#play_btn").on("click", function(){
@@ -97,11 +93,11 @@ d3.queue(1) // one task at a time.
       // The textbox
     $(".place").on("click", function(){
       pause();
-      var idNum = $(this).attr("id").replace(/^.*_/, ""),
+      var id = $(this).attr("id").replace(/^text_/, ""),
         event = my.timesEvents.filter(function(ev) {
-          return ev.id.match(new RegExp("_" + idNum + "$"));
+          return ev.id === id;
         })[0];
-      my.currentTimeIndex = my.times.indexOf(event.time);
+      updateIndices(event);
       updateClock();
       fireEvents(my.firingTimeEvents[my.currentTimeIndex]);
     });
@@ -157,9 +153,8 @@ function fireEvents(firingEvents, scroll){
   });
 }
 
-function scrollTo(eventId){
-  if (typeof(eventId) === "string") {
-    var id = eventId.replace(/inset/, "instance");
+function scrollTo(id){
+  if (typeof(id) === "string") {
     var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 80;
     $("#text_box").animate({
       scrollTop: scrollFactor
@@ -194,7 +189,7 @@ function fireDot(event){
       var bg = my.colors.instance;
     }
   }
-  d3.select("#text_" + event.id.replace(/inset/, "instance"))
+  d3.select("#text_" + event.id)
     .classed("fired-text", true)
     .transition()
     .duration(4000 / my.timeFactor)
@@ -402,6 +397,7 @@ function pause() {
 }
 
 function stepForward() {
+  pause();
   if ($("#fsToggle").is(":checked")){
     my.currentTimeIndex++;
     updateClock();
@@ -412,6 +408,7 @@ function stepForward() {
 }
 
 function stepBackward() {
+  pause();
   if ($("#fsToggle").is(":checked")){
     my.currentTimeIndex--;
     updateClock();
@@ -419,6 +416,11 @@ function stepBackward() {
   } else {
 
   }
+}
+
+function updateIndices(event) {
+  my.currentTimeIndex = my.times.indexOf(event.time);
+  // my.currentLineIndex = my.lines.indexOf(event.line);
 }
 
 $("#fsToggle").change(function() {
