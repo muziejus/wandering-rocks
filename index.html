@@ -56,6 +56,7 @@
         </nav>
         <div class="container-fluid">
           <div id="bottom_box_content" class="row">
+            <!-- <div style="position: absolute; border: 1px solid #d00; height: 75px; left: 0px; width: 50%; z-index: 5000;"></div> -->
             <article id="text_box" data-spy="scroll" data-target="#sectionlist" class="col-sm-6"></article>
             <div id="tool_bar" class="col-sm-6">
               <h1 id="clock"></h1>
@@ -74,8 +75,94 @@
                 </button>
               </div>
               <input id="fsToggle" type="checkbox" checked data-toggle="toggle" data-on="Fabula" data-onstyle="info" data-off="Sjužet" data-offstyle="info">
+              <br />
+              <button type="button" class="btn btn-info navbar-btn" id="modal_launch_btn" data-toggle="modal" data-target="#modal">
+                <span class="glyphicon glyphicon-modal-window"></span> Read Me
+              </button>
               <!-- <input id="dotToggle" type="checkbox" data-toggle="toggle" data-on="Leave Dots" data-onstyle="info" data-off="Dots Fade" data-offstyle="danger"> -->
               <!-- <input id="timeFactor" data-slider-id="timeFactorSlider" type="text" data-slider-min="1" data-slider-max="100" data-slider-setp="1" data-slider-value="10" class="slider" /> -->
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="modal fade" id="modal" tabindex="-1" role="dialog" aria-labelledby="modalLabel">
+        <div class="modal-dialog modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Clos"><span aria-hidden="true">&times;</span></button>
+              <h4 class="modal-title" id="modalLabel">Fabula and Sjužet in “Wandering Rocks”</h4>
+            </div>
+            <div class="modal-body">
+              <ul class="nav nav-tabs" role="tablist">
+                <li role="presentation" class="active"><a href="#intro" aria-controls="intro" role="tab" data-toggle="tab">Intro</a></li>
+                <li role="presentation"><a href="#fabulaandsjuzet" aria-controls="fabulaandsjuzet" role="tab" data-toggle="tab">Fabula &amp; Sjužet</a></li>
+                <li role="presentation"><a href="#wanderingrocks" aria-controls="wanderingrocks" role="tab" data-toggle="tab">“Wandering Rocks”</a></li>
+                <li role="presentation"><a href="#time" aria-controls="time" role="tab" data-toggle="tab">Time</a></li>
+                <li role="presentation"><a href="#space" aria-controls="space" role="tab" data-toggle="tab">Space</a></li>
+                <li role="presentation"><a href="#data" aria-controls="data" role="tab" data-toggle="tab">Data</a></li>
+                <li role="presentation"><a href="#tech" aria-controls="tech" role="tab" data-toggle="tab">Tech</a></li>
+                <li role="presentation"><a href="#further" aria-controls="further" role="tab" data-toggle="tab">Further Reading</a></li>
+                <li role="presentation"><a href="#help" aria-controls="help" role="tab" data-toggle="tab">Help!</a></li>
+              </ul>
+              <div class="tab-content">
+                <div role="tabpanel" class="tab-pane active fade in" id="intro">
+                  <div class="container-fluid">
+                      <br />
+                      <blockquote>Joyce wrote the <em>Wandering Rocks</em> with a map of
+                        Dublin before him on which were traced in red ink the
+                        paths of the Earl of Dudley and Father Conmee. He
+                        calculated to a minute the time necessary for his
+                        characters to cover a given distance of the city.
+                        (Budgen) 
+                      </blockquote>
+
+                      <p class="lead">This data visualization aims to present episode 10 of James
+                      Joyce’s <em>Ulysses</em> (“Wandering Rocks”) in ways that
+                      highlight its multiple spatialities and clashing
+                      temporalities.</p>
+
+                      <p class="lead">This project was written by <a href="http://moacir.com"
+                          target="_blank">Moacir P. de Sá Pereira <span
+                            class="glyphicon glyphicon-new-window"
+                            aria-hidden="true"></span></a> (NYU <a
+                          href="http://english.fas.nyu.edu"
+                          target="_blank">English Department <span
+                            class="glyphicon glyphicon-new-window"
+                            aria-hidden="true"></span></a>). It’s also, then,
+                        part of <a
+                          href="https://twitter.com/search?src=typd&q=%23nyudh"
+                          target="_blank">#nyudh <span class="glyphicon
+                            glyphicon-new-window"
+                            aria-hidden="true"></span></a>.</p>
+                  </div>
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="fabulaandsjuzet">
+                  f and s
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="wanderingrocks">
+                  Wandering Rocks.
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="time">
+                  time
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="space">
+                  space
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="data">
+                  data
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="tech">
+                  tech
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="further">
+                  further reading
+                </div>
+                <div role="tabpanel" class="tab-pane fade in" id="help">
+                  help
+                </div>
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
             </div>
           </div>
         </div>

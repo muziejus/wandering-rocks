@@ -1,3 +1,4 @@
+$('#modal').modal('show')
 d3.queue(1) // one task at a time.
   .defer(prepareInstances, "main")
   .defer(prepareInstances, "inset")
