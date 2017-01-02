@@ -199,26 +199,34 @@ function fireDot(event){
     .style("fill-opacity", 0.9)
     .style("stroke-opacity", 0.9)
     .transition()
-    .duration(4000 / my.timeFactor)
+    .duration(3500 / my.timeFactor)
     .style("fill-opacity", 0.25)
     .style("stroke-opacity", 0.1)
     .attr("d", path.pointRadius(100))
+    // .on('end', function(){
+    //   d3.select("#" + event.id)
     .transition()
-    .duration(4000 / my.timeFactor)
+    .duration(3500 / my.timefactor)
     .style("fill-opacity", 0.9)
     .style("stroke-opacity", 0.9)
-    .attr("d", path.pointRadius(4.5))
+    .attr("d", path.pointRadius(4.5));
+    // });
 }
 
 function deFireDot(){
+  var finalOpacity = $('#dotToggle').prop("checked") ? .5 : 0;
   d3.selectAll(".fired")
     .classed("fired", false)
+    // .attr("d", function(d){
+    //   var path = d.properties.id.match(/set/) ?  my.inset.path : my.main.path;
+    //   return path.pointRadius(4.5);
+    // })
     .style("pointer-events", "none")
     .style("cursor", "auto")
     .transition()
-    .duration(function(d){if(d.properties.instanceType === "instance"){ return 100000 / my.timeFactor; } else { return 10000 / my.timeFactor;}})
-    .style("fill-opacity", 0)
-    .style("stroke-opacity", 0);
+    .duration(function(d){if(d.properties.instanceType === "instance"){ return 50000 / my.timeFactor; } else { return 10000 / my.timeFactor;}})
+    .style("fill-opacity", finalOpacity)
+    .style("stroke-opacity", finalOpacity);
   d3.selectAll(".fired-text")
     .classed("fired-text", false)
     .transition()
@@ -261,7 +269,8 @@ function makeDotPaths(geojson, mapObj) {
       .data(geojson.features)
       .enter().append("path")
       .attr("id", function(d){ return d.properties.id.toString().replace(/^(\d)/, "path_$1"); }) // so paths don't have IDs that are only numbers
-      .classed(geojson.properties.css, true);
+      .classed(geojson.properties.css, true)
+      .classed("dot", true);
   return feature;
 }
   
@@ -374,11 +383,7 @@ function play() {
 }
 
 function pause() {
-  if ($("#fsToggle").prop("checked")){
-    clearInterval(my.interval);
-  } else {
-    $('#text_box').stop();
-  }
+  $("#fsToggle").prop("checked") ? clearInterval(my.interval) : $('#text_box').stop();
   d3.select("#play_btn")
     .classed("active", false);
   d3.select("#pause_btn")
