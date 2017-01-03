@@ -5,17 +5,41 @@ instance_id,place_name_in_text,place_id,latitude,longitude,time,primary_actor,se
 4,red pillarbox at the corner of Fitzgibbon street,1633,53.357495,-6.256892,15'00'30,Father Conmee,red pillarbox
 5,bright red letterbox,1633,53.357495,-6.256892,15'00'50,Master Brunny Lynam,bright red letterbox
 6,,1634,,,15'01'30,Father Conmee,Mrs M‘Guinness
+38,Thornton's,1674,53.3406408,-6.2610531,15'05'00,Blazes Boylan,blond girl
 7,Richmond street,1639,53.3584264,-6.25042,15'07'00,Father Conmee,satchelled schoolboys
+39,Tangier lane,1675,53.34057,-6.261004,15'07'00,Blazes Boylan,H. E. L. Y’S
+45,her drawer,1686,53.3460387,-6.2578924,15'07'10,Miss Dunne,The Woman in White
 8,Saint Joseph's church,1640,53.35655486,-6.249364614,15'09'00,Father Conmee,incense
+46,,1686,,,15'09'40,Miss Dunne,"large poster of Marie Kendall, charming soubrette"
+47,,1686,,,15'11'50,Miss Dunne,telephone
+50,the Dolphin,1853,53.345071,-6.26584,15'12'00,Lenehan and M‘Coy,ambulance car
+48,,1686,,,15'12'20,Miss Dunne,Blazes Boylan
 9,his shop,1645,53.35505005,-6.246926486,15'12'30,Father Conmee,Mr William Gallagher
 10,Grogan's the Tobacconist,1646,53.35528698,-6.246272027,15'12'50,Father Conmee,newsboards [that] told of a dreadful catastrophe in New York
+29,MacConnell's corner,1666,53.35771385,-6.263786852,15'13'00,onelegged sailor,Rabaiotti's icecream car
 11,Daniel Bergin's publichouse,1647,53.35544387,-6.246041358,15'13'30,Father Conmee,two unlabouring men
 12,H. J. O'Neill's funeral establishment,1648,53.35516852,-6.245883107,15'14'00,Father Conmee,A constable on his beat
+30,his doorway,1667,53.35744171,-6.264124811,15'14'00,onelegged sailor,Larry O’Rourke
+51,Temple bar,1713,53.3455173,-6.263145804,15'14'00,M‘Coy,banana peel
+31,,1665,,,15'14'07,onelegged sailor,Katey and Boody Dedalus
+32,,1665,,,15'14'15,onelegged sailor,stout lady
 13,Youkstetter's,1649,53.35609062,-6.245175004,15'14'20,Father Conmee,"pig's puddings, white and black and red"
+33,,1665,,,15'14'50,onelegged sailor,two barefoot urchins
 14,Charleville Mall,1650,53.3567683,-6.2450966,15'15'00,Father Conmee,"turfbarge, a towhorse with pendent head, a bargeman with a hat of dirty straw"
 15,Newcomen bridge,1651,53.356552,-6.244238,15'16'00,Father Conmee,outward bound tram
+52,Merchants' arch,1677,53.3457697,-6.2628772,15'16'00,Lenehan and M‘Coy,Bloom
+27,Newcomen bridge,1651,53.356552,-6.244238,15'16'10,Corny Kelleher,Father Conmee
+53,,1677,,,15'16'10,Bloom,The Awful Disclosures of Maria Monk
+28,,1648,,,15'16'15,Corny Kelleher,Constable 57C
+34,window,1665,53.357792,-6.264439,15'16'20,Molly,A card Unfurnished Apartments
 16,Newcomen bridge,1651,53.356552,-6.244238,15'16'25,reverend Nicholas Dudley,inward bound tram
+35,,1665,,,15'16'25,Molly,a coin
+54,,1677,,,15'16'30,Bloom,Aristotle’s Masterpiece
+55,,1677,,,15'16'40,Bloom,Tales of the Ghetto
+56,,1677,,,15'16'50,Bloom,shopman
+57,,1677,,,15'17'10,Bloom,Fair Tyrants
 17,,,53.3582,-6.2417,15'17'20,Father Conmee,gentleman with the glasses
+58,,1677,,,15'17'20,Bloom,Sweets of Sin
 18,,,53.3587,-6.2411,15'17'30,Father Conmee,the wife of the gentleman with the glasses
 19,,,53.3594,-6.2403,15'17'40,Father Conmee,her perfume
 20,,,53.3601,-6.2395,15'17'50,Father Conmee,awkward man at the other side of her
@@ -23,101 +47,77 @@ instance_id,place_name_in_text,place_id,latitude,longitude,time,primary_actor,se
 22,,1657,,,15'18'10,Father Conmee,the conductor
 23,,1657,,,15'18'20,Father Conmee,Mr Eugene Stratton
 24,Howth road stop,1658,53.364422,-6.22946,15'20'00,Father Conmee,the conductor
+103,Madame Doyle,1804,53.342896,-6.2610423,15'21'00,Master Patrick Aloysius Dignam,two puckers stripped to their pelts
 25,Malahide,,53.3684,-6.2267,15'21'20,Father Conmee,joybells
-26,,,53.3697,-6.2252,15'26'00,Father Conmee,A flushed youngman [and] a young woman with wild nodding daisies in her hand
-27,Newcomen bridge,1651,53.356552,-6.244238,15'16'10,Corny Kelleher,Father Conmee
-28,,1648,,,15'16'15,Corny Kelleher,Constable 57C
-29,MacConnell's corner,1666,53.35771385,-6.263786852,15'13'00,onelegged sailor,Rabaiotti's icecream car
-30,his doorway,1667,53.35744171,-6.264124811,15'14'00,onelegged sailor,Larry O’Rourke
-31,,1665,,,15'14'07,onelegged sailor,Katey and Boody Dedalus
-32,,1665,,,15'14'15,onelegged sailor,stout lady
-33,,1665,,,15'14'50,onelegged sailor,two barefoot urchins
-34,window,1665,53.357792,-6.264439,15'16'20,Molly,A card Unfurnished Apartments
-35,,1665,,,15'16'25,Molly,a coin
-36,kitchen,1669,53.3611553,-6.2769627,15'25'00,Katey and Boody Dedalus,Maggy
-37,Customhouse old dock,1672,53.34844,-6.253186,15'27'20,a crumpled throwaway,hulls and anchorchains
-38,Thornton's,1674,53.3406408,-6.2610531,15'05'00,Blazes Boylan,blond girl
-39,Tangier lane,1675,53.34057,-6.261004,15'07'00,Blazes Boylan,H. E. L. Y’S
+104,,1804,,,15'21'30,Master Patrick Aloysius Dignam,two mourning Masters Dignam
 40,Goldsmith's knobby poll,1678,53.34437,-6.259196,15'22'00,Almidano Artifoni,Two carfuls of tourists
+59,curbstone,1724,53.3471249,-6.2609754,15'22'10,Dilly Dedalus,beats of the bell
 41,bank of Ireland,1680,53.344882,-6.260191,15'22'40,Two carfuls of tourists,pigeons
 42,stone hand of Grattan,1681,53.344424,-6.259874,15'23'00,Almidano Artifoni,Highland soldiers of a band
-43,,,53.3445,-6.2594,15'23'20,Almidano Artifoni,Dalkey tram
-44,Trinity gates,1684,53.344478,-6.259377,15'24'10,Almidano Artifoni,barenkneed gillies
-45,her drawer,1686,53.3460387,-6.2578924,15'07'10,Miss Dunne,The Woman in White
-46,,1686,,,15'09'40,Miss Dunne,"large poster of Marie Kendall, charming soubrette"
-47,,1686,,,15'11'50,Miss Dunne,telephone
-48,,1686,,,15'12'20,Miss Dunne,Blazes Boylan
-49,,1698,,,15'30'30,Ned Lambert,horses
-50,the Dolphin,1853,53.345071,-6.26584,15'12'00,Lenehan and M‘Coy,ambulance car
-51,Temple bar,1713,53.3455173,-6.263145804,15'14'00,M‘Coy,banana peel
-52,Merchants' arch,1677,53.3457697,-6.2628772,15'16'00,Lenehan and M‘Coy,Bloom
-53,,1677,,,15'16'10,Bloom,The Awful Disclosures of Maria Monk
-54,,1677,,,15'16'30,Bloom,Aristotle’s Masterpiece
-55,,1677,,,15'16'40,Bloom,Tales of the Ghetto
-56,,1677,,,15'16'50,Bloom,shopman
-57,,1677,,,15'17'10,Bloom,Fair Tyrants
-58,,1677,,,15'17'20,Bloom,Sweets of Sin
-59,curbstone,1724,53.3471249,-6.2609754,15'22'10,Dilly Dedalus,beats of the bell
 60,,1724,,,15'23'10,Dilly Dedalus,Mr Dedalus
+89,,1786,,,15'23'10,Buck Mulligan,John Howard Parnell
+90,,1786,,,15'23'15,John Howard Parnell,a white bishop
+43,,,53.3445,-6.2594,15'23'20,Almidano Artifoni,Dalkey tram
+91,,1786,,,15'23'20,Haines,waitress
+105,,1804,,,15'24'00,Master Patrick Aloysius Dignam,"image of Marie Kendall, charming soubrette"
+44,Trinity gates,1684,53.344478,-6.259377,15'24'10,Almidano Artifoni,barenkneed gillies
+36,kitchen,1669,53.3611553,-6.2769627,15'25'00,Katey and Boody Dedalus,Maggy
+26,,,53.3697,-6.2252,15'26'00,Father Conmee,A flushed youngman [and] a young woman with wild nodding daisies in her hand
+108,lower gate of Phoenix park,1714,53.348413,-6.296931,15'26'00,cavalcade,obsequious policemen
 61,Parkgate,1731,53.3479361,-6.292461,15'26'10,viceregal cavalcade,obsequious policemen
+37,Customhouse old dock,1672,53.34844,-6.253186,15'27'20,a crumpled throwaway,hulls and anchorchains
 62,,1764,,,15'28'00,Father Cowley,Mr Dedalus
+77,Reddy and Daughter's,1764,53.34636275,-6.265602708,15'28'00,Father Cowley,Mr Dedalus
+92,,1786,,,15'28'00,Haines,two lumps of sugar
 63,"Peter Kennedy, hairdresser",1738,53.343346,-6.288707,15'28'10,Mr Kernan,sloping mirror
+93,,1786,,,15'28'30,Buck Mulligan,steaming scone
 64,North wall,1740,53.34768,-6.22848,15'29'00,a crumpled throwaway,ferrywash
-65,Dublin Distillers Company's stores,1746,53.34519705,-6.284533739,15'30'20,Mr Kernan,outside car without fare
-66,Pembroke quay,1754,53.34693,-6.283238,15'32'00,Mr Kernan,A cavalcade
+78,the quay,1765,53.3462572,-6.2654129,15'29'00,Father Cowley,Ben Dollard
+94,,1786,,,15'29'00,Haines,his spoon
 67,the webbed window,1755,53.34560056,-6.261667907,15'30'00,Stephen Dedalus,lapidary's fingers
+65,Dublin Distillers Company's stores,1746,53.34519705,-6.284533739,15'30'20,Mr Kernan,outside car without fare
+49,,1698,,,15'30'30,Ned Lambert,horses
+95,,,53.3462,-6.23,15'30'30,a crumpled throwaway,ships
+96,,,53.3462,-6.23,15'30'40,a crumpled throwaway,trawlers
+97,,,53.3462,-6.23,15'30'50,a crumpled throwaway,archipelago of corks
+98,,,53.3462,-6.23,15'31'15,a crumpled throwaway,Rosevean
+66,Pembroke quay,1754,53.34693,-6.283238,15'32'00,Mr Kernan,A cavalcade
 68,the powerhouse,1758,53.34562938,-6.261147559,15'32'00,Stephen Dedalus,whirr of flapping leathern bands and hum of dynamos
+109,Bloody bridge,1812,53.346769,-6.284052,15'32'00,viceroy,Mr Thomas Kernan
 69,Clohissey's,1760,53.34607132,-6.261968315,15'33'00,Stephen Dedalus,a faded 1860 print of Heenan boxing Sayers
 70,,1760,,,15'33'10,Stephen Dedalus,bookcart
 71,,1760,,,15'33'20,Stephen Dedalus,huckster
 72,,1760,,,15'33'25,Stephen Dedalus,The Irish Beekeper
 73,,1760,,,15'33'30,Stephen Dedalus,Life and Miracles of the Curé of Ars
 74,,1760,,,15'34'00,Stephen Dedalus,Pocket Guide to Killarney
+110,"Mrs M. E. White's, the pawnbroker's",1815,53.34648764,-6.279096901,15'34'20,lord Dudley's viceregal carriages,"Mr Dudley White, B. L., M. A."
 75,,1760,,,15'34'35,Stephen Dedalus,Eighth and ninth book of Moses
 76,,1760,,,15'34'50,Stephen Dedalus,Dilly Dedalus
-77,Reddy and Daughter's,1764,53.34636275,-6.265602708,15'28'00,Father Cowley,Mr Dedalus
-78,the quay,1765,53.3462572,-6.2654129,15'29'00,Father Cowley,Ben Dollard
+99,Mr Law Smith's house,1794,53.341378,-6.250926,15'35'40,Farrell,lamp
 79,Castleyard gate,1772,53.343319,-6.267964,15'36'00,Martin Cunningham,policeman
 80,Lord Edward street,1773,53.3438872,-6.2686199,15'36'05,Martin Cunningham,waiting jarvey
 81,City hall,1775,53.344,-6.26725,15'36'20,Councillor Nannetti,Alderman Cowley and Councillor Abraham Lyon
+111,Four Courts,1704,53.345933,-6.273477,15'36'20,viceroy,Richie Goulding
 82,upper Exchange street,1776,53.3445204,-6.2680507,15'36'30,Martin Cunningham,castle car
 83,Mail office,1778,53.344235,-6.267421,15'36'35,Martin Cunningham,John Wyse Nolan
 84,la maison Claire,1780,53.342888,-6.259377,15'37'00,Blazes Boylan,Jack Mooney's brother-in-law
+106,Grafton street,1806,53.3422998,-6.2597468,15'37'00,Master Patrick Aloysius Dignam,Blazes Boylan
+112,King's windows,1823,53.34568703,-6.271667182,15'37'00,representative of His Majesty,elderly female
 85,Micky Anderson's watches,1782,53.34462699,-6.267552674,15'37'40,Martin Cunningham,Jimmy Henry
+100,Merrion hall,1797,53.341621,-6.249842,15'37'40,Farrell,Elijah's name
+113,Tom Devan's office,1825,53.344963,-6.270811,15'37'40,viceregal cavalcade,Poddle river
+101,duke's lawn,50,53.3406,-6.25417,15'37'50,Farrell,distant pleasance
+114,Ormond hotel,1690,53.346068,-6.269139,15'38'00,viceregal cavalcade,Miss Kennedy's head by Miss Douce's head
+102,Mr Bloom's dental windows,1799,53.341756,-6.252056,15'38'10,Farrell,blind stripling
+115,Ormond quay,1826,53.3458,-6.26979,15'38'10,viceregal cavalcade,Mr Simon Dedalus
 86,Essex gate,1783,53.3448909,-6.2677366,15'38'30,Martin Cunningham,castle car
 87,,1779,,,15'38'40,Martin Cunningham,John Fanning
-88,Parliament street,1777,53.3447318,-6.2674052,15'40'00,John Wyse Nolan,the horses
-89,,1786,,,15'23'10,Buck Mulligan,John Howard Parnell
-90,,1786,,,15'23'15,John Howard Parnell,a white bishop
-91,,1786,,,15'23'20,Haines,waitress
-92,,1786,,,15'28'00,Haines,two lumps of sugar
-93,,1786,,,15'28'30,Buck Mulligan,steaming scone
-94,,1786,,,15'29'00,Haines,his spoon
-95,,,53.3462,-6.23,15'30'30,a crumpled throwaway,ships
-96,,,53.3462,-6.23,15'30'40,a crumpled throwaway,trawlers
-97,,,53.3462,-6.23,15'30'50,a crumpled throwaway,archipelago of corks
-98,,,53.3462,-6.23,15'31'15,a crumpled throwaway,Rosevean
-99,Mr Law Smith's house,1794,53.341378,-6.250926,15'35'40,Farrell,lamp
-100,Merrion hall,1797,53.341621,-6.249842,15'37'40,Farrell,Elijah's name
-101,duke's lawn,50,53.3406,-6.25417,15'37'50,Farrell,distant pleasance
-102,Mr Bloom's dental windows,1799,53.341756,-6.252056,15'38'10,Farrell,blind stripling
-103,Madame Doyle,1804,53.342896,-6.2610423,15'21'00,Master Patrick Aloysius Dignam,two puckers stripped to their pelts
-104,,1804,,,15'21'30,Master Patrick Aloysius Dignam,two mourning Masters Dignam
-105,,1804,,,15'24'00,Master Patrick Aloysius Dignam,"image of Marie Kendall, charming soubrette"
-106,Grafton street,1806,53.3422998,-6.2597468,15'37'00,Master Patrick Aloysius Dignam,Blazes Boylan
-107,Nassau street,1807,53.3426943,-6.2568241,15'39'00,Master Patrick Aloysius Dignam,schoolboys with satchels
-108,lower gate of Phoenix park,1714,53.348413,-6.296931,15'26'00,cavalcade,obsequious policemen
-109,Bloody bridge,1812,53.346769,-6.284052,15'32'00,viceroy,Mr Thomas Kernan
-110,"Mrs M. E. White's, the pawnbroker's",1815,53.34648764,-6.279096901,15'34'20,lord Dudley's viceregal carriages,"Mr Dudley White, B. L., M. A."
-111,Four Courts,1704,53.345933,-6.273477,15'36'20,viceroy,Richie Goulding
-112,King's windows,1823,53.34568703,-6.271667182,15'37'00,representative of His Majesty,elderly female
-113,Tom Devan's office,1825,53.344963,-6.270811,15'37'40,viceregal cavalcade,Poddle river
-114,Ormond hotel,1690,53.346068,-6.269139,15'38'00,viceregal cavalcade,Miss Kennedy's head by Miss Douce's head
-115,Ormond quay,1826,53.3458,-6.26979,15'38'10,viceregal cavalcade,Mr Simon Dedalus
 116,Cahill's corner,1828,53.34655489,-6.267941594,15'38'40,viceregal cavalcade,"reverend Hugh C. Love, M. A."
+107,Nassau street,1807,53.3426943,-6.2568241,15'39'00,Master Patrick Aloysius Dignam,schoolboys with satchels
 117,Grattan bridge,1829,53.3454792,-6.2676894,15'39'00,carriages,Lenehan and M‘Coy
 118,Dollard's,1831,53.345313,-6.267331,15'39'40,lord and lady liutenant,Gerty MacDowell
 119,,1831,,,15'39'50,Gerty MacDowell,Spring’s big yellow furniture van
+88,Parliament street,1777,53.3447318,-6.2674052,15'40'00,John Wyse Nolan,the horses
 120,Kavanaugh's winerooms,1779,53.344855,-6.267602,15'40'10,lord lieutenantgeneral and general governor of Ireland,John Wyse Nolan
 121,Henry and James's,1833,53.3442484,-6.2671121,15'40'50,"The Right Honourable William Humble, earl of Dudley, G. C. V. O.",wax smarsuited freshcheeked models
 122,Dame gate,1834,53.344127,-6.266969,15'41'00,cavalcade,Tom Rochford and Nosey Flynn
