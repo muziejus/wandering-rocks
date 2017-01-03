@@ -39,6 +39,18 @@ p.indent {
   background-color: rgba(250, 250, 250, 0.7);
 }
 
+#timeLineDiv {
+  top: 10px;
+  left: 45px;
+  position: absolute;
+  z-index: 600;
+  box-sizing: border-box;
+  border: 1px solid #333;
+  border-radius: 6px;
+  z-index: 600;
+  background-color: rgba(34, 34, 34, 0.7);
+}
+
 .place {
   text-decoration: underline;
   cursor: pointer;
@@ -84,10 +96,36 @@ p.indent {
   fill-opacity: 0;
 }
 
+.timeline-dot {
+  stroke-width: 1px;
+  stroke: #ddd;
+  stroke-opacity: 0.6;
+  fill-opacity: 0.4;
+}
+
 .trail {
   stroke: blue;
   stroke-width: 3px;
   stroke-linecap: round;
   stroke-opacity: 0.0;
+  fill: none;
+}
+
+.axis path,
+.axis line {
+  fill: none;
+  stroke: #ddd;
+  shape-rendering: crispEdges;
+}
+
+.axis text {
+  font-family: sans-serif;
+  font-size: 11px;
+  fill: #ddd;
+}
+
+.timelinecursor {
+  stroke: #5bc0de;
+  stroke-width: 1px;
   fill: none;
 }
