@@ -8,7 +8,7 @@ d3.queue(1) // one task at a time.
     if (error) throw error;
 
     // The graphical elements
-    createFeatures(my.main, [paths, collisions, instances]);
+    createFeatures(my.main, [paths, instances, collisions]);
     createFeatures(my.inset, [inset]);
     createTheLine();
 
@@ -153,7 +153,7 @@ d3.queue(1) // one task at a time.
   }); // close await()
 
 function playFabula() {
-  var interval = 1000 / my.timeFactor;
+  var interval = 5000 / my.timeFactor;
   var time = my.time ? my.time : my.times[0];
   if (time === my.times[my.times.length - 1]){
     time = my.times[0];
@@ -171,7 +171,7 @@ function playFabula() {
       };
     };
     updateClock(time);
-    time = time + 1000;
+    time = time + 5000;
   }, interval);
 }
 
