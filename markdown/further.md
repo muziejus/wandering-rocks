@@ -49,3 +49,5 @@
 * Meeks, Elijah. _D3.js in Action_. Shelter Island, NY: Manning, 2015.
 
 * Murray, Scott. _Interactive Data Visualization for the Web_. Sebastopol, CA: O’Reilly Media, 2013.
+
+* Woloch, Alex. _The One vs. the Many: Minor Characters and the Space of the Protagonist_. Princeton: Princeton UP, 2003.
