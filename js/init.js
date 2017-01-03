@@ -1,5 +1,6 @@
 // First, initialize the constants.
 var my = {
+  showdownConverter: new showdown.Converter(),
   clockGlyph: '<span class="glyphicon glyphicon-time"></span>&nbsp;',
   timeFactor: 10,
   buffer: 90,
@@ -63,45 +64,21 @@ my.inset.g = d3.select("#insetSvg").append("g")
       .attr("class", "leaflet-zoom-hide")
       .attr("id", "#insetG");
 
-// Read in the text.
-$.get("./text.html", function(data){
-  if(typeof(data) === 'string'){
-    $("#text_box").html(data); // how github.io sees it.
-  }else{
-    $("#text_box").html(data.activeElement.innerHTML); // how my local machine sees it.
+// Read in the chapter text.
+$.ajax({
+  url: "text.html",
+  success: function(text){
+    $("#text_box").html(text)
   }
 });
 
-// $.getJSON(my.geoJSONFile, function(data) {
-//   console.log("Loading " + my.geoJSONFile);
-// }).done(function(data) {
-//   my.geoJSONData = data;
-//   //$('button', '#toolbar').prop("disabled", false);
-//   $('#play_btn').prop("disabled", false);
-// }).fail(function (d, textStatus, error) {
-//   console.log("getJSON failed, status: " + textStatus + ", error: " + error)
-// });
-
-// $('#play_btn').click(function(){
-//   var points = my.geoJSONData["features"];
-//   my.map.removeLayer(my.markersLayer); // so it doesn't duplicate itself
-//   my.markersLayer = new L.FeatureGroup();
-//   my.map.addLayer(my.markersLayer);
-//   var marker;
-//   for (var i = 0; i < points.length; i++) {
-//     window.setTimeout(animateMarker(points[i], marker, my.markersLayer), 500);
-//   }
-// });
-
-// function animateMarker(point, marker, markers){
-//   if (point["geometry"]["coordinates"][0] !== null) {
-//     if (point["properties"]["space"] === "1") {
-//       marker = L.marker([point["geometry"]["coordinates"][1], point["geometry"]["coordinates"][0]]).addTo(my.map);
-//       marker.bindTooltip(point["properties"]["place_name_in_text"]);
-//       markers.addLayer(marker);
-//     }
-//   }
-// }
-
-
-
+// Read in the markdown…
+["fabulaandsjuzet", "wanderingrocks", "spacetime", "data", "tech", "further", "help"].forEach(function(section){
+  $.ajax({
+    url: "markdown/" + section + ".md", 
+    success: function(text){
+     var html = my.showdownConverter.makeHtml(text);
+     $("#" + section).html(html);
+    }
+  });
+});
