@@ -113,6 +113,14 @@ d3.queue(1) // one task at a time.
       fireEvents(my.firingTimeEvents[my.currentTimeIndex]);
     });
 
+    $("#pathToggle").change(function() {
+      if ($(this).is(":checked")) {
+        alterPaths(0.6);
+      } else {
+        alterPaths(0);
+      }
+    });
+
     $("#fsToggle").change(function() {
       if (!$(this).is(":checked")) {
         my.mode = "sjuzet";
@@ -347,6 +355,15 @@ function deFireDot(css){
     .classed("fired-timeline-dot", false)
     .style("stroke-opacity", 0.6)
     .style("fill-opacity", 0.4);
+}
+
+function alterPaths(opacity) {
+  [1, 19].forEach(function(num){
+    d3.select("#path_" + num)
+      .style("stroke", my.colors.path)
+      .transition()
+      .style("stroke-opacity", opacity);
+  })
 }
 
 function createTheLine() {

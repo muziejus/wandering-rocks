@@ -15,9 +15,10 @@ var my = {
   currentLineIndex: 0,
   markersLayer: new L.FeatureGroup(),
   colors: {
-    inset: "rgba(27, 158, 119, 0.5)",
-    instance: "rgba(217, 95, 2, 0.5)",
-    collision: "rgba(117, 112, 179, 0.5)"
+    inset: "rgba(51, 160, 44, 1)",
+    instance: "rgba(166, 206, 227, 1)",
+    collision: "rgba(178, 223, 138, 1)",
+    path: "rgba(31, 120, 180, 1)"
   },
   main: {
     map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.335, -6.258]}),
@@ -55,7 +56,7 @@ my.main.svg = d3.select(my.main.map.getPanes().overlayPane)
   .append("svg").attr("id", "mainSvg");
 my.main.g = d3.select("#mainSvg").append("g")
       .attr("class", "leaflet-zoom-hide")
-      .attr("id", "#mainG");
+      .attr("id", "mainG");
 my.inset.projectPoint = function(x, y){var point = my.inset.map.latLngToLayerPoint(new L.LatLng(y, x)); this.stream.point(point.x, point.y);};
 my.inset.transform = d3.geoTransform({point: my.inset.projectPoint});
 my.inset.path = d3.geoPath().projection(my.inset.transform);
