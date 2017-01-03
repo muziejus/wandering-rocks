@@ -20,12 +20,14 @@ var my = {
   main: {
     map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.335, -6.258]}),
     topLeft: [-6.34, 53.39],
-    bottomRight: [-6.19, 53.30]
+    bottomRight: [-6.19, 53.30],
+    firedCss: "fired-main"
   },
   inset: {
     map: L.map('inset_map', {zoom: 9, minZoom: 2, maxZoom: 18, center: [53.3406, -6.2445]}),// zoomControl: false}),// dragging: false}), 
     topLeft: [-170, 80],
-    bottomRight: [170, -80]
+    bottomRight: [170, -80],
+    firedCss: "fired-inset"
   }
 };
 

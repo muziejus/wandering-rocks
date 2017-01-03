@@ -1,4 +1,4 @@
-$('#modal').modal('show')
+// $('#modal').modal('show')
 d3.queue(1) // one task at a time.
   .defer(prepareInstances, "main")
   .defer(prepareInstances, "inset")
@@ -180,7 +180,21 @@ function playSjuzet() {
 }
 
 function fireEvents(firingEvents, scroll){
-  deFireDot();
+  if (firingEvents.length == 1){
+    var css = firingEvents[0].id.match(/set/) ? my.inset.firedCss : my.main.firedCss ;
+    deFireAll(css);
+  } else {
+    var insetEvents = firingEvents.filter(function(ev){ 
+      return ev.id.match(/set/) 
+    });
+    if (insetEvents.length === 0){ // no inset events
+      deFireAll(my.main.firedCss);
+    } else if (insetEvents.length === firingEvents.length){ // all inset events
+      deFireAll(my.inset.firedCss);
+    } else { // mixed between inset and main
+      deFireAll();
+    }
+  }
   firingEvents.forEach(function(event){
     fireDot(event);
       if (scroll){
@@ -228,9 +242,11 @@ function updateClock(epochTime) {
 function fireDot(event){
   if (event.id.match(/set/)){
     var bg = my.colors.inset,
+      css = my.inset.firedCss,
       path = my.inset.path;
   } else {
-    var path = my.main.path;
+    var path = my.main.path,
+      css = my.main.firedCss;
     if (event.id.match(/coll/)){
       var bg = my.colors.collision;
     } else {
@@ -246,7 +262,7 @@ function fireDot(event){
     my.inset.map.setView(event.latLng, +event.zoom, {animate: false, duration: 0});
   }
   d3.select("#" + event.id)
-    .classed("fired", true)
+    .classed(css, true)
     .style("cursor", "pointer")
     .style("pointer-events", "visibleFill")
     .style("fill", bg)
@@ -267,10 +283,20 @@ function fireDot(event){
     // });
 }
 
-function deFireDot(){
+function deFireAll(css){
+  if (css){
+    deFireDot(css);
+  } else {
+    [my.main.firedCss, my.inset.firedCss].forEach(function(cssClass){
+      deFireDot(cssClass);
+    });
+  }
+}
+
+function deFireDot(css){
   var finalOpacity = $('#dotToggle').is(":checked") ? .5 : 0;
-  d3.selectAll(".fired")
-    .classed("fired", false)
+  d3.selectAll("." + css)
+    .classed(css, false)
     // .attr("d", function(d){
     //   var path = d.properties.id.match(/set/) ?  my.inset.path : my.main.path;
     //   return path.pointRadius(4.5);
