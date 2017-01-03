@@ -355,7 +355,7 @@ function makeDotPaths(geojson, mapObj) {
 }
   
 function prepareInstances(map, callback) {
-  d3.csv("instances.csv", function(data) {
+  d3.csv("data/instances.csv", function(data) {
     var instancesGeoJSON = {"type": "FeatureCollection", "properties": {"css": map}, "features": []};
     if (map === "main") {
       var instancesArray = prepareInstancesBySpace(data, instancesGeoJSON, 1);
@@ -409,7 +409,7 @@ function prepareInstancesBySpace(data, geojson, spaceNum) {
 }
 
 function prepareCollisions(callback) {
-  d3.csv("collisions.csv", function(data) {
+  d3.csv("data/collisions.csv", function(data) {
     var collisionsGeoJSON = {"type": "FeatureCollection", "properties": {"css": "collision"}, "features": []};
     collisionsGeoJSON.features = data.map(function(obj, i){
       if (obj.latitude === "") { 
@@ -443,7 +443,7 @@ function prepareCollisions(callback) {
 }
 
 function preparePaths(callback) {
-  d3.json("paths.geojson", function(error, paths) {
+  d3.json("data/paths.geojson", function(error, paths) {
     if (error) throw error;
     callback(null, paths);
   });
