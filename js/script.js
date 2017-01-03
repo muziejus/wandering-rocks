@@ -10,7 +10,7 @@ d3.queue(1) // one task at a time.
     // The graphical elements
     createFeatures(my.main, [paths, collisions, instances]);
     createFeatures(my.inset, [inset]);
-    createTimeLine();
+    createTheLine();
 
     // The events
     my.features = instances.features
@@ -49,7 +49,6 @@ d3.queue(1) // one task at a time.
         my.firingTimeEvents.push(events);
       };
     });
-    populateTimeLine([instances, inset, collisions]);
 
 
     // The sjužet data
@@ -71,6 +70,11 @@ d3.queue(1) // one task at a time.
         my.firingLineEvents.push(events);
       };
     });
+
+    // The line
+    populateTimeLine([instances, inset, collisions]);
+    populatePlotLine();
+    clearTheLine("timeline");
     
     // The clock
     d3.select("#clock")
@@ -111,6 +115,9 @@ d3.queue(1) // one task at a time.
 
     $("#fsToggle").change(function() {
       if (!$(this).is(":checked")) {
+        my.mode = "sjuzet";
+        clearTheLine("plotline");
+        reviveTheLine("timeline");
         d3.selectAll(".btn-info")
           .classed("btn-info", false)
           .classed("btn-success", true)
@@ -119,6 +126,9 @@ d3.queue(1) // one task at a time.
         //   // update some scroll container variable.
         // });
       } else {
+        my.mode = "fabula";
+        clearTheLine("timeline");
+        reviveTheLine("plotline");
         d3.selectAll(".btn-success")
           .classed("btn-success", false)
           .classed("btn-info", true)
@@ -246,11 +256,6 @@ function updateClock(epochTime) {
   }
   d3.select("#clock")
     .html(my.clockGlyph + my.formatTime(new Date(my.time)));
-  d3.select(".timelinecursor")
-    .attr("x1", function(){ return my.timexScale(my.time)})
-    .attr("x2", function(){ return my.timexScale(my.time)})
-    .attr("y1", 0)
-    .attr("y2", 80);
 }
 
 function fireDot(event){
@@ -275,11 +280,12 @@ function fireDot(event){
   if (event.id.match(/set/)) {
     my.inset.map.setView(event.latLng, +event.zoom, {animate: false, duration: 0});
   }
-  d3.select("#timeLine_" + event.id)
-    .classed("fired-timeline-dot", true)
+  var theLine = my.mode === "sjuzet" ? "time" : "plot",
+    cursorPosition = my.mode === "sjuzet" ? my.timexScale(event.time) : my.plotxScale(event.line);
+  d3.select("#" + theLine + "Line_" + event.id)
+    .classed("fired-" + theLine + "line-dot", true)
     .style("fill-opacity", 1)
     .style("stroke-pacity", 1);
-
   d3.select("#" + event.id)
     .classed(css, true)
     .style("cursor", "pointer")
@@ -288,18 +294,23 @@ function fireDot(event){
     .style("fill-opacity", 0.9)
     .style("stroke-opacity", 0.9)
     .transition()
-    .duration(3500 / my.timeFactor)
+    .duration(4000 / my.timeFactor)
     .style("fill-opacity", 0.25)
     .style("stroke-opacity", 0.1)
     .attr("d", path.pointRadius(50))
     // .on('end', function(){
     //   d3.select("#" + event.id)
     .transition()
-    .duration(3500 / my.timefactor)
+    .duration(4000 / my.timefactor)
     .style("fill-opacity", 0.9)
     .style("stroke-opacity", 0.9)
     .attr("d", path.pointRadius(4.5));
     // });
+  d3.select("." + theLine + "linecursor")
+    .attr("x1", function(){ return cursorPosition })
+    .attr("x2", function(){ return cursorPosition })
+    .attr("y1", 0)
+    .attr("y2", 80);
 }
 
 function deFireAll(css){
@@ -331,42 +342,60 @@ function deFireDot(css){
     .transition()
     .duration(25000 / my.timeFactor)
     .style("background-color", "transparent");
-  d3.selectAll(".fired-timeline-dot")
+  var theLine = my.mode === "sjuzet" ? "time" : "plot";
+  d3.selectAll(".fired-" + theLine + "line-dot")
     .classed("fired-timeline-dot", false)
     .style("stroke-opacity", 0.6)
     .style("fill-opacity", 0.4);
 }
 
-function createTimeLine() {
-  my.timeLineWidth = $("#inset_map").offset().left - 55;
+function createTheLine() {
+  my.theLineWidth = $("#inset_map").offset().left - 55;
   d3.select("#main_container")
-    .append("div").attr("id", "timeLineDiv")
-    .attr("width", my.timeLineWidth);
-  d3.select("#timeLineDiv")
-    .append("svg").attr("id", "timeLineSvg")
+    .append("div").attr("id", "theLineDiv")
+    .attr("width", my.theLineWidth);
+  d3.select("#theLineDiv")
+    .append("svg").attr("id", "theLineSvg")
     .attr("height", 100)
-    .attr("width", my.timeLineWidth);
+    .attr("width", my.theLineWidth);
 }
 
+function clearTheLine(css){
+  d3.selectAll("." + css)
+    .style("fill-opacity", 0)
+    .style("stroke-opacity", 0);
+}
+
+function reviveTheLine(css){
+  d3.selectAll("." + css)
+    .style("fill-opacity", 1)
+    .style("stroke-opacity", 1);
+  d3.selectAll("." + css + "-dot")
+    .style("fill-opacity", 0.4)
+    .style("stroke-opacity", 0.6);
+}
+
+
 function populateTimeLine(dataArray) {
-  var svg = d3.select("#timeLineSvg"),
+  var svg = d3.select("#theLineSvg"),
     strings = ["instance", "inset", "collision"],
     cssArray = [my.colors.instance, my.colors.inset, my.colors.collision];
   my.timexScale = d3.scaleLinear()
     .domain([my.times[0], my.times[my.times.length - 1]])
-    .range([20, my.timeLineWidth - 20]);
+    .range([20, my.theLineWidth - 20]);
   var xAxis = d3.axisBottom()
     .tickFormat(d3.utcFormat("%H:%M"))
     // .ticks(d3.timeMinute.every(15))
     .scale(my.timexScale);
-  svg.append("g").attr("id", "axes");
   strings.forEach(function(string, i){
     svg.append("g").attr("id", "timeLine_" + string);
     d3.select("#timeLine_" + string)
       .selectAll("circle")
       .data(dataArray[i].features)
       .enter().append("circle")
+      .classed("theline-dot", true)
       .classed("timeline-dot", true)
+      .classed("timeline", true)
       .classed("timeline-" + string, true)
       .attr("id", function(d){ return "timeLine_" + d.properties.id })
       .attr("r", 3)
@@ -376,16 +405,78 @@ function populateTimeLine(dataArray) {
   });
   svg.append("g")
     .classed("axis", true)
+    .classed("timeline", true)
     .attr("transform", "translate(0, 80)")
     .call(xAxis);
   svg.append("line")
     .classed("timelinecursor", true)
+    .classed("timeline", true)
     .attr("x1", function(){ return my.timexScale(my.times[0]); })
     .attr("x2", function(){ return my.timexScale(my.times[0]); })
     .attr("y1", 0)
     .attr("y2", 80);
 }
 
+function populatePlotLine() {
+  var sectionStarts = $('.section').map(function(){ return $(this).position().top }).toArray(); 
+  sectionStarts[0] = my.lines[0];
+  console.log(sectionStarts);
+  var svg = d3.select("#theLineSvg");
+  my.plotxScale = d3.scaleLinear()
+    .domain([my.lines[0], my.lines[my.lines.length - 1]])
+    .range([20, my.theLineWidth - 20]);
+  var xAxis = d3.axisBottom()
+    // .tickFormat(d3.utcFormat("%H:%M"))
+    // .ticks(d3.timeMinute.every(15))
+    .tickValues(sectionStarts)
+    .scale(my.plotxScale);
+  svg.append("g").attr("id", "plotLine");
+  d3.select("#plotLine")
+    .selectAll("circle")
+    .data(my.events)
+    .enter().append("circle")
+    .attr("class", function(d){ return "plotline-" + d.id.replace(/_.*$/, ""); })
+    .classed("theline-dot", true)
+    .classed("plotline-dot", true)
+    .classed("plotline", true)
+    .attr("id", function(d){ return "plotLine_" + d.id })
+    .attr("r", 3)
+    .attr("cx", function(d){ return my.plotxScale(d.line) })
+    .attr("cy", function(d){ 
+      if (d.id.match(/instance/)){
+        return (1 * 22);
+      } else if (d.id.match(/inset/)){
+        return (2 * 22);
+      } else {
+        return (3 * 22);
+      }
+    })
+    .style("fill", function(d){ 
+      if (d.id.match(/instance/)){
+        return my.colors.instance;
+      } else if (d.id.match(/inset/)){
+        return my.colors.inset;
+      } else {
+        return my.colors.collision;
+      }
+    })
+  svg.append("g")
+    .classed("axis", true)
+    .classed("plotline", true)
+    .attr("transform", "translate(0, 80)")
+    .call(xAxis)
+    .selectAll("text").each(function(d, i){
+      d3.select(this).text(i + 1);
+    });
+
+  svg.append("line")
+    .classed("plotlinecursor", true)
+    .classed("plotline", true)
+    .attr("x1", function(){ return my.plotxScale(my.lines[0]); })
+    .attr("x2", function(){ return my.plotxScale(my.lines[0]); })
+    .attr("y1", 0)
+    .attr("y2", 80);
+}
 
 function createFeatures(mapObj, dataArray) {
   // mapObj is the my.main or my.inset object.

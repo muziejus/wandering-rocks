@@ -1,5 +1,6 @@
 // First, initialize the constants.
 var my = {
+  mode: "fabula",
   showdownConverter: new showdown.Converter(),
   clockGlyph: '<span class="glyphicon glyphicon-time"></span>&nbsp;',
   timeFactor: 10,

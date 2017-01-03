@@ -39,7 +39,7 @@ p.indent {
   background-color: rgba(250, 250, 250, 0.7);
 }
 
-#timeLineDiv {
+#theLineDiv {
   top: 10px;
   left: 45px;
   position: absolute;
@@ -96,7 +96,7 @@ p.indent {
   fill-opacity: 0;
 }
 
-.timeline-dot {
+.theline-dot {
   stroke-width: 1px;
   stroke: #ddd;
   stroke-opacity: 0.6;
@@ -126,6 +126,12 @@ p.indent {
 
 .timelinecursor {
   stroke: #5bc0de;
+  stroke-width: 1px;
+  fill: none;
+}
+
+.plotlinecursor {
+  stroke: #5cb85c;
   stroke-width: 1px;
   fill: none;
 }
