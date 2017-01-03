@@ -154,17 +154,16 @@ function playSjuzet() {
     boxRemaining = boxMax - $('#text_box').scrollTop(),
     boxRemainingPct = boxRemaining / boxMax,
     timeRemainingPct = boxRemainingPct * totalTime,
-    interval = (20 * totalTime)/boxMax,
-    buffer = 90,
-    line = getSjuzetPosition(buffer);
-  line = line + 20;
+    interval = (my.lineHeight * totalTime)/boxMax,
+    line = getSjuzetPosition(my.buffer);
+  line = line + my.lineHeight;
   $("#text_box").scrollTop(line); // no continuous scroll.
   // $("#text_box").animate({scrollTop: line}, interval, "linear");
   my.interval = setInterval(function(){
     if (line >= my.lines[my.lines.length - 1]){
       stop();
     };
-    if (my.lines[my.currentLineIndex] <= (line + buffer) && (line + buffer) < (my.lines[my.currentLineIndex] + 20)){
+    if (my.lines[my.currentLineIndex] <= (line + my.buffer) && (line + my.buffer) < (my.lines[my.currentLineIndex] + my.lineHeight)){
       fireEvents(my.firingLineEvents[my.currentLineIndex]);
       updateClock(my.firingLineEvents[my.currentLineIndex][0].time);
       if (my.currentLineIndex === my.lines.length - 1){
@@ -173,7 +172,7 @@ function playSjuzet() {
         my.currentLineIndex++;
       };
     };
-    line = line + 20;
+    line = line + my.lineHeight;
     my.line = line;
     $("#text_box").scrollTop(line); // no continuous scroll.
     // $("#text_box").animate({scrollTop: line}, interval, "linear");
@@ -194,7 +193,7 @@ function fireEvents(firingEvents, scroll){
 
 function scrollTo(id){
   if (typeof(id) === "string") {
-    var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - 80;
+    var scrollFactor = $("#text_box").scrollTop() + $("#text_" + id).position().top - my.buffer;
     $("#text_box").animate({
       scrollTop: scrollFactor
     }, 2500 / my.timeFactor);

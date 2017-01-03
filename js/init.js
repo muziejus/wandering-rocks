@@ -2,6 +2,8 @@
 var my = {
   clockGlyph: '<span class="glyphicon glyphicon-time"></span>&nbsp;',
   timeFactor: 10,
+  buffer: 90,
+  lineHeight: 20,
   events: [],
   firingTimeEvents: [],
   firingLineEvents: [],
