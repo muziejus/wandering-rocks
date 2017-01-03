@@ -108,11 +108,17 @@ d3.queue(1) // one task at a time.
 
     $("#fsToggle").change(function() {
       if (!$(this).is(":checked")) {
+        d3.selectAll(".btn-info")
+          .classed("btn-info", false)
+          .classed("btn-success", true)
         // $('#text_box').on("scroll", function() {
         //   // console.log($('#text_box').scrollTop());
         //   // update some scroll container variable.
         // });
       } else {
+        d3.selectAll(".btn-success")
+          .classed("btn-success", false)
+          .classed("btn-info", true)
         getSjuzetPosition(90);
         var time = my.firingLineEvents[my.currentLineIndex][0].time
         nextEvents = my.times.filter(function(t){
