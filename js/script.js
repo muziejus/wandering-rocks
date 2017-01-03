@@ -5,7 +5,7 @@ d3.queue(1) // one task at a time.
   .defer(prepareCollisions)
   .defer(preparePaths)
   .await(function(error, instances, inset, collisions, paths) {
-    if (error) throw error;
+    if (error) { throw error; }
 
     // The graphical elements
     createFeatures(my.main, [paths, instances, collisions]);
@@ -35,7 +35,7 @@ d3.queue(1) // one task at a time.
     my.timesEvents = my.events.sort(function(a, b){
         return a.time - b.time;
       });
-    my.times = my.timesEvents.map(function(event){return event.time})
+    my.times = my.timesEvents.map(function(event){return event.time; })
       .filter(function(value, index, self) {
         return self.indexOf(value) === index;
       });
@@ -48,32 +48,16 @@ d3.queue(1) // one task at a time.
       });
       if (events.length > 0){
         my.firingTimeEvents.push(events);
-      };
+      }
     });
 
 
     // The sjužet data
-    my.linesEvents = my.events.sort(function(a, b){
-      return a.line - b.line;
-    });
-    my.lines = my.events.map(function(event){return event.line;})
-      .filter(function(value, index, self) {
-        return self.indexOf(value) === index;
-      });
-    my.lines.forEach(function(line){
-      var events = [];
-      my.linesEvents.forEach(function(event){
-        if(event.line === line){
-          events.push(event);
-        }
-      });
-      if (events.length > 0){
-        my.firingLineEvents.push(events);
-      };
-    });
-
+    buildSjuzetData();
+    
     // The line
-    populateTimeLine([instances, inset, collisions]);
+    populateSectionStarts();
+    populateTimeLine();
     populatePlotLine();
     clearTheLine("timeline");
     
@@ -129,7 +113,7 @@ d3.queue(1) // one task at a time.
         reviveTheLine("timeline");
         d3.selectAll(".btn-info")
           .classed("btn-info", false)
-          .classed("btn-success", true)
+          .classed("btn-success", true);
         // $('#text_box').on("scroll", function() {
         //   // console.log($('#text_box').scrollTop());
         //   // update some scroll container variable.
@@ -140,15 +124,20 @@ d3.queue(1) // one task at a time.
         reviveTheLine("plotline");
         d3.selectAll(".btn-success")
           .classed("btn-success", false)
-          .classed("btn-info", true)
+          .classed("btn-info", true);
         getSjuzetPosition(90);
-        var time = my.firingLineEvents[my.currentLineIndex][0].time
+        var time = my.firingLineEvents[my.currentLineIndex][0].time,
         nextEvents = my.times.filter(function(t){
           return t >= time;
         });
         my.currentTimeIndex = my.times.indexOf(nextEvents[0]);
         // $('#text_box').off("scroll");
       }
+    });
+
+    $(window).resize(function(){
+      clearTimeout(my.recalculate);
+      recalculate();
     });
 
   }); // close await()
@@ -158,19 +147,19 @@ function playFabula() {
   var time = my.time ? my.time : my.times[0];
   if (time === my.times[my.times.length - 1]){
     time = my.times[0];
-  };
+  }
   my.interval = setInterval(function(){
     if (time === my.times[my.times.length - 1]){
       stop();
-    };
+    }
     if (time === my.times[my.currentTimeIndex]){
       fireEvents(my.firingTimeEvents[my.currentTimeIndex], true);
       if (my.currentTimeIndex === my.times.length - 1){
         my.currentTimeIndex = 0;
       } else {
         my.currentTimeIndex++;
-      };
-    };
+      }
+    }
     updateClock(time);
     time = time + 5000;
   }, interval);
@@ -179,9 +168,9 @@ function playFabula() {
 function playSjuzet() {
   var boxMax = my.lines[my.lines.length - 1],
     totalTime = 3900000 / my.timeFactor, // 65 mins = 3900000 milliseconds
-    boxRemaining = boxMax - $('#text_box').scrollTop(),
-    boxRemainingPct = boxRemaining / boxMax,
-    timeRemainingPct = boxRemainingPct * totalTime,
+    // boxRemaining = boxMax - $("#text_box").scrollTop(),
+    // boxRemainingPct = boxRemaining / boxMax,
+    // timeRemainingPct = boxRemainingPct * totalTime,
     interval = (my.lineHeight * totalTime)/boxMax,
     line = getSjuzetPosition(my.buffer);
   line = line + my.lineHeight;
@@ -190,7 +179,7 @@ function playSjuzet() {
   my.interval = setInterval(function(){
     if (line >= my.lines[my.lines.length - 1]){
       stop();
-    };
+    }
     if (my.lines[my.currentLineIndex] <= (line + my.buffer) && (line + my.buffer) < (my.lines[my.currentLineIndex] + my.lineHeight)){
       fireEvents(my.firingLineEvents[my.currentLineIndex]);
       updateClock(my.firingLineEvents[my.currentLineIndex][0].time);
@@ -198,8 +187,8 @@ function playSjuzet() {
         my.currentLineIndex = 0;
       } else {
         my.currentLineIndex++;
-      };
-    };
+      }
+    }
     line = line + my.lineHeight;
     my.line = line;
     $("#text_box").scrollTop(line); // no continuous scroll.
@@ -213,7 +202,7 @@ function fireEvents(firingEvents, scroll){
     deFireAll(css);
   } else {
     var insetEvents = firingEvents.filter(function(ev){ 
-      return ev.id.match(/set/) 
+      return ev.id.match(/set/);
     });
     if (insetEvents.length === 0){ // no inset events
       deFireAll(my.main.firedCss);
@@ -268,17 +257,18 @@ function updateClock(epochTime) {
 }
 
 function fireDot(event){
+  var bg, css, path;
   if (event.id.match(/set/)){
-    var bg = my.colors.inset,
-      css = my.inset.firedCss,
-      path = my.inset.path;
+    bg = my.colors.inset;
+    css = my.inset.firedCss;
+    path = my.inset.path;
   } else {
-    var path = my.main.path,
-      css = my.main.firedCss;
+    path = my.main.path;
+    css = my.main.firedCss;
     if (event.id.match(/coll/)){
-      var bg = my.colors.collision;
+      bg = my.colors.collision;
     } else {
-      var bg = my.colors.instance;
+      bg = my.colors.instance;
     }
   }
   d3.select("#text_" + event.id)
@@ -316,8 +306,8 @@ function fireDot(event){
     .attr("d", path.pointRadius(4.5));
     // });
   d3.select("." + theLine + "linecursor")
-    .attr("x1", function(){ return cursorPosition })
-    .attr("x2", function(){ return cursorPosition })
+    .attr("x1", function(){ return cursorPosition; })
+    .attr("x2", function(){ return cursorPosition; })
     .attr("y1", 0)
     .attr("y2", 80);
 }
@@ -364,7 +354,7 @@ function alterPaths(opacity) {
       .style("stroke", my.colors.path)
       .transition()
       .style("stroke-opacity", opacity);
-  })
+  });
 }
 
 function createTheLine() {
@@ -394,8 +384,9 @@ function reviveTheLine(css){
 }
 
 
-function populateTimeLine(dataArray) {
+function populateTimeLine() {
   var svg = d3.select("#theLineSvg"),
+    eventsArray = [[], [], []];
     strings = ["instance", "inset", "collision"],
     cssArray = [my.colors.instance, my.colors.inset, my.colors.collision];
   my.timexScale = d3.scaleLinear()
@@ -405,21 +396,30 @@ function populateTimeLine(dataArray) {
     .tickFormat(d3.utcFormat("%H:%M"))
     // .ticks(d3.timeMinute.every(15))
     .scale(my.timexScale);
+  my.events.forEach(function(event){
+    if (event.id.match(/stance/)){
+      eventsArray[0].push(event);
+    } else if (event.id.match(/inset/)){
+      eventsArray[1].push(event);
+    } else {
+      eventsArray[2].push(event);
+    }
+  });
   strings.forEach(function(string, i){
     svg.append("g").attr("id", "timeLine_" + string);
     d3.select("#timeLine_" + string)
       .selectAll("circle")
-      .data(dataArray[i].features)
+      .data(eventsArray[i])
       .enter().append("circle")
       .classed("theline-dot", true)
       .classed("timeline-dot", true)
       .classed("timeline", true)
       .classed("timeline-" + string, true)
-      .attr("id", function(d){ return "timeLine_" + d.properties.id })
+      .attr("id", function(d){ return "timeLine_" + d.id; })
       .attr("r", 3)
-      .attr("cx", function(d){ return my.timexScale(d.properties.time) })
-      .attr("cy", function(){ return ((i + 1) * 20) ; })
-      .style("fill", cssArray[i])
+      .attr("cx", function(d){ return my.timexScale(d.time); })
+      .attr("cy", function(){ return ((i + 1) * 20); })
+      .style("fill", cssArray[i]);
   });
   svg.append("g")
     .classed("axis", true)
@@ -436,17 +436,15 @@ function populateTimeLine(dataArray) {
 }
 
 function populatePlotLine() {
-  var sectionStarts = $('.section').map(function(){ return $(this).position().top }).toArray(); 
-  sectionStarts[0] = my.lines[0];
-  console.log(sectionStarts);
   var svg = d3.select("#theLineSvg");
   my.plotxScale = d3.scaleLinear()
     .domain([my.lines[0], my.lines[my.lines.length - 1]])
     .range([20, my.theLineWidth - 20]);
+  // console.log("the width is " + my.theLineWidth + " and section 19 is " + my.sectionStarts[18] + " and it should be at " + my.plotxScale(my.sectionStarts[18]));
   var xAxis = d3.axisBottom()
     // .tickFormat(d3.utcFormat("%H:%M"))
     // .ticks(d3.timeMinute.every(15))
-    .tickValues(sectionStarts)
+    .tickValues(my.sectionStarts)
     .scale(my.plotxScale);
   svg.append("g").attr("id", "plotLine");
   d3.select("#plotLine")
@@ -457,9 +455,9 @@ function populatePlotLine() {
     .classed("theline-dot", true)
     .classed("plotline-dot", true)
     .classed("plotline", true)
-    .attr("id", function(d){ return "plotLine_" + d.id })
+    .attr("id", function(d){ return "plotLine_" + d.id; })
     .attr("r", 3)
-    .attr("cx", function(d){ return my.plotxScale(d.line) })
+    .attr("cx", function(d){ return my.plotxScale(d.line); })
     .attr("cy", function(d){ 
       if (d.id.match(/instance/)){
         return (1 * 20);
@@ -477,7 +475,7 @@ function populatePlotLine() {
       } else {
         return my.colors.collision;
       }
-    })
+    });
   svg.append("g")
     .classed("axis", true)
     .classed("plotline", true)
@@ -496,10 +494,15 @@ function populatePlotLine() {
     .attr("y2", 80);
 }
 
+function populateSectionStarts(){
+  console.log("hitting populateSectionStarts");
+  my.sectionStarts = $('.section').map(function(){ return $(this).position().top; }).toArray(); 
+  my.sectionStarts[0] = my.lines[0];
+}
+
 function createLegend(){
   var colors = [my.colors.instance, my.colors.inset, my.colors.collision];
   ["instance", "inset", "collision"].forEach(function(string, i){
-    console.log("gonna create " + string + " with an i of " + i);
     d3.select("#legend_" + string)
       .style("color", "#333")
       .style("cursor", "auto")
@@ -585,7 +588,7 @@ function prepareInstancesBySpace(data, geojson, spaceNum) {
           "zoom": obj.zoom,
           "order": i // so sorting by time doesn't break the narrative order.
         }
-      }
+      };
       geojson.features.push(instance);
       if (spaceNum === 1) {
         var returnObj = {
@@ -637,7 +640,7 @@ function prepareCollisions(callback) {
 
 function preparePaths(callback) {
   d3.json("data/paths.geojson", function(error, paths) {
-    if (error) throw error;
+    if (error) { throw error; }
     callback(null, paths);
   });
 }
@@ -674,7 +677,6 @@ function stop() {
 
 function stepForward() {
   pause();
-  // console.log(my.currentTimeIndex);
   if ($("#fsToggle").is(":checked")){
     my.currentTimeIndex++;
     updateClock();
@@ -688,7 +690,6 @@ function stepForward() {
 
 function stepBackward() {
   pause();
-  // console.log(my.currentTimeIndex);
   if ($("#fsToggle").is(":checked")){
     my.currentTimeIndex--;
     updateClock();
@@ -701,6 +702,49 @@ function stepBackward() {
     fireEvents(my.firingLineEvents[my.currentLineIndex], true);
   }
 }
+
+function recalculate(){
+  ["#timeLine_instance", "#timeLine_inset", "#timeLine_collision", ".plotline", ".timeline", "#plotLine"].forEach(function(el){
+    d3.selectAll(el).remove();
+  my.recalculate = setTimeout(function(){
+    console.log("recalculating");
+    buildSjuzetData();
+    my.theLineWidth = $("#inset_map").offset().left - 55;
+    d3.select("#theLineDiv")
+      .attr("width", my.theLineWidth);
+    d3.select("#theLineSvg")
+      .attr("width", my.theLineWidth);
+    });
+    populateSectionStarts();
+    setTimeout(function(){
+      populateTimeLine();
+      populatePlotLine();
+      my.mode === "sjuzet" ? clearTheLine("plotline") : clearTheLine("timeline");
+    }, 5000);
+  }, 5000);
+}
+
+function buildSjuzetData(){
+  my.linesEvents = my.events.sort(function(a, b){
+    return a.line - b.line;
+  });
+  my.lines = my.events.map(function(event){return event.line;})
+    .filter(function(value, index, self) {
+      return self.indexOf(value) === index;
+    });
+  my.lines.forEach(function(line){
+    var events = [];
+    my.linesEvents.forEach(function(event){
+      if(event.line === line){
+        events.push(event);
+      }
+    });
+    if (events.length > 0){
+      my.firingLineEvents.push(events);
+    }
+  });
+}
+
 
 function updateIndices(event) {
   my.currentTimeIndex = my.times.indexOf(event.time);
