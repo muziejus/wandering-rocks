@@ -11,6 +11,7 @@ d3.queue(1) // one task at a time.
     createFeatures(my.main, [paths, instances, collisions]);
     createFeatures(my.inset, [inset]);
     createTheLine();
+    createLegend();
 
     // The events
     my.features = instances.features
@@ -417,7 +418,7 @@ function populateTimeLine(dataArray) {
       .attr("id", function(d){ return "timeLine_" + d.properties.id })
       .attr("r", 3)
       .attr("cx", function(d){ return my.timexScale(d.properties.time) })
-      .attr("cy", function(){ return ((i + 1) * 22) ; })
+      .attr("cy", function(){ return ((i + 1) * 20) ; })
       .style("fill", cssArray[i])
   });
   svg.append("g")
@@ -461,11 +462,11 @@ function populatePlotLine() {
     .attr("cx", function(d){ return my.plotxScale(d.line) })
     .attr("cy", function(d){ 
       if (d.id.match(/instance/)){
-        return (1 * 22);
+        return (1 * 20);
       } else if (d.id.match(/inset/)){
-        return (2 * 22);
+        return (2 * 20);
       } else {
-        return (3 * 22);
+        return (3 * 20);
       }
     })
     .style("fill", function(d){ 
@@ -493,6 +494,17 @@ function populatePlotLine() {
     .attr("x2", function(){ return my.plotxScale(my.lines[0]); })
     .attr("y1", 0)
     .attr("y2", 80);
+}
+
+function createLegend(){
+  var colors = [my.colors.instance, my.colors.inset, my.colors.collision];
+  ["instance", "inset", "collision"].forEach(function(string, i){
+    console.log("gonna create " + string + " with an i of " + i);
+    d3.select("#legend_" + string)
+      .style("color", "#333")
+      .style("cursor", "auto")
+      .style("background-color", colors[i]);
+  });
 }
 
 function createFeatures(mapObj, dataArray) {
