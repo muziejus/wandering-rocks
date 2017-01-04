@@ -63,5 +63,10 @@ have already faded away.
 
 ### And the timeline-looking thing?
 
-At the top is a visualization of the whole episode at once. When in “Fabula” mode, it shows the events distributed among the 19 sections, in narrative order. When in “Sjužet” mode, it shows all of the events in chronological order. A little line jumps around to show where in the plotline or timeline one is at any given moment. In other words, the line always shows the opposite mode of the main mode for the rest of the visualization.
+At the top is a visualization of the whole episode at once. When in “Fabula”
+mode, it shows the events distributed among the 19 sections, in narrative
+order. When in “Sjužet” mode, it shows all of the events in chronological
+order. A little line jumps around to show where in the plotline or timeline one
+is at any given moment. In other words, the line always shows the opposite mode
+of the main mode for the rest of the visualization. It does not respond to clicks.
 

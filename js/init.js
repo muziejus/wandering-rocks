@@ -75,7 +75,7 @@ $.ajax({
 });
 
 // Read in the markdown…
-["fabulaandsjuzet", "wanderingrocks", "spacetime", "data", "tech", "further", "help"].forEach(function(section){
+["fabulaandsjuzet", "wanderingrocks", "spacetime", "data", "further", "okso", "help"].forEach(function(section){
   $.ajax({
     url: "markdown/" + section + ".md", 
     success: function(text){
