@@ -60,6 +60,7 @@
             <article id="text_box" data-spy="scroll" data-target="#sectionlist" class="col-sm-6"></article>
             <div id="tool_bar" class="col-sm-6">
               <h1 id="clock"></h1>
+              <input id="fsToggle" type="checkbox" checked data-toggle="toggle" data-on="Fabula" data-onstyle="info" data-off="Sjužet" data-offstyle="success">
               <div class="btn-group" id="toolbar" role="toolbar" aria-label="play buttons">
                 <button type="button" class="btn btn-info navbar-btn" id="step_back_btn">
                   <span class="glyphicon glyphicon-step-backward"></span>
@@ -74,15 +75,15 @@
                   <span class="glyphicon glyphicon-step-forward"></span>
                 </button>
               </div>
-              <input id="fsToggle" type="checkbox" checked data-toggle="toggle" data-on="Fabula" data-onstyle="info" data-off="Sjužet" data-offstyle="success">
               <div class="btn-group">
                 <button class="btn legend btn-default" disabled="disabled" id="legend_legend">Legend:</button> 
-                <button class="btn legend" disabled="disabled" id="legend_instance">Exterior</button> 
-                <button class="btn legend" disabled="disabled" id="legend_inset">Interior</button> 
-                <button class="btn legend" disabled="disabled" id="legend_collision">Collision</button> 
+                <button class="btn legend legend-instance" disabled="disabled" id="legend_instance">Exterior</button> 
+                <button class="btn legend legend-inset" disabled="disabled" id="legend_inset">Interior</button> 
+                <button class="btn legend legend-collision" disabled="disabled" id="legend_collision">Collision</button> 
               </div>
               <br />
-              <button type="button" class="btn btn-primary navbar-btn" id="modal_launch_btn" data-toggle="modal" data-target="#modal">
+              <!-- <button type="button" class="btn btn-primary navbar-btn" id="modal_launch_btn" data-toggle="modal" data-target="#modal"> -->
+              <button type="button" class="btn btn-primary navbar-btn" id="help_btn">
                 <span class="glyphicon glyphicon-modal-window"></span> Confused? Click Me
               </button>
               <input id="pathToggle" type="checkbox" data-toggle="toggle" data-on="🇮🇪✝️ &amp; 🇬🇧🐴 " data-onstyle="primary" data-off="No Paths" data-offstyle="danger">
@@ -100,7 +101,7 @@
               <h4 class="modal-title" id="modalLabel">Fabula and Sjužet in “Wandering Rocks”</h4>
             </div>
             <div class="modal-body">
-              <ul class="nav nav-tabs" role="tablist">
+              <ul class="nav nav-tabs" role="tablist" id="tabs">
                 <li role="presentation" class="active"><a href="#intro" aria-controls="intro" role="tab" data-toggle="tab">Intro</a></li>
                 <li role="presentation"><a href="#fabulaandsjuzet" aria-controls="fabulaandsjuzet" role="tab" data-toggle="tab">Fabula &amp; Sjužet?</a></li>
                 <li role="presentation"><a href="#wanderingrocks" aria-controls="wanderingrocks" role="tab" data-toggle="tab">“Wandering Rocks”?</a></li>

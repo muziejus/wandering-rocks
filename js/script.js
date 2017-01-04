@@ -79,6 +79,10 @@ d3.queue(1) // one task at a time.
     d3.select("#pause_btn").on("click", function(){
       pause();
     });
+    $("#help_btn").click(function(){
+      $("#modal").modal("show");
+      $("#tabs a:last").tab("show");
+    });
     
       // The map
     $("path").on("click", function(){
@@ -506,7 +510,7 @@ function createLegend(){
     .style("cursor", "auto");
   var colors = [my.colors.instance, my.colors.inset, my.colors.collision];
   ["instance", "inset", "collision"].forEach(function(string, i){
-    d3.select("#legend_" + string)
+    d3.selectAll(".legend-" + string)
       .style("background-color", colors[i]);
   });
 }
