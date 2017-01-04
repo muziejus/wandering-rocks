@@ -15,10 +15,10 @@ var my = {
   currentLineIndex: 0,
   markersLayer: new L.FeatureGroup(),
   colors: {
-    inset: "rgba(51, 160, 44, 1)",
-    instance: "rgba(166, 206, 227, 1)",
-    collision: "rgba(178, 223, 138, 1)",
-    path: "rgba(31, 120, 180, 1)"
+    inset: "rgba(253, 184, 99, 1)",
+    instance: "rgba(178, 171, 210, 1)",
+    collision: "rgba(230, 91, 1, 1)",
+    path: "rgba(94, 60, 153, 1)"
   },
   main: {
     map: L.map('main_map', {zoom: 13, minZoom: 3, maxZoom: 18, center: [53.335, -6.258]}),
