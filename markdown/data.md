@@ -1,5 +1,45 @@
 ## Data
 
+There are three distinct datasets in this project, and all of them rely on the
+previous work done by Gifford and Gunn and Hart.
+
+The first dataset are what I call “instances.” These are instances of a place’s
+being mentioned in the text. I wrote a webapplication,
+[`NYWalker`](http://nywalker.newyorkscapes.org/), that makes it easier to add
+these instances by hand. They include a page number, a sequence, and a specific
+location. To this data, I also added times, using Hart’s measurements. Hart did
+not time each instance of a place’s being mentioned, so I guessed a time for a
+lot of them. The dataset is further split by spatiotemporalities, in that there
+is an “exterior” spacetime and an “interior” spacetime. These distinctions are
+local to this visualization and are not part of the `NYWalker` data, which is
+[available for download](http://nywalker.newyorkscapes.org/books/ulysses-1922).
+
+The second dataset is built on the first. It includes “collisions.” These are
+incidents that clearly take place at a specific place and time and feature
+multiple actors but may not be explicitly noted in the text with an “instance”
+(though a nearby instance often provides a clue for location and time!). An
+instance is Conmee’s boarding a tram on *Newcomen Bridge*. A collision is
+*Conmee’s* (actor 1) looking at the *awkward man* (actor 2) while on the tram.
+
+The third dataset is mostly invisible at this time. It is made up of the paths
+taken by around 30 different actors in the episode. Currently, only two are
+visible: Conmee’s and the cavalcades’ paths. These two are available because,
+apparently, Joyce relied on them in constructing the mechanics of the episode.
+These paths I drew by hand and rely on a lot of speculation, such as how
+someone walks from O’Connell Bridge to “King Billy’s horse” on College Green.
+The narrator does not tell us how the Breens took the trip.
+
+There are two famous geographical “blunders” in the episode, where the narrator
+(or a character) misidentifies a place: Farrell confuses the Merrion Hall with
+the Metropolitan Hall, and Stratton welcomes the cavalcade on a bridge spanning
+the Grand Canal, but referred to as the “Royal Canal Bridge.” In both
+instances, I treated these as misidentifications, not as references to places
+far removed from the spatiotemporal logic of either actor’s location and
+movement.
+
+I also am not quite sure where Gifford got his sense of the location of Thomas
+Court. I used one that, to me, seems more likely.
+
 ## Technology
 
 First, this project is available on
