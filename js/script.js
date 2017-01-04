@@ -496,16 +496,17 @@ function populatePlotLine() {
 
 function populateSectionStarts(){
   console.log("hitting populateSectionStarts");
-  my.sectionStarts = $('.section').map(function(){ return $(this).position().top; }).toArray(); 
+  my.sectionStarts = $(".section").map(function(){ return $(this).position().top; }).toArray(); 
   my.sectionStarts[0] = my.lines[0];
 }
 
 function createLegend(){
+  d3.selectAll(".legend")
+    .style("opacity", 1)
+    .style("cursor", "auto");
   var colors = [my.colors.instance, my.colors.inset, my.colors.collision];
   ["instance", "inset", "collision"].forEach(function(string, i){
     d3.select("#legend_" + string)
-      .style("color", "#333")
-      .style("cursor", "auto")
       .style("background-color", colors[i]);
   });
 }
@@ -704,7 +705,7 @@ function stepBackward() {
 }
 
 function recalculate(){
-  ["#timeLine_instance", "#timeLine_inset", "#timeLine_collision", ".plotline", ".timeline", "#plotLine"].forEach(function(el){
+  ["#timeLine_instance", "#timeLine_inset", "#timeLine_collision", ".plotline", ".timeline", "#plotLine", "#recalculating"].forEach(function(el){
     d3.selectAll(el).remove();
   my.recalculate = setTimeout(function(){
     console.log("recalculating");
@@ -713,10 +714,20 @@ function recalculate(){
     d3.select("#theLineDiv")
       .attr("width", my.theLineWidth);
     d3.select("#theLineSvg")
-      .attr("width", my.theLineWidth);
+      .attr("width", my.theLineWidth)
+      .append("text").attr("id", "recalculating");
+    d3.select("#recalculating")
+      .attr("x", my.theLineWidth/2)
+      .attr("y", 60)
+      .attr("text-anchor", "middle")
+      .attr("font-family", "sans-serif")
+      .attr("font-size", "20")
+      .attr("fill", "#ddd")
+      .text("Recalculating… Reload page to ensure correct x-axis.");
     });
     populateSectionStarts();
     setTimeout(function(){
+      d3.select("#recalculating").remove();
       populateTimeLine();
       populatePlotLine();
       my.mode === "sjuzet" ? clearTheLine("plotline") : clearTheLine("timeline");
