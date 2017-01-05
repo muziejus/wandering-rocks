@@ -34,6 +34,8 @@
 
 * Blamires, Harry. _The Bloomsday Book: A Guide through Joyce’s Ulysses_. London: Methuen, 1966.
 
+* Drucker, Johanna. _Graphesis: Visual Forms of Knowledge Production_. Cambridge, MA: Harvard UP, 2014.
+
 * Ellmann, Richard. _James Joyce_. Oxford: Oxford UP, 1983.
 
 * Foucault, Michel. “Questions on Geography.” In _Power/Knowledge:Selected Interviews and Other Writings, 1972–1977_. ed. and trans. by Colin Cordon. New York: Pantheon, 1980.
@@ -61,6 +63,8 @@
 * Meeks, Elijah. _D3.js in Action_. Shelter Island, NY: Manning, 2015.
 
 * Murray, Scott. _Interactive Data Visualization for the Web_. Sebastopol, CA: O’Reilly Media, 2013.
+
+* Ngai, Sianne. _Our Aesthetic Categories: Zany, Cute, Interesting_. Cambridge, MA: Harvard UP, 2012.
 
 * Soja, Edward. _Thirdspace: Journeys to Los Angeles and Other Real-and-Imagined Places_. Cambridge, MA: Blackwell, 1996.
 

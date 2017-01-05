@@ -18,7 +18,7 @@ Jamesonian vein, just spatially). Bakhtin defines the chronotope as that which
 demonstrates the “intrinsic connectedness of temporal and spatial relationships
 that are artistically expressed in literature.” Based on Einstein’s Theory of
 Relativity, the chronotope “expresses the inseparability of space and time”
-(Bakhtin, 84) Many critical geographers (Massey, Soja, Harvey) have insisted on
+(84). Many critical geographers (Massey, Soja, Harvey) have insisted on
 merging the two for decades now, but doing so continues to present challenges
 to literary study, at least when thinking about the worlds a novel creates.
 
@@ -34,7 +34,7 @@ plurality or writerliness is a summit that I’m still trying to work through
 (and one more interconnected, as I believe its invocation here shows, with
 spatiotemoprality than might be at first assumed). Barthes encourages us to
 read “the text as if it had already been read,” which helps to manhandle and
-interrupt the text (Barthes, 15).
+interrupt the text (15).
 
 Focussing on the competing, colliding, contradicting, and circumventing
 spatiotemporalities in “Wandering Rocks” through this visualization actually
