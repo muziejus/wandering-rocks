@@ -1,6 +1,6 @@
 ## Spacetime, Nothing but Spacetime…
 
-> Did it start with Berson, or before? Space was treated as the dead, the
+> Did it start with Bergson, or before? Space was treated as the dead, the
 > fixed, the undialectical, the immobile. Time, on the contrary, was richness,
 > fecundity, life, dialectic. (Foucault, 70)
 
