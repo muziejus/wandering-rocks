@@ -41,3 +41,9 @@ spatiotemporalities in “Wandering Rocks” through this visualization actually
 helps reach this goal of a shattered text, with what feels like literally
 hundreds of obvious points of entry providing another rereading, another time
 through, another production.
+
+No matter what I’ve called spatiotemporalities in novels before (“sites,”
+“разноречие” and “разномирность,” and so on), as I try to build out my idea of
+“everyday criticism,” any kind of working over a text that allows these
+variable points of entry and variable productions, these writings by readers,
+must be useful towards that goal.
