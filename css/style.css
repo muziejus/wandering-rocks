@@ -89,6 +89,10 @@ p.indent {
   width: 100%;
 }
 
+#clock {
+  margin-top: 10px;
+}
+
 .collision, .main, .inset {
   stroke-width: 1px;
   stroke: #222;
