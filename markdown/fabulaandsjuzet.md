@@ -2,10 +2,10 @@
 
 <p class="lead">“Fabula” and “sjužet” are two words that have entered into
 narrative theory via Russian Formalism. Both “фабула” and “сюжет” can mean
-“plot,” but early 20th century Russian critics narrowed down their definitions.
+“plot,” but early 20th century Russian critics narrowed their definitions.
 Fabula, in its most basic sense, is the historical order of the events in a
-story. Sjužet (from the French word for plot, “sujet,”) is the narrative order
-of the story.</p>
+story. Sjužet (from the French “sujet”) is the narrative order of the
+story.</p>
 
 For example, in _Ulysses_, episode 3 (“Proteus”) is _after_ episode 4
 (“Calypso”) in the novel’s fabula, as the events in the former take place
@@ -16,9 +16,9 @@ would force reading episode 4 before episode 3. Reading its sjužet reverses the
 process.
 
 These contrasting and perhaps contradictory temporalities (or, better,
-spatiotemporalities) separate the novel from the world that he novel creates.
-Woloch notes, when discussing story/discourse, histoire/discours, and
-fabula/sjužet, that
+spatiotemporalities) separate the novel from the world that the novel creates.
+When discussing story/discourse, histoire/discours, and
+fabula/sjužet, Woloch adds that
 
 >All these dichotomous terms refer, finally, to the essentially divided nature
 >of the literary text, as it is torn between form and content; between the
@@ -55,12 +55,12 @@ But these events bookend something that jumps back and forth, underscoring the
 different modes of spatiotemporality offered by fabula and sjužet. Yet because
 of the necessary temporal component of spatiotemporality, it doesn’t suffice to
 think of “Wandering Rocks” with a fixed map showing everyone’s journeys. The
-animation—two of them, in fact—is the only way to remain true to the
-simultaneity of the episode.
+animation—two of them, in fact—is the only way to provide a glimpse of the
+“simultaneity,” such as it exists, of the episode (Anderson, 24–26).
 
 Furthermore, “Wandering Rocks”’s focus on minor characters also highlights the
 tension between the world of the novel (where the fabula is) and its art (where
-the sjužet is). The episode takes the reader out of the frame of the Odyssey,
+the sjužet is). The episode takes the reader out of the frame of _The Odyssey_,
 of the story of Stephen and Bloom. Instead, it showcases Dublin and its
 inhabitants, a side story populated by masses of minor characters not typically
 given the space to breathe in a novel. 

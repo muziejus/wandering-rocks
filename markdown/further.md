@@ -28,11 +28,15 @@
 
 * Adams, Robert Martin. _Surface and Symbol: The Consistency of James Joyce’s Ulysses_. New York: Oxford UP, 1962.
 
+* Anderson, Benedict. _Imagined Communities: Reflections on the Origin and Spread of Nationalism_. London: Verso, 2006.
+
 * Bakhtin, Mikhail Mikhailovich. _The Dialogic Imagination: Four Essays_. ed. Michael Holquist. trans. Caryl Emerson and Michael Holquist. Austin: U Texas P, 1981.
 
 * Barthes, Roland. _S/Z_. trans. Richard Miller. New York: Hill and Wang, 1974.
 
 * Blamires, Harry. _The Bloomsday Book: A Guide through Joyce’s Ulysses_. London: Methuen, 1966.
+
+* Budgen, Frank. _James Joyce and the Making of ‘Ulysses’ and Other Writings_. London: Oxford UP, 1972.
 
 * Drucker, Johanna. _Graphesis: Visual Forms of Knowledge Production_. Cambridge, MA: Harvard UP, 2014.
 

@@ -3,8 +3,8 @@
 There are three distinct datasets in this project, and all of them rely on the
 previous work done by Gifford and Gunn and Hart.
 
-The first dataset are what I call “instances.” These are instances of a place’s
-being mentioned in the text. I wrote a webapplication,
+The data in the first dataset are what I call “instances.” These are instances
+of a place’s being mentioned in the text. I wrote a web application,
 [`NYWalker`](http://nywalker.newyorkscapes.org/), that makes it easier to add
 these instances by hand. They include a page number, a sequence, and a specific
 location. To this data, I also added times, using Hart’s measurements. Hart did
@@ -29,16 +29,24 @@ These paths I drew by hand and rely on a lot of speculation, such as how
 someone walks from O’Connell Bridge to “King Billy’s horse” on College Green.
 The narrator does not tell us how the Breens took the trip.
 
-There are two famous geographical “blunders” in the episode, where the narrator
-(or a character) misidentifies a place: Farrell confuses the Merrion Hall with
-the Metropolitan Hall, and Stratton welcomes the cavalcade on a bridge spanning
-the Grand Canal, but referred to as the “Royal Canal Bridge.” In both
-instances, I treated these as misidentifications, not as references to places
-far removed from the spatiotemporal logic of either actor’s location and
-movement.
+There are several famous geographical “blunders” in the episode, where the
+narrator (or a character) misidentifies a place. Three deserve special comment.
+important here.  First, the Poddle river acts as an actor and not a place. This
+permits its “misplacing” by the Wood Quay with no worry. Next, Farrell confuses
+the Merrion Hall with the Metropolitan Hall. Finally, Stratton’s image welcomes
+the cavalcade on a bridge spanning the Grand Canal that is referred to as the
+“Royal Canal Bridge.” In both later instances, I treated these as
+misidentifications, not as references to places far removed from the
+spatiotemporal logic of either actor’s location and movement. 
 
-I also am not quite sure where Gifford got his sense of the location of Thomas
-Court. I used one that, to me, seems more likely.
+Finally, Gifford writes that Thomas Court, the location of the unfindable
+“mansion of the Kildares” that Love mentions, “was the main street of the
+walled city of medieval Dublin. It is at present a series of streets including
+Thomas Street” (Gifford 268). I read the reference as one to, instead, the
+[Liberty of Thomas Court and
+Donore](https://en.wikipedia.org/wiki/Liberty_of_Thomas_Court_and_Donore), a
+manor right outside the walled city and the location of the current Dublin
+street Thomas Court. 
 
 ## Technology
 
@@ -54,7 +62,7 @@ also improved.
 The text in these various tabs was written in Markdown and is converted to HTML
 on the fly by [Showdown](https://github.com/showdownjs/showdown). The overall
 aesthetic is farmed out to [Bootstrap](http://getbootstrap.com), which is
-extended with the [Bootstrap Toggle](http://www.bootstraptoggle.com/) extention
+extended with the [Bootstrap Toggle](http://www.bootstraptoggle.com/) extension
 to make the handsome switches.
 
 If the project looks a lot like Chris Whong’s [NYC Taxis: A Day in the
@@ -80,19 +88,19 @@ I provide even the basemap/shapes (see below).
 
 Of course, I also used [StackOverflow](http://stackoverflow.com) extensively, but that goes without saying. 
 
-### Deep Dive…
+### Let’s get technical…
 
 For those seeking to emulate this project, by far and away the most complicated
 aspect for me is/was figuring out how to control what a `Point` GeoJSON object
 would look like using the `d3.geoPath` generator. It doesn’t draw a simple
-`<circle>` SVG object, but, rather, creates a circle in the SVG minilanguage
+`<circle>` SVG object, but, rather, creates a circle in the SVG `<path>` minilanguage
 (visible under attribute `d`). Hence, the points don’t respond to the usual
 changes in the `r` attribute like one might expect (or like every D3 tutorial
 expects). 
 
 This mostly became an issue because there are two maps in this visualization,
 meaning two different `d3.geoTransform`s and `d3.geoProjection`s. I rewrote the
-whole project using on the fly conversions for each point, but it slowed the
+whole project using `<circle>`s with on-the-fly conversions for each, but it slowed the
 site down. Bostock’s example, in contrast, streams points, which is, if I
 understand correctly, asynchronous and much faster. So I had to stick to
 `d3.geoPath`s and figure out how to manipulate `d`.

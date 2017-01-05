@@ -8,17 +8,17 @@ secondary characters, and lack of an analogue in <em>The Odyssey</em>.</p>
 _Ulysses_, after all, has structural similarities to the *Odyssey*, but in the
 latter, Odysseus is only told about the danger of sailing through the Wandering
 Rocks. He takes his chances, instead, with Scylla and Charybdis. As a result,
-the episode provides Joyce a bit os space in which to play outside the frame of
+the episode provides Joyce a bit of space in which to play outside the frame of
 the rest of the novel, which is, of course, already a very forgiving frame.
 
-Ellmann notes that the episode brings the city of Dublin even more fully into
+Ellmann notes that the episode brings “the city of Dublin even more fully into
 the book by focusing upon it rather than upon Bloom or Stephen,” the two main
 characters of the novel (452). In its difference from the rest of the novel on
-these terms, it also reflects back on the rest of the novel. As Gilbert notes,
+these terms, it also reflects back on the rest of the novel. Gilbert adds,
 “In its structure and its _technic_ (“labyrinth”) this episode may be regarded
 as a small-scale model of _Ulysses_ as a whole” (227).
 
-As a novel-within-a-novel, then,, the episode is broken up into 19 distinct
+As a novel-within-a-novel, then, the episode is broken up into 19 distinct
 sections. Each centers around, more or less, a different character. Some move
 around, with the greatest distance covered in the first and last sections. But
 other characters remain in one place during the course of their section.
@@ -45,7 +45,7 @@ What follows is a brief description of each of the 19 episodes:
 
 4. Katey and Boody Dedalus arrive home. Maggy offers them soup.
 
-5. Blazes Boylan orders a package to be sent to Molly at Thornton’s and flirts with the shopgirl.
+5. Blazes Boylan orders a package at Thornton’s to be sent to Molly and leers at the shopgirl.
 
 6. Stephen Dedalus and Almidano Artifoni talk by Trinity College. Artifoni misses his tram.
 
@@ -59,7 +59,7 @@ What follows is a brief description of each of the 19 episodes:
 
 11. Dilly Dedalus runs into Simon Dedalus and asks him for money.
 
-12. Tom Kernan walks from completing a business deal to the Liffey where his just misses the cavalcade.
+12. Tom Kernan walks from completing a business deal to the Liffey where he just misses the cavalcade.
 
 13. Stephen looks over some books and runs into Dilly, who has bought a French primer.
 
