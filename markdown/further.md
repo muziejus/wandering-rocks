@@ -28,9 +28,15 @@
 
 * Adams, Robert Martin. _Surface and Symbol: The Consistency of James Joyce’s Ulysses_. New York: Oxford UP, 1962.
 
+* Bakhtin, Mikhail Mikhailovich. _The Dialogic Imagination: Four Essays_. ed. Michael Holquist. trans. Caryl Emerson and Michael Holquist. Austin: U Texas P, 1981.
+
+* Barthes, Roland. _S/Z_. trans. Richard Miller. New York: Hill and Wang, 1974.
+
 * Blamires, Harry. _The Bloomsday Book: A Guide through Joyce’s Ulysses_. London: Methuen, 1966.
 
 * Ellmann, Richard. _James Joyce_. Oxford: Oxford UP, 1983.
+
+* Foucault, Michel. “Questions on Geography.” In _Power/Knowledge:Selected Interviews and Other Writings, 1972–1977_. ed. and trans. by Colin Cordon. New York: Pantheon, 1980.
 
 * Gifford, Don. _Ulysses Annotated_. Berkeley, CA: U of California P, 1989.
 
@@ -40,14 +46,22 @@
 
 * Hart, Clive and David Hayman. _James Joyce’s Ulysses: Critical Essays_. Berkeley, CA: U of California P., 1974.
 
+* Harvey, David. _Justice, Nature, and the Geography of Difference_. Cambridge, MA: Blackwell, 1996.
+
 * Huang Shan-Yun. “‘Wandering Temporalities’: Rethinking *Imagined Communities* through ‘Wandering Rocks.’” _JJQ_ (49.3–4), 2012. 589–610.
+
+* Jamson, Fredric. _Postmodernism, or, the Cultural Logic of Late Capitalism_. Durham: Duke UP, 1999.
 
 * Joyce, James. _Ulysses_. New York: Vintage, 1961.
 
 * Joyce, James. _Ulysses: The Corrected Text_. New York: Vintage, 1986.
 
+* Massey, Doreen. “Politics and Space/Time.” _New Left Review_ (196.1), 1992. 65–84.
+
 * Meeks, Elijah. _D3.js in Action_. Shelter Island, NY: Manning, 2015.
 
 * Murray, Scott. _Interactive Data Visualization for the Web_. Sebastopol, CA: O’Reilly Media, 2013.
+
+* Soja, Edward. _Thirdspace: Journeys to Los Angeles and Other Real-and-Imagined Places_. Cambridge, MA: Blackwell, 1996.
 
 * Woloch, Alex. _The One vs. the Many: Minor Characters and the Space of the Protagonist_. Princeton: Princeton UP, 2003.

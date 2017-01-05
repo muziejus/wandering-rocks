@@ -17,7 +17,7 @@ process.
 
 These contrasting and perhaps contradictory temporalities (or, better,
 spatiotemporalities) separate the novel from the world that he novel creates.
-Alex Woloch notes, when discussing story/discourse, histoire/discours, and
+Woloch notes, when discussing story/discourse, histoire/discours, and
 fabula/sjužet, that
 
 >All these dichotomous terms refer, finally, to the essentially divided nature
