@@ -58,7 +58,7 @@ a smell) interact.
 **Clicking** on a dot or a place in the text will pause the animation and reset
 it from that point. The dots are petulant, however. Once they’re not the
 center of attention, they no longer respond to clicks. The text is always
-more forgiving. Of course, hitting the back button can revive dots that
+more forgiving. Of course, hitting the step-back button can revive dots that
 have already faded away.
 
 ### And the timeline-looking thing?
