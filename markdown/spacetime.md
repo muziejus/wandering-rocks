@@ -2,7 +2,7 @@
 
 > Did it start with Bergson, or before? Space was treated as the dead, the
 > fixed, the undialectical, the immobile. Time, on the contrary, was richness,
-> fecundity, life, dialectic. (Foucault, 70)
+> fecundity, life, dialectic. (Foucault 70)
 
 The relationship between space, spacetime, and the novel has been at the center
 of my work for almost a decade now. And still I often start with this nearly
