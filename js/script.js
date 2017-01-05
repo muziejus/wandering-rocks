@@ -27,7 +27,8 @@ d3.queue(1) // one task at a time.
       my.events.push({
         id: feature.properties.id,
         time: feature.properties.time,
-        line: $("#text_" + id).position().top,
+        // line: ($("#text_box").scrollTop() - $("#text_" + id).position().top),
+        line: ($("#text_" + id).position().top),
         latLng: L.latLng(feature.geometry.coordinates[1], feature.geometry.coordinates[0]),
         zoom: feature.properties.zoom
       });
@@ -85,6 +86,36 @@ d3.queue(1) // one task at a time.
       $("#modal").modal("show");
       $("#tabs a:last").tab("show");
     });
+    $("#pathToggle").change(function() {
+      if ($(this).is(":checked")) {
+        alterPaths(0.6);
+      } else {
+        alterPaths(0);
+      }
+    });
+    $("#fsToggle").change(function() {
+      if (!$(this).is(":checked")) {
+        my.mode = "sjuzet";
+        clearTheLine("plotline");
+        reviveTheLine("timeline");
+        d3.selectAll(".btn-info")
+          .classed("btn-info", false)
+          .classed("btn-success", true);
+      } else {
+        my.mode = "fabula";
+        clearTheLine("timeline");
+        reviveTheLine("plotline");
+        d3.selectAll(".btn-success")
+          .classed("btn-success", false)
+          .classed("btn-info", true);
+        getSjuzetPosition(90);
+        var time = my.firingLineEvents[my.currentLineIndex][0].time,
+        nextEvents = my.times.filter(function(t){
+          return t >= time;
+        });
+        my.currentTimeIndex = my.times.indexOf(nextEvents[0]);
+      }
+    });
     
       // The map
     $("path").on("click", function(){
@@ -104,45 +135,8 @@ d3.queue(1) // one task at a time.
       fireEvents(my.firingTimeEvents[my.currentTimeIndex]);
     });
 
-    $("#pathToggle").change(function() {
-      if ($(this).is(":checked")) {
-        alterPaths(0.6);
-      } else {
-        alterPaths(0);
-      }
-    });
-
-    $("#fsToggle").change(function() {
-      if (!$(this).is(":checked")) {
-        my.mode = "sjuzet";
-        clearTheLine("plotline");
-        reviveTheLine("timeline");
-        d3.selectAll(".btn-info")
-          .classed("btn-info", false)
-          .classed("btn-success", true);
-        // $('#text_box').on("scroll", function() {
-        //   // console.log($('#text_box').scrollTop());
-        //   // update some scroll container variable.
-        // });
-      } else {
-        my.mode = "fabula";
-        clearTheLine("timeline");
-        reviveTheLine("plotline");
-        d3.selectAll(".btn-success")
-          .classed("btn-success", false)
-          .classed("btn-info", true);
-        getSjuzetPosition(90);
-        var time = my.firingLineEvents[my.currentLineIndex][0].time,
-        nextEvents = my.times.filter(function(t){
-          return t >= time;
-        });
-        my.currentTimeIndex = my.times.indexOf(nextEvents[0]);
-        // $('#text_box').off("scroll");
-      }
-    });
-
+      // The navbar
     $(window).resize(function(){
-      clearTimeout(my.recalculate);
       recalculate();
     });
 
@@ -446,7 +440,6 @@ function populatePlotLine() {
   my.plotxScale = d3.scaleLinear()
     .domain([my.lines[0], my.lines[my.lines.length - 1]])
     .range([20, my.theLineWidth - 20]);
-  // console.log("the width is " + my.theLineWidth + " and section 19 is " + my.sectionStarts[18] + " and it should be at " + my.plotxScale(my.sectionStarts[18]));
   var xAxis = d3.axisBottom()
     // .tickFormat(d3.utcFormat("%H:%M"))
     // .ticks(d3.timeMinute.every(15))
@@ -500,9 +493,11 @@ function populatePlotLine() {
     .attr("y2", 80);
 }
 
-function populateSectionStarts(){
-  console.log("hitting populateSectionStarts");
-  my.sectionStarts = $(".section").map(function(){ return $(this).position().top; }).toArray(); 
+function populateSectionStarts(offset){
+  if (!offset){
+    offset = 0;
+  }
+  my.sectionStarts = $(".section").map(function(){ return offset + $(this).position().top; }).toArray(); 
   my.sectionStarts[0] = my.lines[0];
 }
 
@@ -713,8 +708,6 @@ function stepBackward() {
 function recalculate(){
   ["#timeLine_instance", "#timeLine_inset", "#timeLine_collision", ".plotline", ".timeline", "#plotLine", "#recalculating"].forEach(function(el){
     d3.selectAll(el).remove();
-  my.recalculate = setTimeout(function(){
-    console.log("recalculating");
     buildSjuzetData();
     my.theLineWidth = $("#inset_map").offset().left - 55;
     d3.select("#theLineDiv")
@@ -723,23 +716,27 @@ function recalculate(){
       .attr("width", my.theLineWidth)
       .append("text").attr("id", "recalculating");
     d3.select("#recalculating")
+      .style("cursor", "pointer")
+      .style("pointer-events", "all")
       .attr("x", my.theLineWidth/2)
-      .attr("y", 60)
+      .attr("y", 59)
       .attr("text-anchor", "middle")
       .attr("font-family", "sans-serif")
-      .attr("font-size", "20")
+      .attr("font-size", "18")
       .attr("fill", "#ddd")
-      .text("Recalculating… Reload page to ensure correct x-axis.");
+      .on("click", function(){location.reload();})
+      .text("Recalculating… Click me to reload and ensure correct x-axis.");
     });
-    populateSectionStarts();
-    setTimeout(function(){
-      d3.select("#recalculating").remove();
-      populateTimeLine();
-      populatePlotLine();
-      my.mode === "sjuzet" ? clearTheLine("plotline") : clearTheLine("timeline");
-    }, 5000);
-  }, 5000);
 }
+
+// No longer needed because clicking above forces a reload.
+// function pushRecalculation(){
+//     populateSectionStarts($("#text_box").scrollTop());
+//       d3.select("#recalculating").remove();
+//       populateTimeLine();
+//       populatePlotLine();
+//       my.mode === "sjuzet" ? clearTheLine("plotline") : clearTheLine("timeline");
+// }
 
 function buildSjuzetData(){
   my.linesEvents = my.events.sort(function(a, b){
@@ -761,7 +758,6 @@ function buildSjuzetData(){
     }
   });
 }
-
 
 function updateIndices(event) {
   my.currentTimeIndex = my.times.indexOf(event.time);
