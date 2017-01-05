@@ -12,7 +12,7 @@ while super neat and cool, possibly do not actually tell us much _about_
 “Wandering Rocks.” This initial concern is amplified by the following
 reactions.
 
-* **Oh, just what the world needs, another deep dive on James Freakin’ Joyce.**
+**Oh, just what the world needs, another deep dive on James Freakin’ Joyce.**
 There are lots of novels with fractured fabuly and sjužety (if we’re sticking
 to the Russian…). Similarly, there are lots of novels that provide extensive
 geographical detail, making mapping movements through a city possible. Why go
@@ -33,7 +33,7 @@ help frame how we look at spatiotemoporality for any novel (or perhaps
 aesthetic text), but since a lot of people care about Joyce, maybe this will
 give those ideas more visibility.
 
-* **Friend, _Ulysses_ takes place in Dublin in 1904. You have a 2017
+**Friend, _Ulysses_ takes place in Dublin in 1904. You have a 2017
 basemap.** This is a valid concern, and it is one that merely putting a c.
 1904 georectified basemap underneath the dots and lines would not really solve.
 Drucker has been encouraging data-handling humanists to consider the value of
@@ -58,7 +58,7 @@ example, something like the immense idea of “America” is reduced to a teeny
 exploding dot with its center in Kansas. These issues remain _unsolved_, and
 this project _fails_ Drucker’s challenge.
 
-* **You took preëxisting information and just added color and made it bounce.**
+**You took preëxisting information and just added color and made it bounce.**
 Drucker distinguishes between information visualizations that produce the
 knowledge they draw and those that merely display information (3). It
 seems inarguable that this visualization does the latter only. Any new insights
@@ -76,4 +76,13 @@ Fabula and sjužet seem to be strictly temporal terms, and it’s all too easy t
 treat them exclusively as such. But, then, that’s what we’re doing: taking the
 all too easy route.
 
-* **All this, just to have a chance to play with JavaScript?** Play! 
+**All this, just to have a chance to play with JavaScript?** Play! Isn’t that the point? Barthes again, and to close out:
+
+> Rereading draws the text out of its internal chronology (“this happens
+> _before_ or _after_ that”) and recaptures a mythic time (without _before_ or
+> _after_ [hence troubling Andersonian simultaneity]); rereading is no longer
+> consumption, but play (that play which is the return of the different). If
+> then, a deliberate contradiction in terms, we _immediately_ reread the text,
+> it is in order to obstain, as though under the effect of a drug (that of
+> recommencement, of different), not the _real_ text, but a plural text: the
+> same and new (16)
