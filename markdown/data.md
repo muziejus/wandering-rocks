@@ -42,7 +42,7 @@ spatiotemporal logic of either actor’s location and movement.
 Finally, Gifford writes that Thomas Court, the location of the unfindable
 “mansion of the Kildares” that Love mentions, “was the main street of the
 walled city of medieval Dublin. It is at present a series of streets including
-Thomas Street” (Gifford 268). I read the reference as one to, instead, the
+Thomas Street” (268). I read the reference as one to, instead, the
 [Liberty of Thomas Court and
 Donore](https://en.wikipedia.org/wiki/Liberty_of_Thomas_Court_and_Donore), a
 manor right outside the walled city and the location of the current Dublin
