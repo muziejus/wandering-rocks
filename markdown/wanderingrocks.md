@@ -1,11 +1,15 @@
 # Wandering Rocks
 
-“Wandering Rocks” is the most obviously complexly, mechanically intertwined
-episode in James Joyce’s 1992 novel _Ulysses_. The novel itself has structural
-similarities to the *Odyssey*, but in the latter, Odysseus is only told about
-the danger of sailing through the Wandering Rocks. He takes his chances,
-instead, with Scylla and Charybdis. As a result, this episode stands a bit
-outside of the rest of the novel beginning with its unofficial name.
+<p class="lead">“Wandering Rocks” is the most obviously complexly, mechanically
+intertwined episode in James Joyce’s 1992 novel <em>Ulysses</em>. It also stands
+outside of the rest of the novel in its use of spatiotemporality, focus on
+secondary characters, and lack of an analogue in <em>The Odyssey</em>.</p>
+
+_Ulysses_, after all, has structural similarities to the *Odyssey*, but in the
+latter, Odysseus is only told about the danger of sailing through the Wandering
+Rocks. He takes his chances, instead, with Scylla and Charybdis. As a result,
+the episode provides Joyce a bit os space in which to play outside the frame of
+the rest of the novel, which is, of course, already a very forgiving frame.
 
 Ellmann notes that the episode brings the city of Dublin even more fully into
 the book by focusing upon it rather than upon Bloom or Stephen,” the two main
@@ -49,7 +53,7 @@ What follows is a brief description of each of the 19 episodes:
 
 8. Ned Lambert gives a tour of the council chamber of St. Mary’s Abbey to Hugh Love. J. J. O’Malloy accompanies.
 
-9. Lenehan and M‘Coy walk from Crampton Court to Temple Bar so Lenehan can place a bet. Lenehan tells a story about groping Molly.
+9. Lenehan and M‘Coy walk from Crampton Court to Temple Bar to the Liffey. Lenehan tells a story about groping Molly.
 
 10. Leopold Bloom decides which books to buy for Molly.
 
@@ -67,6 +71,6 @@ What follows is a brief description of each of the 19 episodes:
 
 17. Artifoni still chases his tram, while Cashel Boyle O’Connor Fitzmaurice Tisdall Farrell walks along Merrion Square.
 
-18. Master Patrick Aloysius Dignam brings pork steaks back home.
+18. Master Patrick Aloysius Dignam starts to bring pork steaks back home.
 
 19. The viceregal cavalcade leaves Phoenix Park and drives through downtown Dublin on the way to the Mirus Bazaar.
