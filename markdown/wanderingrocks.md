@@ -5,7 +5,7 @@ intertwined episode in James Joyce’s 1992 novel <em>Ulysses</em>. It also stan
 outside of the rest of the novel in its use of spatiotemporality, focus on
 secondary characters, and lack of an analogue in <em>The Odyssey</em>.</p>
 
-_Ulysses_, after all, has structural similarities to the *Odyssey*, but in the
+_Ulysses_, after all, has structural similarities to *The Odyssey*, but in the
 latter, Odysseus is only told about the danger of sailing through the Wandering
 Rocks. He takes his chances, instead, with Scylla and Charybdis. As a result,
 the episode provides Joyce a bit of space in which to play outside the frame of
@@ -35,7 +35,7 @@ the Mirus Bazaar in Ballsbridge, thereby riding straight through downtown
 Dublin, where nearly every character in the episode has an opportunity to
 remark on the cavalcade as it rides past.
 
-What follows is a brief description of each of the 19 episodes:
+A brief description of each of the 19 episodes:
 
 1. Father Conmee walks from his church to Artane, taking the tram for a part of his trip.
 
