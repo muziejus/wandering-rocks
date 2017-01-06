@@ -2,7 +2,8 @@
 var my = {
   mode: "fabula",
   showdownConverter: new showdown.Converter(),
-  clockGlyph: '<span class="glyphicon glyphicon-time"></span> <small>16 June 1904</small> ',
+  // clockGlyph: '<span class="glyphicon glyphicon-time"></span> <small>16 June 1904</small> ',
+  clockGlyph: '<small>16 June 1904</small> ',
   timeFactor: 10,
   buffer: 90,
   lineHeight: 20,
