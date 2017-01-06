@@ -390,24 +390,30 @@ exploding dot with its center in Kansas. These issues remain _unsolved_, and
 this project _fails_ Drucker’s challenge.
 
 **You took preëxisting information and just added color and made it bounce.**
-Drucker distinguishes between information visualizations that produce the
-knowledge they draw and those that merely display information (3). It
-seems inarguable that this visualization does the latter only. Any new insights
-into “Wandering Rocks” seem destined for the bin marked “merely interesting”
-(Ngai). As in, “isn’t it _interesting_ that Boylan’s section is the first
-to intrude on Conmee’s command of the fabula from the of the episode?” That is,
-perhaps, interesting. It also may just be a cool story, bro. Moving that
-glimmer of interestingness somewhere else requires a deeper look into the
-structure of the episode, a look simply unavailable to this visualization. I
-have an idea for a different form of visualizing the tension between fabula and
-sjužet (hint: a two-dimentional (time|plot)line), but that visualization would
-be exclusively temporal, thereby violating the canonical rule of spatiotemporal
-thinking, in a Bill Murray singing voice: “Spacetime, nothing but spacetime.”
-Fabula and sjužet seem to be strictly temporal terms, and it’s all too easy to
-treat them exclusively as such. But, then, that’s what we’re doing: taking the
-all too easy route.
+    Drucker distinguishes between information visualizations that produce the
+    knowledge they draw and those that merely display information (3). It seems
+    at first inarguable that this visualization does the latter only. Any new
+    insights into “Wandering Rocks” seem destined to evoke the small surprise
+    of the merely interesting: “surprising—but not that surprising” (Ngai 145).
+    We have the delayed judgment of “isn’t it _interesting_ that Boylan’s
+    section is the first to intrude on Conmee’s command of the fabula from the
+    of the episode?” Moving that glimmer of interestingness somewhere else
+    requires a deeper look into the structure of the episode I have an idea for
+    a different form of visualizing the tension between fabula and sjužet
+    (hint: a two-dimentional (time|plot)line), but that visualization would be
+    exclusively temporal, thereby violating the canonical rule of
+    spatiotemporal thinking, in a Bill Murray singing voice: “Spacetime,
+    nothing but spacetime.” Fabula and sjužet seem to be strictly temporal
+    terms, and it’s all too easy to treat them exclusively as such. But, then,
+    that’s what we’re doing: taking the all too easy route. Nevertheless in
+    that deferred judgment, Sianne Ngai also sees in finding something
+    interesting the desire to “do criticism” (170). This aesthetic, after all,
+    does have “the capacity to produce new knowledge,” after all. It’s just not
+    clear, as yet, how (171).
 
-**All this, just to have a chance to play with JavaScript?** Play! Isn’t that the point? Barthes again, and to close out:
+**OK, but this all still boils down to being just a chance to play with
+    JavaScript, no?** Play! Isn’t that the point? Barthes again, and to close
+    out:
 
 > Rereading draws the text out of its internal chronology (“this happens
 > _before_ or _after_ that”) and recaptures a mythic time (without _before_ or
