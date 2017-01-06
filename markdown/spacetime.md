@@ -30,8 +30,8 @@ Choose your Own Adventures or _Rayuela_ still provide a sort of linearity on
 the fly. A sjužet remains; it’s just more reader-driven and divorced from the
 increment variable we typically call “page number.” Roland Barthes may write
 that “for those of us who are trying to establish a plural… the reading must
-also be plural, that is, without order of entrance,” but reaching his height of
-plurality or writerliness is a summit that I’m still trying to work through
+also be plural, that is, without order of entrance,” but reaching this height
+of plurality or writerliness is a summit that I’m still trying to work through
 (and one more interconnected, as I believe its invocation here shows, with
 spatiotemoprality than might be at first assumed). Barthes encourages us to
 read “the text as if it had already been read,” which helps to manhandle and
