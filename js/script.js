@@ -95,6 +95,7 @@ d3.queue(1) // one task at a time.
     });
     $("#fsToggle").change(function() {
       if (!$(this).is(":checked")) {
+        pause();
         my.mode = "sjuzet";
         clearTheLine("plotline");
         reviveTheLine("timeline");
@@ -102,6 +103,7 @@ d3.queue(1) // one task at a time.
           .classed("btn-info", false)
           .classed("btn-success", true);
       } else {
+        pause();
         my.mode = "fabula";
         clearTheLine("timeline");
         reviveTheLine("plotline");

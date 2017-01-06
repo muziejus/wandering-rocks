@@ -2,7 +2,7 @@
 var my = {
   mode: "fabula",
   showdownConverter: new showdown.Converter(),
-  clockGlyph: '<span class="glyphicon glyphicon-time"></span>&nbsp;',
+  clockGlyph: '<span class="glyphicon glyphicon-time"></span> <small>16 June 1904</small> ',
   timeFactor: 10,
   buffer: 90,
   lineHeight: 20,
@@ -10,7 +10,7 @@ var my = {
   firingTimeEvents: [],
   firingLineEvents: [],
   geoJSONFile: 'ulysses-1922_instances.geo.json',
-  formatTime: d3.utcFormat("%d %B %Y %H:%M:%S"),
+  formatTime: d3.utcFormat("%H:%M:%S"),
   currentTimeIndex: 0,
   currentLineIndex: 0,
   markersLayer: new L.FeatureGroup(),
