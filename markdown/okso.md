@@ -80,8 +80,8 @@ reactions.
     that’s what we’re doing: taking the all too easy route. Nevertheless in
     that deferred judgment, Sianne Ngai also sees in finding something
     interesting the desire to “do criticism” (170). This aesthetic, after all,
-    does have “the capacity to produce new knowledge,” after all. It’s just not
-    clear, as yet, how (171).
+    does have “the capacity to produce new knowledge” (171). It’s just not
+    clear, as yet, how.
 
 **OK, but this all still boils down to being just a chance to play with
     JavaScript, no?** Play! Isn’t that the point? Roland Barthes again, and to close
