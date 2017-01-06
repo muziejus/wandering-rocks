@@ -11,12 +11,12 @@ Rocks. He takes his chances, instead, with Scylla and Charybdis. As a result,
 the episode provides Joyce a bit of space in which to play outside the frame of
 the rest of the novel, which is, of course, already a very forgiving frame.
 
-Ellmann notes that the episode brings “the city of Dublin even more fully into
-the book by focusing upon it rather than upon Bloom or Stephen,” the two main
-characters of the novel (452). In its difference from the rest of the novel on
-these terms, it also reflects back on the rest of the novel. Gilbert adds,
-“In its structure and its _technic_ (“labyrinth”) this episode may be regarded
-as a small-scale model of _Ulysses_ as a whole” (227).
+Richard Ellmann notes that the episode brings “the city of Dublin even more
+fully into the book by focusing upon it rather than upon Bloom or Stephen,” the
+two main characters of the novel (452). In its difference from the rest of the
+novel on these terms, it also reflects back on the rest of the novel. Stuart
+Gilbert adds, “In its structure and its _technic_ (“labyrinth”) this episode
+may be regarded as a small-scale model of _Ulysses_ as a whole” (227).
 
 As a novel-within-a-novel, then, the episode is broken up into 19 distinct
 sections. Each centers around, more or less, a different character. Some move

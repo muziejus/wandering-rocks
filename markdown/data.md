@@ -1,7 +1,7 @@
 ## Data
 
 There are three distinct datasets in this project, and all of them rely on the
-previous work done by Gifford and Gunn and Hart.
+previous work done by Don Gifford and Ian Gunn and Clive Hart.
 
 The data in the first dataset are what I call “instances.” These are instances
 of a place’s being mentioned in the text. I wrote a web application,
