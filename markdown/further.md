@@ -34,6 +34,8 @@
 
 * Barthes, Roland. _S/Z_. trans. Richard Miller. New York: Hill and Wang, 1974.
 
+* Benjamin, Walter. _Illuminations_. ed. Hannah Arendt. trans. Harry Zohn. New York: Schocken, 1968.
+
 * Blamires, Harry. _The Bloomsday Book: A Guide through Joyce’s Ulysses_. London: Methuen, 1966.
 
 * Budgen, Frank. _James Joyce and the Making of ‘Ulysses’ and Other Writings_. London: Oxford UP, 1972.
@@ -71,5 +73,7 @@
 * Ngai, Sianne. _Our Aesthetic Categories: Zany, Cute, Interesting_. Cambridge, MA: Harvard UP, 2012.
 
 * Soja, Edward. _Thirdspace: Journeys to Los Angeles and Other Real-and-Imagined Places_. Cambridge, MA: Blackwell, 1996.
+
+* Watt, Ian. _The Rise of the Novel_. Berkeley: U of California P, 2001.
 
 * Woloch, Alex. _The One vs. the Many: Minor Characters and the Space of the Protagonist_. Princeton: Princeton UP, 2003.

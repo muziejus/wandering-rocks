@@ -1,4 +1,4 @@
-# Wandering Rocks
+## Wandering Rocks
 
 <p class="lead">“Wandering Rocks” is the most obviously complexly, mechanically
 intertwined episode in James Joyce’s 1992 novel <em>Ulysses</em>. It also stands
@@ -15,7 +15,7 @@ Richard Ellmann notes that the episode brings “the city of Dublin even more
 fully into the book by focusing upon it rather than upon Bloom or Stephen,” the
 two main characters of the novel (452). In its difference from the rest of the
 novel on these terms, it also reflects back on the rest of the novel. Stuart
-Gilbert adds, “In its structure and its _technic_ (“labyrinth”) this episode
+Gilbert adds, “In its structure and its _technic_ (‘labyrinth’) this episode
 may be regarded as a small-scale model of _Ulysses_ as a whole” (227).
 
 As a novel-within-a-novel, then, the episode is broken up into 19 distinct
@@ -28,7 +28,7 @@ Because the intrusions typically refer to characters who show up elsewhere in
 the episode, it becomes possible to plot out a timeline of events, which is
 what this visualization does.  We know person *x* was at place _n_ to meet
 person *y*, but over at _m_ later to meet person *z*. But through the
-intrusions, we also know where *x* and *z* were at the same time, though
+intrusions, we also know where *y* and *z* were at the same time, though
 separate from one another. These collisions are nowhere clearer than in the
 final section, which features a viceregal cavalcade riding from Phoenix Park to
 the Mirus Bazaar in Ballsbridge, thereby riding straight through downtown
@@ -71,6 +71,6 @@ A brief description of each of the 19 episodes:
 
 17. Artifoni still chases his tram, while Cashel Boyle O’Connor Fitzmaurice Tisdall Farrell walks along Merrion Square.
 
-18. Master Patrick Aloysius Dignam starts to bring pork steaks back home.
+18. Master Patrick Aloysius Dignam starts to bring porksteaks back home.
 
 19. The viceregal cavalcade leaves Phoenix Park and drives through downtown Dublin on the way to the Mirus Bazaar.

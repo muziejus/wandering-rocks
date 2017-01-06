@@ -55,8 +55,7 @@ But these events bookend something that jumps back and forth, underscoring the
 different modes of spatiotemporality offered by fabula and sjužet. Yet because
 of the necessary temporal component of spatiotemporality, it doesn’t suffice to
 think of “Wandering Rocks” with a fixed map showing everyone’s journeys. The
-animation—two of them, in fact—is the only way to provide a glimpse of the
-“simultaneity,” such as it exists, of the episode (Anderson, 24–26).
+information is incomplete.
 
 Furthermore, “Wandering Rocks”’s focus on minor characters also highlights the
 tension between the world of the novel (where the fabula is) and its art (where

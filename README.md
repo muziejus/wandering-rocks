@@ -5,9 +5,8 @@
 >calculated to a minute the time necessary for his characters to cover a given
 >distance of the city. (Budgen)
 
-This is a web project that presents Episode 10 of *Ulysses* (“Wandering Rocks”)
-as a data visualization treating two parallel concepts of space and two
-contradictory concepts of time.
+This is a web project that presents episode 10 of *Ulysses* (“Wandering Rocks”)
+as a data visualization that highlights its multiple and clashing spatiotemporalities.
 
 As the project matures, you can see it in action [on github
 pages](http://muziejus.github.io/wandering-rocks/).
@@ -32,7 +31,7 @@ process.
 These contrasting and perhaps contradictory temporalities (or, better,
 spatiotemporalities) separate the novel from the world that the novel creates.
 When discussing story/discourse, histoire/discours, and
-fabula/sjužet, Woloch adds that
+fabula/sjužet, Alex Woloch adds that
 
 >All these dichotomous terms refer, finally, to the essentially divided nature
 >of the literary text, as it is torn between form and content; between the
@@ -69,8 +68,7 @@ But these events bookend something that jumps back and forth, underscoring the
 different modes of spatiotemporality offered by fabula and sjužet. Yet because
 of the necessary temporal component of spatiotemporality, it doesn’t suffice to
 think of “Wandering Rocks” with a fixed map showing everyone’s journeys. The
-animation—two of them, in fact—is the only way to provide a glimpse of the
-“simultaneity,” such as it exists, of the episode (Anderson, 24–26).
+information is incomplete.
 
 Furthermore, “Wandering Rocks”’s focus on minor characters also highlights the
 tension between the world of the novel (where the fabula is) and its art (where
@@ -79,8 +77,7 @@ of the story of Stephen and Bloom. Instead, it showcases Dublin and its
 inhabitants, a side story populated by masses of minor characters not typically
 given the space to breathe in a novel. 
 
-
-# Wandering Rocks
+## Wandering Rocks
 
 “Wandering Rocks” is the most obviously complexly, mechanically
 intertwined episode in James Joyce’s 1992 novel _Ulysses_. It also stands
@@ -93,12 +90,12 @@ Rocks. He takes his chances, instead, with Scylla and Charybdis. As a result,
 the episode provides Joyce a bit of space in which to play outside the frame of
 the rest of the novel, which is, of course, already a very forgiving frame.
 
-Ellmann notes that the episode brings “the city of Dublin even more fully into
-the book by focusing upon it rather than upon Bloom or Stephen,” the two main
-characters of the novel (452). In its difference from the rest of the novel on
-these terms, it also reflects back on the rest of the novel. Gilbert adds,
-“In its structure and its _technic_ (“labyrinth”) this episode may be regarded
-as a small-scale model of _Ulysses_ as a whole” (227).
+Richard Ellmann notes that the episode brings “the city of Dublin even more
+fully into the book by focusing upon it rather than upon Bloom or Stephen,” the
+two main characters of the novel (452). In its difference from the rest of the
+novel on these terms, it also reflects back on the rest of the novel. Stuart
+Gilbert adds, “In its structure and its _technic_ (‘labyrinth’) this episode
+may be regarded as a small-scale model of _Ulysses_ as a whole” (227).
 
 As a novel-within-a-novel, then, the episode is broken up into 19 distinct
 sections. Each centers around, more or less, a different character. Some move
@@ -110,7 +107,7 @@ Because the intrusions typically refer to characters who show up elsewhere in
 the episode, it becomes possible to plot out a timeline of events, which is
 what this visualization does.  We know person *x* was at place _n_ to meet
 person *y*, but over at _m_ later to meet person *z*. But through the
-intrusions, we also know where *x* and *z* were at the same time, though
+intrusions, we also know where *y* and *z* were at the same time, though
 separate from one another. These collisions are nowhere clearer than in the
 final section, which features a viceregal cavalcade riding from Phoenix Park to
 the Mirus Bazaar in Ballsbridge, thereby riding straight through downtown
@@ -153,65 +150,68 @@ A brief description of each of the 19 episodes:
 
 17. Artifoni still chases his tram, while Cashel Boyle O’Connor Fitzmaurice Tisdall Farrell walks along Merrion Square.
 
-18. Master Patrick Aloysius Dignam starts to bring pork steaks back home.
+18. Master Patrick Aloysius Dignam starts to bring porksteaks back home.
 
 19. The viceregal cavalcade leaves Phoenix Park and drives through downtown Dublin on the way to the Mirus Bazaar.
-
 
 ## Spacetime, Nothing but Spacetime…
 
 > Did it start with Bergson, or before? Space was treated as the dead, the
 > fixed, the undialectical, the immobile. Time, on the contrary, was richness,
-> fecundity, life, dialectic. (Foucault 70)
+> fecundity, life, dialectic (Foucault 70).
 
 The relationship between space, spacetime, and the novel has been at the center
-of my work for almost a decade now. And still I often start with this nearly
-throwaway quote by Foucault from an interview that seems often cited instead
-for its final kicker, “Geography must indeed necessarily lie at the heart of my
-concerns” (77). But the solution to geography’s second-class status compared to
-time isn’t solved by doubling down on geography, unless that is done just to
-bring geography up to the same speed as time. 
+of my work for almost a decade now. And still I often start with this maybe
+throwaway quote by Michel Foucault from an interview that seems often cited
+instead for its final kicker, “Geography must indeed necessarily lie at the
+heart of my concerns” (77). But the solution to geography’s second-class status
+compared to time isn’t solved by doubling down on geography, unless that is
+done just to bring geography up to the same speed as time. 
 
 In literary study, we have a nearly century-old model for thinking literature
 spatiotemporally (as opposed to just temporally or, in a more postmodern,
-Jamesonian vein, just spatially). Bakhtin defines the chronotope as that which
-demonstrates the “intrinsic connectedness of temporal and spatial relationships
-that are artistically expressed in literature.” Based on Einstein’s Theory of
-Relativity, the chronotope “expresses the inseparability of space and time”
-(84). Many critical geographers (Massey, Soja, Harvey) have insisted on
-merging the two for decades now, but doing so continues to present challenges
-to literary study, at least when thinking about the worlds a novel creates.
+Jamesonian vein, just spatially). Mikhail Bakhtin defines the chronotope as
+that which demonstrates the “intrinsic connectedness of temporal and spatial
+relationships that are artistically expressed in literature.” Based on Albert
+Einstein’s Theory of Relativity, the chronotope “expresses the inseparability
+of space and time” (84). Many critical geographers (Doreen Massey, Edward Soja,
+David Harvey) have insisted on merging the two for decades now, but doing so
+continues to present challenges to literary study, at least when thinking about
+the worlds a novel creates.
 
 Authors of aesthetic texts have followed Aristotle’s command that a work have a
 beginning, middle, and end for over two millennia. There is, then, an intrinsic
 temporality provided merely by how we consume the text. Even edge cases like
-Choose your Own Adventures or _Rayuela_ still provide a sort of linearity on
-the fly. A sjužet remains; it’s just more reader-driven and divorced from the
-increment variable we typically call “page number.” Barthes may write that “for
-those of us who are trying to establish a plural… the reading must also be
-plural, that is, without order of entrance,” but reaching his height of
-plurality or writerliness is a summit that I’m still trying to work through
-(and one more interconnected, as I believe its invocation here shows, with
-spatiotemoprality than might be at first assumed). Barthes encourages us to
-read “the text as if it had already been read,” which helps to manhandle and
-interrupt the text (15).
+Choose your Own Adventures or _Rayuela_ still provide a linearity on the fly
+rendered temporally. A sjužet remains; it’s just more reader-driven and
+divorced from the increment variable we typically call “page number.” 
+
+Roland Barthes writes that “for those of us who are trying to establish a
+plural… the reading must also be plural, that is, without order of entrance.”
+Reaching this height of plurality or writerliness is a summit that I’m still
+trying to work through, but I think that a good way in is precisely through the
+_multiple_ spatiotemporalities present in any (?) novel, at least. Barthes’s
+encouragement to read “the text as if it had already been read,” which helps to
+manhandle and interrupt the text, trips up the dominance on a temporal-only
+kind of thinking, which both allows for space to catch up and join its
+dimensional sibling but also allows the reader to see that there is not just
+one time—or one spacetime—in a novel (15).
 
 Focussing on the competing, colliding, contradicting, and circumventing
-spatiotemporalities in “Wandering Rocks” through this visualization actually
-helps reach this goal of a shattered text, with what feels like literally
-hundreds of obvious points of entry providing another rereading, another time
-through, another production.
+spatiotemporalities in “Wandering Rocks” actually helps shattered the text,
+with what feels like literally hundreds of obvious points of entry providing
+another rereading, another time through, another production.
 
-No matter what I’ve called spatiotemporalities in novels before (“sites,”
+No matter what I’ve called the spatiotemporalities in novels before (“sites,”
 “разноречие” and “разномирность,” and so on), as I try to build out my idea of
 “everyday criticism,” any kind of working over a text that allows these
 variable points of entry and variable productions, these writings by readers,
-must be useful towards that goal.
+provide yet newer means of pushing the plurality.
 
 ## Data
 
 There are three distinct datasets in this project, and all of them rely on the
-previous work done by Gifford and Gunn and Hart.
+previous work done by Don Gifford and Ian Gunn and Clive Hart.
 
 The data in the first dataset are what I call “instances.” These are instances
 of a place’s being mentioned in the text. I wrote a web application,
@@ -219,10 +219,12 @@ of a place’s being mentioned in the text. I wrote a web application,
 these instances by hand. They include a page number, a sequence, and a specific
 location. To this data, I also added times, using Hart’s measurements. Hart did
 not time each instance of a place’s being mentioned, so I guessed a time for a
-lot of them. The dataset is further split by spatiotemporalities, in that there
-is an “exterior” spacetime and an “interior” spacetime. These distinctions are
-local to this visualization and are not part of the `NYWalker` data, which is
-[available for download](http://nywalker.newyorkscapes.org/books/ulysses-1922).
+lot of them. The dataset is further split into two explicit
+spatiotemporalities, in that there is an “exterior” spacetime (where actors
+are) and an “interior” spacetime (on what actors or the narrator remark). These
+distinctions are local to this visualization and are not part of the `NYWalker`
+data, which is [available for
+download](http://nywalker.newyorkscapes.org/books/ulysses-1922).
 
 The second dataset is built on the first. It includes “collisions.” These are
 incidents that clearly take place at a specific place and time and feature
@@ -233,11 +235,11 @@ instance is Conmee’s boarding a tram on *Newcomen Bridge*. A collision is
 
 The third dataset is mostly invisible at this time. It is made up of the paths
 taken by around 30 different actors in the episode. Currently, only two are
-visible: Conmee’s and the cavalcades’ paths. These two are available because,
+visible: Conmee’s and the cavalcade’s. These two are available because,
 apparently, Joyce relied on them in constructing the mechanics of the episode.
-These paths I drew by hand and rely on a lot of speculation, such as how
-someone walks from O’Connell Bridge to “King Billy’s horse” on College Green.
-The narrator does not tell us how the Breens took the trip.
+I drew all of the paths by hand and most rely on a lot of speculation, such as
+how someone walks from O’Connell Bridge to “King Billy’s horse” on College
+Green. The narrator does not tell us, after all, how the Breens took the trip.
 
 There are several famous geographical “blunders” in the episode, where the
 narrator (or a character) misidentifies a place. Three deserve special comment.
@@ -249,10 +251,10 @@ the cavalcade on a bridge spanning the Grand Canal that is referred to as the
 misidentifications, not as references to places far removed from the
 spatiotemporal logic of either actor’s location and movement. 
 
-Finally, Gifford writes that Thomas Court, the location of the unfindable
-“mansion of the Kildares” that Love mentions, “was the main street of the
-walled city of medieval Dublin. It is at present a series of streets including
-Thomas Street” (268). I read the reference as one to, instead, the
+In one last detail, Gifford writes that Thomas Court, the location of the
+unfindable “mansion of the Kildares” that Love mentions, “was the main street
+of the walled city of medieval Dublin. It is at present a series of streets
+including Thomas Street” (268). I read the reference as one to, instead, the
 [Liberty of Thomas Court and
 Donore](https://en.wikipedia.org/wiki/Liberty_of_Thomas_Court_and_Donore), a
 manor right outside the walled city and the location of the current Dublin
@@ -260,38 +262,42 @@ street Thomas Court.
 
 ## Technology
 
+This project is available on
+[GitHub](https://github.com/muziejus/wandering-rocks/). 
+
 The scholarly incentive for the project was to think about wandering in the
-city, but a secondary incentive was to get to know a few technologies better,
-namely [Leaflet](http://leafletjs.com) and [D3](http://d3js.org). Along the
-way, my familiarity with JavaScript and especially [jQuery](http://jquery.com)
-also improved.
+city (for a completely unrelated project), but a secondary incentive was to get
+to know a few technologies better, namely [Leaflet](http://leafletjs.com) and
+[D3](http://d3js.org). Along the way, my familiarity with JavaScript and
+especially [jQuery](http://jquery.com) also improved.
 
 The text in these various tabs was written in Markdown and is converted to HTML
 on the fly by [Showdown](https://github.com/showdownjs/showdown). The overall
 aesthetic is farmed out to [Bootstrap](http://getbootstrap.com), which is
 extended with the [Bootstrap Toggle](http://www.bootstraptoggle.com/) extension
-to make the handsome switches.
+to make the handsome switches. The colorscheme on the map, of course, is from
+[Color Brewer 2.0](http://colorbrewer2.org/).
 
 If the project looks a lot like Chris Whong’s [NYC Taxis: A Day in the
 Life](http://chriswhong.github.io/nyctaxi/) visualization, that’s not a
 coincidence. The project proved to me that it was possible to do a time
 animation usefully using a combination of D3 and Leaflet (in fact, I found it
-by just googling “d3 Leaflet”). Mike Bostock’s OG “[D3 +
-Leaflet](https://bost.ocks.org/mike/leaflet/)” demo underlies how the various
+by just googling “d3 Leaflet animation” and clicking through the link on [Zev Ross’s top Google hit](http://zevross.com/blog/2014/09/30/use-the-amazing-d3-library-to-animate-a-path-on-a-leaflet-map/)). Mike Bostock’s OG “[D3 +
+Leaflet](https://bost.ocks.org/mike/leaflet/)” demo describes how the various
 dots and paths are converted from GeoJSON to SVG objects.
 
 I also consulted two books rather extensively. Scott Murray’s [_Interactive
 Data Visualization for the
 Web_](http://chimera.labs.oreilly.com/books/1230000000345/index.html) is a
-great introduction to how weird D3 is. Once I read and understood everything
-there, Elijah Meeks’s [_D3.js in
+great introduction to how weird D3 is. Once I read and understood everything in
+that volume, Elijah Meeks’s [_D3.js in
 Action_](https://www.manning.com/books/d3-js-in-action) served as handy
-secondary resource. Both books need updates, I feel. Those updates could
-include dealing with, among other things, something like Leaflet. Meeks’s
-chapter on geospatial information visualization, for example, rather
-startlingly answered very few of my questions, largely because of the weirdness
-of using `d3.geoPath` with Leaflet instead of creating a sui generis map where
-I provide even the basemap/shapes (see below).
+secondary resource. Both books could use updates, I feel, including sections
+about, among other things, something like Leaflet. Meeks’s chapter on
+geospatial information visualization, for example, rather startlingly answered
+very few of my questions, largely because of the difficulty I encountered using
+`d3.geoPath` with Leaflet instead of creating a sui generis map where I provide
+even the basemap/shapes (see below).
 
 Of course, I also used [StackOverflow](http://stackoverflow.com) extensively, but that goes without saying. 
 
@@ -320,109 +326,173 @@ on with the path and why changing the `r` attribute wasn’t doing anything!
 ### To Come…
 
 I had hoped to have animated paths like in the NYC Taxi visualization above.
-Whong has it kind of easy in this case, because the path is pre-defined,
-there’s a start point, an end point, and a duration. The animation is made up
-of only one piece, then—that specific path. Here, rather, I have paths covered
-by people where they have to be in many different places at many different
-times. That’s a granular return to the data I am not quite yet ready to do.
-Building up the other datasets was enough work for now. But in the future,
+Whong has it kind of easy in this case, because the path is pre-defined (or at
+least built w/ an api call), there’s a start point, an end point, and a
+duration. The animation is made up of only one piece, then—that specific trip
+from A to B. Here, rather, I have paths covered by people where they have to be
+in many different, specific places at many different, specific times. That’s a
+big project of splitting up the paths in the data I am not quite yet ready to
+do.  Building up the other datasets was enough work for now. But in the future,
 however, I’d love a little horse emoji representing the Cavalcade as it rides
 to the Bazaar, say.
 
 ## This Is Great and All, but So What?
 
->My task is to move, to shift systems (Barthes 10)
+>My task is to move, to shift systems (Barthes 10).
 
-This is the hardest tab to write. Building this visualization
-involves (involved) giving in to tendencies that I am trying to avoid in my
-scholarship. Given that one of the goals was to learn the underlying
+This is the hardest tab to write. Building this visualization involves
+(involved) giving in to tendencies that I am trying to avoid in my scholarship.
+Given that one of the goals was to learn the visualization/animation
 technology, however, it could not have been otherwise.
 
-The issue is that animations provided by the JavaScript driving this project,
-while super neat and cool, possibly do not actually tell us much _about_
-“Wandering Rocks.” This initial concern is amplified by the following
-reactions.
+Do these animations, despite being highly neat, actually tell us much _about_
+“Wandering Rocks”? I think the answer is yes, but perhaps not for the what
+might seem obvious reasons. I give below a few conversations between my inner
+hater and myself, conversations that I think provide insight into the massive
+and potentially unexpected problems this kind of digital work creates—and,
+again, they’re much more complicated than the initial responses from digital
+skeptics. Those “OK, So?”s tend to be much easier to parry.
 
-**Oh, just what the world needs, another deep dive on James Freakin’ Joyce.**
-There are lots of novels with fractured fabuly and sjužety (if we’re sticking
-to the Russian…). Similarly, there are lots of novels that provide extensive
-geographical detail, making mapping movements through a city possible. Why go
-back to such a canonical novel like _Ulysses_? Well, its very canonicity means
-that _a lot of the work has already been done_. Most of the geocoding for this
-section was just double-checking the work already done by Gifford and Gunn and
-Hart. Additionally, the timings would have been impossible for me to include
-without Hart’s own walking around in Dublin pretending to be an old woman or
-onelegged sailor, stopwatch in hand. I aim to make my spatiotemporal
-investigations of novels move past just the obvious hits like The Novel of High
-Modernism, but sometimes it’s worthwhile to build on a strong, already existing
-foundation. For example, the geographical “blunders” in the episode have
+**Great, just what the world needs, another deep dive on James Freakin’
+    Joyce.** There are lots of novels with fractured fabuly and sjužety.
+    Similarly, there are lots of novels that provide extensive geographical
+    detail, making mapping movements through a city possible. Why go back to
+    such a canonical novel like _Ulysses_? Well, its very canonicity means that
+    _a lot of the work has already been done_. Most of the geocoding for this
+    section was just double-checking the work already done by Don Gifford and
+    Ian Gunn and Clive Hart. Additionally, the timings would have been
+    impossible for me to include without Hart’s own walking around in Dublin
+    pretending to be an old woman or onelegged sailor, stopwatch in hand.
+    
+Generally, I aim to make spatiotemporal investigations of novels that are not
+simply obvious hits like The Novel of High Modernism, but sometimes it’s
+worthwhile to build on a strong, already existing foundation of scholarship
+_and_ interest. For example, the geographical “blunders” in the episode have
 already been dissected by generations of Joyce scholars, meaning when I
-stumbled upon them independent, I could rely on those scholars’ expertise and
-either accept or reject it. Finally, its canonicity helps with its profile.  I
-think the ideas and troubles hinted at in how I talk about this project can
-help frame how we look at spatiotemoporality for any novel (or perhaps
-aesthetic text), but since a lot of people care about Joyce, maybe this will
-give those ideas more visibility.
+stumbled upon them independently, I could rely on those scholars’ expertise and
+either accept that confidently or give reasons for rejecting it. Finally, the
+novel’s canonicity  and popularity helps boost this project’s profile. I think
+the ideas and troubles hinted at in how I talk about this project are important
+to any scholars interested in digital scholarship that frames
+spatiotemoporality for any novel (or perhaps any aesthetic text). Because a lot of
+people care about Joyce, perhaps this specific visualization will give those
+ideas more visibility.
 
-**Friend, _Ulysses_ takes place in Dublin in 1904. You have a 2017
-basemap.** This is a valid concern, and it is one that merely putting a c.
-1904 georectified basemap underneath the dots and lines would not really solve.
-Drucker has been encouraging data-handling humanists to consider the value of
-georectification, as doing so merely “reconciles spatial data and maps… with a
-given standard, such as Google maps”(76–77). Georectification is the imposition
-of a specific, GIS kind of thinking on data (or “capta,” to use Drucker’s term)
-that does not exist with GIS in mind. As Drucker continues, “the greater
-intellectual challenge is to create spatial representations without referencing
-a pre-existing ground”(77). The information in _Ulysses_ takes a troubling trip
-to your computer screen: I _capture_ it and identify it as a datum (or captum).
-I then spatiotemporally locate it through consulting some combination of
-Gifford, Gunn and Hart, Wikipedia, and Google. Following a conversion, perhaps
-with Google’s help, to Cartesian coordinates based on a measurement of the
-Earth’s shape from 1984, I line those coordinates up with a contemporary
-map of Dublin, making the risky guess that, as far as downtown is concerned,
-streets have not changed their shape all that much. Then Leaflet and D3, two
-software packages, combine to recalculate those coordinates into the little
-exploding dots you see. Every step adds new assumptions about how space and
-time work and move the capta farther from its source.  Furthermore, as soon as
-the jump is made to the digital, a faux-precision dominates, where, for
-example, something like the immense idea of “America” is reduced to a teeny
-exploding dot with its center in Kansas. These issues remain _unsolved_, and
-this project _fails_ Drucker’s challenge.
+**Friend, _Ulysses_ takes place in Dublin in 1904. You have a 2017 basemap.**
+    This is a valid concern, but perhaps not as valid as it is clever. And it
+    is certainly one that merely putting a c. 1904
+    [georectified](http://support.esri.com/other-resources/gis-dictionary/term/georectification)
+    basemap underneath the dots and lines would not solve.  Johanna Drucker
+    encourages data-handling humanists to reconsider the value of
+    georectification, especially with historical maps, because the process merely
+    “reconciles spatial data and maps… with a given standard, such as Google
+    maps” (76–77). Georectification is the imposition of a specific, GIS kind of
+    thinking on data (or “capta,” to use Drucker’s term) that were not
+    generated with GIS in mind. As Drucker continues, “the greater intellectual
+    challenge is to create spatial representations without referencing a
+    pre-existing ground” (77). 
+    
+The information within the novel _Ulysses_ takes a troubling trip to your
+computer screen: I _capture_ a chunk and identify it as a datum (or captum). I
+then spatiotemporally locate it through consulting some combination of Gifford,
+Gunn and Hart, Wikipedia, and Google. Following a conversion, perhaps with
+Google’s help, to Cartesian coordinates based on a measurement of the Earth’s
+shape from 1984, I line those coordinates up with a contemporary map of Dublin,
+making the risky guess that, as far as downtown is concerned, streets have not
+changed their shape all that much. Then Leaflet and D3, two software packages,
+combine to recalculate those coordinates into coordinates on an SVG plane that
+you see as little exploding dots. Every step adds new assumptions about how
+space and time work and move the capta farther from their source.  Furthermore,
+as soon as the jump is made to the digital, a _faux-precision_ dominates,
+where, for example, something like the immense idea of “America” is reduced to
+a teeny exploding dot with its center in Kansas. These issues remain
+_unsolved_, and this project _fails_ Drucker’s challenge. But adding a
+georectified historical map would be an even bigger blunder.
 
 **You took preëxisting information and just added color and made it bounce.**
     Drucker distinguishes between information visualizations that produce the
     knowledge they draw and those that merely display information (3). It seems
-    at first inarguable that this visualization does the latter only. Any new
+    at first inarguable that this visualization does only the latter. Any new
     insights into “Wandering Rocks” seem destined to evoke the small surprise
     of the merely interesting: “surprising—but not that surprising” (Ngai 145).
     We have the delayed judgment of “isn’t it _interesting_ that Boylan’s
     section is the first to intrude on Conmee’s command of the fabula from the
-    of the episode?” Moving that glimmer of interestingness somewhere else
-    requires a deeper look into the structure of the episode I have an idea for
-    a different form of visualizing the tension between fabula and sjužet
-    (hint: a two-dimentional (time|plot)line), but that visualization would be
-    exclusively temporal, thereby violating the canonical rule of
-    spatiotemporal thinking, in a Bill Murray singing voice: “Spacetime,
-    nothing but spacetime.” Fabula and sjužet seem to be strictly temporal
-    terms, and it’s all too easy to treat them exclusively as such. But, then,
-    that’s what we’re doing: taking the all too easy route. Nevertheless in
-    that deferred judgment, Sianne Ngai also sees in finding something
-    interesting the desire to “do criticism” (170). This aesthetic, after all,
-    does have “the capacity to produce new knowledge,” after all. It’s just not
-    clear, as yet, how (171).
+    of the episode?” It strikes me that moving that glimmer of interestingness
+    somewhere else requires a deeper look. Or perhaps more rereading. 
+    
+As far as deeper looks are concerned, I have an idea for a different form of
+visualizing the tension between fabula and sjužet (hint: a two-dimentional
+(time|plot)line); that visualization, however, would be exclusively temporal,
+thereby violating the canonical rule of spatiotemporal thinking, in a Bill
+Murray singing voice: “Spacetime, nothing but spacetime.” The progress explicit
+in Fabula and sjužet lure us into thinking of them as strictly temporal
+terms—did it start with Bergson?—and it’s all too easy to treat them exclusively as such.
+But we have to avoid that.
+
+Still, on the other hand, the aesthetic of the merely interesting does have
+“the capacity to produce new knowledge” (Ngai 171). Maybe there’s a way through below.
 
 **OK, but this all still boils down to being just a chance to play with
-    JavaScript, no?** Play! Isn’t that the point? Barthes again, and to close
-    out:
+    JavaScript, no?** Play! Isn’t that the point? Roland Barthes again:
 
 > Rereading draws the text out of its internal chronology (“this happens
 > _before_ or _after_ that”) and recaptures a mythic time (without _before_ or
-> _after_ [hence troubling Andersonian simultaneity]); rereading is no longer
-> consumption, but play (that play which is the return of the different). If
-> then, a deliberate contradiction in terms, we _immediately_ reread the text,
-> it is in order to obstain, as though under the effect of a drug (that of
-> recommencement, of different), not the _real_ text, but a plural text: the
-> same and new (16)
+> _after_); rereading is no longer consumption, but play (that play which is
+> the return of the different). If then, a deliberate contradiction in terms,
+> we _immediately_ reread the text, it is in order to obtain, as though under
+> the effect of a drug (that of recommencement, of different), not the _real_
+> text, but a plural text: the same and new (16).
+
+That sense of “mythic time” is especially appealing to me here. One way to read
+it would be to think of it as erasing time from the picture into the “Messianic
+time, a simultaneity of past and future in an instantaneous present” (Anderson
+24). For Benedict Anderson, however, this time is replaced by the Benjaminian
+“homogenous, empty time” that is “measured by clock and calendar” (Anderson 24;
+Benjamin 264) and existing outside the frame of reference. This new, empty
+time (and space), of course, is explicitly tied to the rise of the novel (Watt
+21–27). 
+
+Instead, to me, that “without _before_ or _after_” signals that there is no
+_one_ spatiotemporality in the text.  The emptiness of that framing,
+homogenized time, is challenged by “Wandering Rocks” on its own, and that
+challenge becomes _more acute_ through the play of this visualization, which
+relies on _yet undoes_ the centrality of a ticking clock to the episode. Clocks
+and their mechanicity are, of course, vital to “Wandering Rocks.” Frank Budgen
+calls Joyce an “engineer” in plotting the episode (123). Stuart Gilbert focuses
+on the ticks and tocks of the clocks and other “references to mechanical
+movement” scattered throughout the episode (Gilbert 234). The episode begins,
+after all, with Conmee’s checking his watch and seeing he has enough time to
+get to Artane. But then it closes with Artifoni finally catching a tram and
+boarding it… the last moment of the episode providing the breath catching pause
+of just-in-timeness (in contrast to Hitchcock’s being out of time in missing
+his bus at the start of _North by Northwest_) that shows that the framing clock
+is not enough.
+
+Conmee’s leisurely having all the time in the world is a promise made by the
+regulating ticks of a clock outside the frame. But it is an empty promise.
+Gilbert describes how the sections of “Wandering Rocks” “interlock like a
+system of cog-wheels or the linked segments of an endless chain [that] may be
+described as ‘mechanical’,” but that system of cog-wheels breaks down
+throughout for the characters inhabiting the world in _Ulysses_.  Kernan, the
+Ulsterman probably most excited to see the cavalcade, just misses it. Master
+Dignam misses the boxing match he’d just found out about by several weeks. And
+for all the just-in-time success of the tram’s closing its door right behind
+Artifoni, he has still been chasing it or its follower for about five
+kilometers, having missed it at College Green and not boarded at Merrion
+Square.  Considering this, the fabula is no longer a meticulous machine moving,
+and Budgen and Gilbert’s insisting on putting Joyce central to the episode
+recasts the author not as a machine builder or systems designer but, rather, as
+instead a mischievous puppeteer, the deus persistently torturing these minor
+characters by letting the machine tick past them. Joyce cackles with enjoyment
+over the delays, the misses.
+
+This visualization is not about Joyce’s omnipotence rendered wicked, however.
+It is about the spatiotemporalities within “Wandering Rocks.” The sjužet’s
+recombinating of the fabula already confounds the time “measured by clock and
+calendar,” because now time is measured alongside lines of prose alongside
+distance. Flipping back to the fabula causes a new rereading. Stepping forward
+and backward another. Clicking on dots another. The text is always the same,
+but now it is plural. New. Interesting?  Maybe even more.
 
 ## Further Reading
 
@@ -459,6 +529,8 @@ this project _fails_ Drucker’s challenge.
 * Bakhtin, Mikhail Mikhailovich. _The Dialogic Imagination: Four Essays_. ed. Michael Holquist. trans. Caryl Emerson and Michael Holquist. Austin: U Texas P, 1981.
 
 * Barthes, Roland. _S/Z_. trans. Richard Miller. New York: Hill and Wang, 1974.
+
+* Benjamin, Walter. _Illuminations_. ed. Hannah Arendt. trans. Harry Zohn. New York: Schocken, 1968.
 
 * Blamires, Harry. _The Bloomsday Book: A Guide through Joyce’s Ulysses_. London: Methuen, 1966.
 
@@ -497,6 +569,8 @@ this project _fails_ Drucker’s challenge.
 * Ngai, Sianne. _Our Aesthetic Categories: Zany, Cute, Interesting_. Cambridge, MA: Harvard UP, 2012.
 
 * Soja, Edward. _Thirdspace: Journeys to Los Angeles and Other Real-and-Imagined Places_. Cambridge, MA: Blackwell, 1996.
+
+* Watt, Ian. _The Rise of the Novel_. Berkeley: U of California P, 2001.
 
 * Woloch, Alex. _The One vs. the Many: Minor Characters and the Space of the Protagonist_. Princeton: Princeton UP, 2003.
 

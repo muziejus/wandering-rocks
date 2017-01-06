@@ -2,7 +2,7 @@
 
 > Did it start with Bergson, or before? Space was treated as the dead, the
 > fixed, the undialectical, the immobile. Time, on the contrary, was richness,
-> fecundity, life, dialectic. (Foucault 70)
+> fecundity, life, dialectic (Foucault 70).
 
 The relationship between space, spacetime, and the novel has been at the center
 of my work for almost a decade now. And still I often start with this maybe
@@ -26,25 +26,28 @@ the worlds a novel creates.
 Authors of aesthetic texts have followed Aristotle’s command that a work have a
 beginning, middle, and end for over two millennia. There is, then, an intrinsic
 temporality provided merely by how we consume the text. Even edge cases like
-Choose your Own Adventures or _Rayuela_ still provide a sort of linearity on
-the fly. A sjužet remains; it’s just more reader-driven and divorced from the
-increment variable we typically call “page number.” Roland Barthes may write
-that “for those of us who are trying to establish a plural… the reading must
-also be plural, that is, without order of entrance,” but reaching this height
-of plurality or writerliness is a summit that I’m still trying to work through
-(and one more interconnected, as I believe its invocation here shows, with
-spatiotemoprality than might be at first assumed). Barthes encourages us to
-read “the text as if it had already been read,” which helps to manhandle and
-interrupt the text (15).
+Choose your Own Adventures or _Rayuela_ still provide a linearity on the fly
+rendered temporally. A sjužet remains; it’s just more reader-driven and
+divorced from the increment variable we typically call “page number.” 
+
+Roland Barthes writes that “for those of us who are trying to establish a
+plural… the reading must also be plural, that is, without order of entrance.”
+Reaching this height of plurality or writerliness is a summit that I’m still
+trying to work through, but I think that a good way in is precisely through the
+_multiple_ spatiotemporalities present in any (?) novel, at least. Barthes’s
+encouragement to read “the text as if it had already been read,” which helps to
+manhandle and interrupt the text, trips up the dominance on a temporal-only
+kind of thinking, which both allows for space to catch up and join its
+dimensional sibling but also allows the reader to see that there is not just
+one time—or one spacetime—in a novel (15).
 
 Focussing on the competing, colliding, contradicting, and circumventing
-spatiotemporalities in “Wandering Rocks” through this visualization actually
-helps reach this goal of a shattered text, with what feels like literally
-hundreds of obvious points of entry providing another rereading, another time
-through, another production.
+spatiotemporalities in “Wandering Rocks” actually helps shattered the text,
+with what feels like literally hundreds of obvious points of entry providing
+another rereading, another time through, another production.
 
-No matter what I’ve called spatiotemporalities in novels before (“sites,”
+No matter what I’ve called the spatiotemporalities in novels before (“sites,”
 “разноречие” and “разномирность,” and so on), as I try to build out my idea of
 “everyday criticism,” any kind of working over a text that allows these
 variable points of entry and variable productions, these writings by readers,
-must be useful towards that goal.
+provide yet newer means of pushing the plurality.

@@ -9,10 +9,12 @@ of a place’s being mentioned in the text. I wrote a web application,
 these instances by hand. They include a page number, a sequence, and a specific
 location. To this data, I also added times, using Hart’s measurements. Hart did
 not time each instance of a place’s being mentioned, so I guessed a time for a
-lot of them. The dataset is further split by spatiotemporalities, in that there
-is an “exterior” spacetime and an “interior” spacetime. These distinctions are
-local to this visualization and are not part of the `NYWalker` data, which is
-[available for download](http://nywalker.newyorkscapes.org/books/ulysses-1922).
+lot of them. The dataset is further split into two explicit
+spatiotemporalities, in that there is an “exterior” spacetime (where actors
+are) and an “interior” spacetime (on what actors or the narrator remark). These
+distinctions are local to this visualization and are not part of the `NYWalker`
+data, which is [available for
+download](http://nywalker.newyorkscapes.org/books/ulysses-1922).
 
 The second dataset is built on the first. It includes “collisions.” These are
 incidents that clearly take place at a specific place and time and feature
@@ -23,11 +25,11 @@ instance is Conmee’s boarding a tram on *Newcomen Bridge*. A collision is
 
 The third dataset is mostly invisible at this time. It is made up of the paths
 taken by around 30 different actors in the episode. Currently, only two are
-visible: Conmee’s and the cavalcades’ paths. These two are available because,
+visible: Conmee’s and the cavalcade’s. These two are available because,
 apparently, Joyce relied on them in constructing the mechanics of the episode.
-These paths I drew by hand and rely on a lot of speculation, such as how
-someone walks from O’Connell Bridge to “King Billy’s horse” on College Green.
-The narrator does not tell us how the Breens took the trip.
+I drew all of the paths by hand and most rely on a lot of speculation, such as
+how someone walks from O’Connell Bridge to “King Billy’s horse” on College
+Green. The narrator does not tell us, after all, how the Breens took the trip.
 
 There are several famous geographical “blunders” in the episode, where the
 narrator (or a character) misidentifies a place. Three deserve special comment.
@@ -39,10 +41,10 @@ the cavalcade on a bridge spanning the Grand Canal that is referred to as the
 misidentifications, not as references to places far removed from the
 spatiotemporal logic of either actor’s location and movement. 
 
-Finally, Gifford writes that Thomas Court, the location of the unfindable
-“mansion of the Kildares” that Love mentions, “was the main street of the
-walled city of medieval Dublin. It is at present a series of streets including
-Thomas Street” (268). I read the reference as one to, instead, the
+In one last detail, Gifford writes that Thomas Court, the location of the
+unfindable “mansion of the Kildares” that Love mentions, “was the main street
+of the walled city of medieval Dublin. It is at present a series of streets
+including Thomas Street” (268). I read the reference as one to, instead, the
 [Liberty of Thomas Court and
 Donore](https://en.wikipedia.org/wiki/Liberty_of_Thomas_Court_and_Donore), a
 manor right outside the walled city and the location of the current Dublin
@@ -50,41 +52,42 @@ street Thomas Court.
 
 ## Technology
 
-First, this project is available on
+This project is available on
 [GitHub](https://github.com/muziejus/wandering-rocks/). 
 
 The scholarly incentive for the project was to think about wandering in the
-city, but a secondary incentive was to get to know a few technologies better,
-namely [Leaflet](http://leafletjs.com) and [D3](http://d3js.org). Along the
-way, my familiarity with JavaScript and especially [jQuery](http://jquery.com)
-also improved.
+city (for a completely unrelated project), but a secondary incentive was to get
+to know a few technologies better, namely [Leaflet](http://leafletjs.com) and
+[D3](http://d3js.org). Along the way, my familiarity with JavaScript and
+especially [jQuery](http://jquery.com) also improved.
 
 The text in these various tabs was written in Markdown and is converted to HTML
 on the fly by [Showdown](https://github.com/showdownjs/showdown). The overall
 aesthetic is farmed out to [Bootstrap](http://getbootstrap.com), which is
 extended with the [Bootstrap Toggle](http://www.bootstraptoggle.com/) extension
-to make the handsome switches.
+to make the handsome switches. The colorscheme on the map, of course, is from
+[Color Brewer 2.0](http://colorbrewer2.org/).
 
 If the project looks a lot like Chris Whong’s [NYC Taxis: A Day in the
 Life](http://chriswhong.github.io/nyctaxi/) visualization, that’s not a
 coincidence. The project proved to me that it was possible to do a time
 animation usefully using a combination of D3 and Leaflet (in fact, I found it
-by just googling “d3 Leaflet”). Mike Bostock’s OG “[D3 +
-Leaflet](https://bost.ocks.org/mike/leaflet/)” demo underlies how the various
+by just googling “d3 Leaflet animation” and clicking through the link on [Zev Ross’s top Google hit](http://zevross.com/blog/2014/09/30/use-the-amazing-d3-library-to-animate-a-path-on-a-leaflet-map/)). Mike Bostock’s OG “[D3 +
+Leaflet](https://bost.ocks.org/mike/leaflet/)” demo describes how the various
 dots and paths are converted from GeoJSON to SVG objects.
 
 I also consulted two books rather extensively. Scott Murray’s [_Interactive
 Data Visualization for the
 Web_](http://chimera.labs.oreilly.com/books/1230000000345/index.html) is a
-great introduction to how weird D3 is. Once I read and understood everything
-there, Elijah Meeks’s [_D3.js in
+great introduction to how weird D3 is. Once I read and understood everything in
+that volume, Elijah Meeks’s [_D3.js in
 Action_](https://www.manning.com/books/d3-js-in-action) served as handy
-secondary resource. Both books need updates, I feel. Those updates could
-include dealing with, among other things, something like Leaflet. Meeks’s
-chapter on geospatial information visualization, for example, rather
-startlingly answered very few of my questions, largely because of the weirdness
-of using `d3.geoPath` with Leaflet instead of creating a sui generis map where
-I provide even the basemap/shapes (see below).
+secondary resource. Both books could use updates, I feel, including sections
+about, among other things, something like Leaflet. Meeks’s chapter on
+geospatial information visualization, for example, rather startlingly answered
+very few of my questions, largely because of the difficulty I encountered using
+`d3.geoPath` with Leaflet instead of creating a sui generis map where I provide
+even the basemap/shapes (see below).
 
 Of course, I also used [StackOverflow](http://stackoverflow.com) extensively, but that goes without saying. 
 
@@ -113,12 +116,13 @@ on with the path and why changing the `r` attribute wasn’t doing anything!
 ### To Come…
 
 I had hoped to have animated paths like in the NYC Taxi visualization above.
-Whong has it kind of easy in this case, because the path is pre-defined,
-there’s a start point, an end point, and a duration. The animation is made up
-of only one piece, then—that specific path. Here, rather, I have paths covered
-by people where they have to be in many different places at many different
-times. That’s a granular return to the data I am not quite yet ready to do.
-Building up the other datasets was enough work for now. But in the future,
+Whong has it kind of easy in this case, because the path is pre-defined (or at
+least built w/ an api call), there’s a start point, an end point, and a
+duration. The animation is made up of only one piece, then—that specific trip
+from A to B. Here, rather, I have paths covered by people where they have to be
+in many different, specific places at many different, specific times. That’s a
+big project of splitting up the paths in the data I am not quite yet ready to
+do.  Building up the other datasets was enough work for now. But in the future,
 however, I’d love a little horse emoji representing the Cavalcade as it rides
 to the Bazaar, say.
 
