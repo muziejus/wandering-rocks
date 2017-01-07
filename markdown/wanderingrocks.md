@@ -35,6 +35,9 @@ the Mirus Bazaar in Ballsbridge, thereby riding straight through downtown
 Dublin, where nearly every character in the episode has an opportunity to
 remark on the cavalcade as it rides past.
 
+The text used in this visualization, with all the attendant caveats, is the
+1986 edition edited by Hans Walter Gabler.
+
 A brief description of each of the 19 episodes:
 
 1. Father Conmee walks from his church to Artane, taking the tram for a part of his trip.
