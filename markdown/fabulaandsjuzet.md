@@ -7,7 +7,7 @@ Fabula, in its most basic sense, is the historical order of the events in a
 story. Sjužet (from the French “sujet”) is the narrative order of the
 story.</p>
 
-For example, in _Ulysses_, episode 3 (“Proteus”) is _after_ episode 4
+Very simplistically, in _Ulysses_, episode 3 (“Proteus”) is _after_ episode 4
 (“Calypso”) in the novel’s fabula, as the events in the former take place
 starting at 11:00 on Bloomsday, while the events in the latter cover
 8:00–10:00. However, “Proteus” is _before_ “Calypso” in the sjužet, as it is
@@ -15,10 +15,39 @@ the third episode, and “Calypso” is the fourth. Reading _Ulysses_’s fabula
 would force reading episode 4 before episode 3. Reading its sjužet reverses the
 process.
 
-These contrasting and perhaps contradictory temporalities (or, better,
-spatiotemporalities) separate the novel from the world that the novel creates.
-When discussing story/discourse, histoire/discours, and
-fabula/sjužet, Alex Woloch adds that
+Adding complication, Viktor Shklovsky builds on this distinction to demonstrate
+how the aesthetic emerges from the material.
+
+>The concept of plot (_syuzhet_) is too often confused with a description of
+>the events in the novel, with what I’d tentatively call the story line
+>(_fabula_).
+
+>As a matter of fact, though, the story line is nothing more than material for
+>plot formation [сюжетного оформления].
+
+The fabula is the foundation, the “real world” of the novel that is then bent
+and twisted into the sjužet, which carries the artistic charge. As Shklovsky continues,
+
+>The forms of art are explained by the artistic laws that govern them and not
+>by comparisons with actual life. In order to impede the action of the novel,
+>the artist resorts not to witches and magic potions but to a simple
+>transposition of its parts. He thereby reveals to us the aesthetic laws that
+>underlie both of these compositional devices.
+
+This fundamental requirement of transposition is prompted by Shklovsky’s
+remarking on Tristram Shandy’s own discussion of his digressions at the end of
+volume VI of his novel. Shandy [draws a set of
+lines](https://books.google.com/books?id=7UIVAAAAQAAJ&dq=tristram%20shandy&pg=RA1-PA152#v=onepage&q&f=false)
+to describe his “digressions,” aiming eventually to produce a straight line,
+“the best line.” But these digressions, this manipulation of the material of
+the fabula, is what prompts Shklovsky to call _Tristram Shandy_ “the most
+typical novel in world literature” (170).
+
+The fabula (raw material) and sjužet (manipulated material) generate
+contrasting and perhaps contradictory temporalities (or, better,
+spatiotemporalities) that separate the novel from the world that the novel
+creates.  When discussing story/discourse, histoire/discours, and
+fabula/sjužet, Alex Woloch reiterates this point by adding that
 
 >All these dichotomous terms refer, finally, to the essentially divided nature
 >of the literary text, as it is torn between form and content; between the

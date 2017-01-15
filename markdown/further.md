@@ -72,6 +72,10 @@
 
 * Ngai, Sianne. _Our Aesthetic Categories: Zany, Cute, Interesting_. Cambridge, MA: Harvard UP, 2012.
 
+* Shklovsky, Viktor Borisovich. “The Novel as Parody: Sterne’s _Tristram Shandy_.” In _Theory of Prose_. trans. by Benjamin Sher. Normal, IL: Dalkey Archive Press, 1991. 147–170.
+
+* Skhlovsky, Viktor Borisovich. “Пародийный роман: „Тристрам Шенди“ Стерна.” In _О Теории Прозы_. Moscow: Издателство «Федерация», 1929. 177–204.
+
 * Soja, Edward. _Thirdspace: Journeys to Los Angeles and Other Real-and-Imagined Places_. Cambridge, MA: Blackwell, 1996.
 
 * Watt, Ian. _The Rise of the Novel_. Berkeley: U of California P, 2001.
