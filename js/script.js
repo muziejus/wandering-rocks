@@ -650,16 +650,18 @@ function preparePaths(callback) {
 }
 
 function play() {
+  let playMode;
   if ($("#fsToggle").is(":checked")){
-    playFabula();
+    playMode = playFabula();
   } else {
-    playSjuzet();
+    playMode = playSjuzet();
   }
   d3.select("#play_btn")
     .classed("active", true);
   d3.select("#pause_btn")
     .attr("disabled", null)
     .classed("active", false);
+  playMode();
 }
 
 function pause() {
